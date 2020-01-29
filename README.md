@@ -1,0 +1,2 @@
+# LendaHand
+The Volunteer app is an Android and iOS app that seamlessly connects the next generation of volunteers to service opportunities. It aims to make find a volunteer opportunity just as simple as it is to find a new app on the App Store. Additionally, it gives small and large volunteer based organizations a powerful tool to find volunteers. It also allows Service Organizations to manage their volunteers and events and it allows volunteers to manage their service opportunities and hours. 
