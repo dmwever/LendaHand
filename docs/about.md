@@ -1,6 +1,7 @@
-# About Us
+[Home](index.md) | [Features](features.md) 
+---
 
-[Home](index.md)
+# About Us
 
 ## Meet the Developers behind Lend a Hand
 
