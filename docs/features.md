@@ -1,1 +1,2 @@
 # Features
+[Home](index.md)
