@@ -1,5 +1,7 @@
+[Home](index.md) | [About Us](about.md)
+---
+
 # Features
-[Home](index.md)
 
 ### For Volunteers
 * Find Service Opportunities through the Discover Feed and filtering by Category, Service Organization, Community Service Hours, Keyword Search, Date, Duration, Distance
