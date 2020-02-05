@@ -1,0 +1,103 @@
+{
+	TableName: "UserList",
+	Item: {
+		"fName" 	:	"Joe",
+		"lName" 	:	"Montana",
+		"email" 	:	"primaryKey@gmail.com",
+		"pNum"		:	"123-456-7890",
+		"desc"		:	"125 Chars maximum, or store and retrieve file online",
+		"photo"		:	"store photo online",
+		"DoB"		:	"1/1/1999",
+		"tags"		: [
+			"humanitarian aid"
+			"child advocacy"
+			"pregnancy alternatives"
+		],
+		"prevServe"	: {
+			"primaryKey"	: "111111"
+			"primaryKey"	: "123456"
+			"otherPrimary"	: "111111"
+			"primaryKey"	: "113794"
+		},
+		"flags"		: {
+			"yellowRecent"  : 0,
+			"redRecent"		: false
+		}
+	}
+}
+
+{
+	TableName: "orgList",
+	Item: {
+		"id"		:	"primaryKey"
+		"orgName"	:	"Child Advocacy Center",
+		"orgEmail"	:	"cacDothan@gmail.com",
+		"orgNum"
+		"loc"		:	"123 Roadname Rd, Dothan, AL 36303",
+		"logo"		:	"stored online for free",
+		"fblink"	:	"facebook.com/AaAaAaA",
+		"twlink"	:	"twitter.com/AaAaAaA",
+		"instalink"	:	"instagram.com/AaAaAaA",
+		"website"	:	"cacDothan.org",
+		"photos"	: [
+			"imgur.com/oops",
+			"imgur.com/oops",
+			"imgur.com/rUreadingThis"
+		],
+		"videos"	: [
+			"youtu.be/?420BlAzeIt",
+			"youtu.be/?69nIce42"
+		],
+		"tags"		: [
+			"Humanitarian Aid",
+			"Child Advocacy"
+		],
+		"prevVols"	: [
+			"primaryKey@gmail.com",
+			"otherPrimary@gmail.com",
+			"thirdPrimary@gmail.com"
+		],
+		"serveOps"	: [
+			{
+				"serveId"	: "111111",
+				"serveName" : "Supply Organization",
+				"time"		: "1/13/20, 1 p.m.",
+				"altLoc"	: null,
+				"serveDesc"	: "125-250 chars max or store online",
+				"headPhoto"	: "link.com/abacabByPhilCollins",
+				"coordNum"	: "If null use orgNum",
+				"coordPhoto": "If null use generic photo",
+				"numVols"	: 3,
+				"numWrkHrs" : 2,
+				"cutoff"	: "If null use 'time'",
+				"repeat"	: [
+					"Monday",
+					"Thursday",
+					"If weekly include all days of week in list"
+				],
+				"volReqs"	: "Background Check, Non-disclosure Agreement",
+				"promoPhoto": [
+					"imgur.com/yEeteMBoiS"
+					"imgur.com/bOReDCODerSshOulDNOtHavELaptOps",
+				],
+				"promoVideo": [
+					"https://youtu.be/ZZ5LpwO-An4 <-click me!"
+				],
+				"positions" : [
+					"If null don't show positions",
+					"else let people pick either all the positions they want or any of the available positions"
+				],
+				"tags"		: [
+					"Humanitarian Aid",
+					"Child Advocacy",
+					"Administrative assistance"
+				],
+				"volList"	: {
+					"Joe Montana primarykey@gmail.com" 		: "accepted",
+					"Joe Shlow otherPrimary@gmail.com"		: "denied",
+					"Joe Montana thirdPrimary@gmail.com"	: "pending"
+				}
+			}
+		]
+	}
+}
