@@ -1,5 +1,7 @@
 # About Us
 
+[Home](index.md)
+
 ## Meet the Developers behind Lend a Hand
 
 ### David Wever
