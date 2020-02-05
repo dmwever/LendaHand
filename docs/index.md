@@ -1,39 +1,18 @@
-[About](about.md)
 
-## Welcome to GitHub Pages
+
+## Welcome to LendaHand
 
 You can use the [editor on GitHub](https://github.com/vbbasilio/LendaHand/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+### What is LendaHand?
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+LendaHand is an Android and iOS app that seamlessly connects the next generation of volunteers to service opportunities. It aims to make finding a volunteer opportunity just as simple as it is to find a new app on the App Store. Additionally, it gives small and large volunteer based organizations a powerful tool to find volunteers.
 
-```markdown
-Syntax highlighted code block
+The service caters to two user groups: volunteers and service organizations. 
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+### For Service Organizations
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/vbbasilio/LendaHand/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Users interested in hosting service opportunities can sign up as a service organization. Service organizations have an online dashboard where they can easily manage their available service opportunities and any information about themselves on the app. 
