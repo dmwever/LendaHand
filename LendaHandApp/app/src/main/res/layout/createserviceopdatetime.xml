@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/viewCreateServiceOpDateTime"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        android:id="@+id/barServiceOpProgBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="138dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginLeft="136dp"
+        android:layout_marginBottom="112dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtDateTime"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginLeft="115dp"
+        android:layout_marginTop="8dp"
+        android:text="Date, Time, & Location"
+        android:textSize="18sp"
+        app:fontFamily="sans-serif-medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgServiceOpImage3" />
+
+    <ImageView
+        android:id="@+id/imgServiceOpImage3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="40dp"
+        android:contentDescription="@string/ServiceOpImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/txtRepeat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="87dp"
+        android:layout_marginLeft="87dp"
+        android:layout_marginTop="16dp"
+        android:text="Does it repeat?"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDateTime" />
+
+    <TextView
+        android:id="@+id/txtServiceOpWhenIsIt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="When is it?"
+        app:layout_constraintStart_toStartOf="@+id/swtchServiceOpRepeat"
+        app:layout_constraintTop_toBottomOf="@+id/swtchServiceOpRepeat" />
+
+    <TextView
+        android:id="@+id/txtServiceOpWhereIsIt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:text="Where is it?"
+        app:layout_constraintStart_toStartOf="@+id/swtchServiceOpRepeat"
+        app:layout_constraintTop_toBottomOf="@+id/swtchServiceOpRepeat" />
+
+    <TextView
+        android:id="@+id/txtServiceOpLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Location"
+        app:layout_constraintStart_toStartOf="@+id/txtServiceOpWhereIsIt"
+        app:layout_constraintTop_toBottomOf="@+id/txtServiceOpWhereIsIt" />
+
+    <TextView
+        android:id="@+id/txtServiceOpDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Date"
+        app:layout_constraintStart_toStartOf="@+id/swtchServiceOpRepeat"
+        app:layout_constraintTop_toBottomOf="@+id/swtchServiceOpRepeat" />
+
+    <TextView
+        android:id="@+id/txtServiceOpSignUpCutoff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        android:text="Sign Up Cut Off"
+        app:layout_constraintStart_toStartOf="@+id/swtchServiceOpRepeat"
+        app:layout_constraintTop_toBottomOf="@+id/swtchServiceOpRepeat" />
+
+    <TextView
+        android:id="@+id/txtServiceOpTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:text="Time"
+        app:layout_constraintStart_toEndOf="@+id/txtServiceOpDate"
+        app:layout_constraintTop_toTopOf="@+id/txtServiceOpDate" />
+
+    <Switch
+        android:id="@+id/swtchServiceOpRepeat"
+        android:layout_width="65dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="8dp"
+        android:autoText="false"
+        android:checked="false"
+        android:textOff="No"
+        android:textOn="Yes"
+        app:layout_constraintStart_toStartOf="@+id/txtRepeat"
+        app:layout_constraintTop_toBottomOf="@+id/txtRepeat"
+        tools:checked="false" />
+
+    <EditText
+        android:id="@+id/intxtServiceOpLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        app:layout_constraintStart_toStartOf="@+id/txtServiceOpLocation"
+        app:layout_constraintTop_toBottomOf="@+id/txtServiceOpLocation" />
+
+    <Button
+        android:id="@+id/btnServiceOpNext2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="16dp"
+        android:text="Next"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barServiceOpProgBar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
