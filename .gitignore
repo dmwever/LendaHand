@@ -12,7 +12,8 @@
 /captures
 .externalNativeBuild
 .cxx
-local.properties
-.idea
 .idea/
-.idea\
+/LendaHandApp/.idea
+/LendaHandApp/local.properties
+/LendaHandApp/app/.idea
+/LendaHandApp/app/local.properties
