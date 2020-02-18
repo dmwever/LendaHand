@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">LendaHand</string>
+<<<<<<< HEAD
     <string name="lh_volunteer_signup_description">This information will be sent to the service organization you’re volunteering with. This basic info is all you need for most service opportunitties.</string>
     <string name="lh_hint_first_name">First Name</string>
     <string name="lh_hint_last_name">Last Name</string>
@@ -9,4 +10,9 @@
     <string name="lh_hint_password">Password</string>
     <string name="lh_button_start_serving">Start Serving</string>
     <string name="lh_header_basic_contact_info">Basic Contact Info</string>
+=======
+    <string name="SampleText">Name</string>
+    <string name="btnSignupButton">Sign Up</string>
+    <string name="ServiceOpImage">ServiceOpImage</string>
+>>>>>>> 6f68885555133129bd53a6906af35273bd67cdd7
 </resources>
