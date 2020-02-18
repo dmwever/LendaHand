@@ -24,7 +24,7 @@
         android:layout_marginStart="115dp"
         android:layout_marginLeft="115dp"
         android:layout_marginTop="8dp"
-        android:text="Date, Time, & Location"
+        android:text="Date, Time, Location"
         android:textSize="18sp"
         app:fontFamily="sans-serif-medium"
         app:layout_constraintStart_toStartOf="parent"
