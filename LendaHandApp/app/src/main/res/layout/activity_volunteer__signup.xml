@@ -34,7 +34,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         >
 
-        <com.google.android.material.textfield.TextInputEditText
+         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:inputType="text"
