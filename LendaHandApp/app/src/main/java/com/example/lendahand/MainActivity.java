@@ -31,6 +31,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        //STEP 1: Add reference to button using R.id
+        MaterialButton createServiceOp = findViewById(R.id.create_service_opportunity);
+
+        //STEP 2: Set onClickListener for YOUR button
+        createServiceOp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //STEP 3: Create Intent for your class
+                Intent createServiceOpScreen = new Intent(v.getContext(), createServiceOpGenInfo.class);
+                //STEP 4: Start your Activity
+                startActivity(createServiceOpScreen);
+            }
+        });
+
     }
 
 
