@@ -64,6 +64,7 @@
             android:layout_gravity="center_horizontal"
             android:background="@color/colorPrimary"
             android:text="Next"
+            android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
     </LinearLayout>

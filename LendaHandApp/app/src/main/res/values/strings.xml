@@ -15,4 +15,6 @@
     <string name="lh_sign_up">Sign Up</string>
     <string name="lh_create_service_org">Create Service Org</string>
     <string name="lh_create_service_opportunity">Create Service Opportunity</string>
+    <string name="volunteers_will_see_this_information_for_all_the_service_opportunities_you_add_to_lend_a_hand">Volunteers will see this information for all the service opportunities you add to Lend a Hand.</string>
+    <string name="organization_name">Organization Name *</string>
 </resources>

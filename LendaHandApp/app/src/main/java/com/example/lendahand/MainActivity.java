@@ -31,6 +31,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        MaterialButton createServiceOrg = (MaterialButton)findViewById(R.id.create_service_org);
+        //STEP 2: Set onClickListener for YOUR button
+        createServiceOrg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //STEP 3: Create Intent for your class
+                Intent createServiceOrgScreen = new Intent(v.getContext(), org_signup1.class);
+                //STEP 4: Start your Activity
+                startActivity(createServiceOrgScreen);
+            }
+        });
+
     }
 
 
