@@ -12,21 +12,22 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/orgBasicInfoInstructions"
-            android:layout_width="259dp"
-            android:layout_height="wrap_content"
+            android:layout_width="138dp"
+            android:layout_height="52dp"
             android:layout_gravity="center_horizontal"
-            android:text="Volunteers will see this information for all the service opportunities you add to Lend a Hand."
-            android:textAlignment="center" />
-
+            android:text="@string/lh_header_basic_contact_info"
+            android:layout_marginBottom="19dp"
+            android:textSize="22sp" />
 
         <TextView
-            android:id="@+id/orgNameLabel"
+            android:id="@+id/orgBasicInfoInstructions"
             android:layout_width="259dp"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_gravity="center_horizontal"
-            android:text="Organization Name *"
-            android:textColor="@color/colorPrimaryDark" />
+            android:layout_marginBottom="11dp"
+            android:textSize="12sp"
+            android:text="@string/volunteers_will_see_this_information_for_all_the_service_opportunities_you_add_to_lend_a_hand"
+            android:textAlignment="center" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/orgNameLayout"
@@ -44,7 +45,8 @@
                 android:inputType="text"
                 android:layout_marginTop = "4dp"
                 tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="384dp" />
+                tools:layout_editor_absoluteY="384dp"
+                android:hint="@string/organization_name"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -174,6 +176,7 @@
             android:background="@color/colorPrimary"
             android:text="Next"
             android:textColor="@android:color/white"
+            android:textAllCaps="false"
             android:textSize="18sp" />
     </LinearLayout>
 </ScrollView>

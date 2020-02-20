@@ -29,6 +29,7 @@
             android:layout_gravity="center_horizontal"
             android:background="@color/colorPrimary"
             android:text="Finish"
+            android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
     </LinearLayout>
