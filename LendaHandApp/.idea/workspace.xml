@@ -95,7 +95,6 @@
               </folding>
             </state>
           </provider>
-          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -149,7 +148,6 @@
       <list>
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_volunteer__signup.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
@@ -186,19 +184,8 @@
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
             <path>
-              <item name="LendaHand" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/AndroidStudioProjects/LendaHand" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-            <path>
-              <item name="LendaHand" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/AndroidStudioProjects/LendaHand" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="LendaHandApp" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="LendaHand" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/AndroidStudioProjects/LendaHand" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="LendaHandApp" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="LendaHand" type="58d84e3e:PackageViewProjectNode" />
+              <item name="app" type="616d4139:PackageViewModuleNode" />
             </path>
           </expand>
           <select />
@@ -479,7 +466,8 @@
     <MESSAGE value="Changed App wide Colors" />
     <MESSAGE value="- Updated the dependencies for the project to match the ones from the tutorial so we can use material components.&#10;- Replaced the constraintLayout to FrameLayout in `activity_main.xml` and removed the arbitrary text box. Reason: this layout gave me no errors when building the app" />
     <MESSAGE value="- Created Volunteer Signup Activity&#10;- Added Strings for Volunteer_Signup Activity to `strings.xml`" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Created Volunteer Signup Activity&#10;- Added Strings for Volunteer_Signup Activity to `strings.xml`" />
+    <MESSAGE value="Modified manifest and added aws libraries" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified manifest and added aws libraries" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/local.properties">
@@ -582,6 +570,13 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/lendahand/Volunteer_Signup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/lendahand/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
@@ -633,7 +628,6 @@
           </folding>
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
   </component>
 </project>
