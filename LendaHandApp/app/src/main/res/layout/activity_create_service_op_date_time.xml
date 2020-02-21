@@ -11,7 +11,16 @@
         android:orientation="vertical"
     >
 
-    <TextView
+        <ImageView
+            android:id="@+id/imgServiceOpImage3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/ServiceOpImage"
+            app:srcCompat="@mipmap/page_icon_placeholder"
+            tools:srcCompat="@mipmap/page_icon_placeholder" />
+
+        <TextView
         android:id="@+id/txtDateTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,15 +28,7 @@
         android:text="Date, Time, Location"
         android:textSize="18sp" />
 
-    <ImageView
-        android:id="@+id/imgServiceOpImage3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/ServiceOpImage"
-        android:layout_gravity="center"
-        />
-
-    <TextView
+        <TextView
         android:id="@+id/txtRepeat"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
@@ -129,7 +130,7 @@
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
+            app:srcCompat="@mipmap/progress_2_of_4" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnServiceOpDateTimeNext"
