@@ -10,28 +10,87 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:background="@color/colorAccent" />
+
+        <TextView
+            android:layout_width="138dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:text="Photos"
+            android:layout_marginBottom="19dp"
+            android:textSize="22sp" />
+
         <TextView
             android:id="@+id/orgPhotosInstructions"
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="70dp"
             android:text="Organization pages with images are much more likely to get noticed. Upload your logo and a header photo to make your page look great."
             android:textAlignment="center" />
-        <android.appcompat.widget.AppCompatImageView
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"/>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp">
+
+            <ImageView
+                android:layout_width="160dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="60dp"
+                android:background="@android:color/darker_gray" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Upload Your Logo *"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@color/colorAccent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Upload Your Header *"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:background="#FDF39B" />
+            </LinearLayout>
+        </TableRow>
+
+        <ImageView
+            android:layout_width="259dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorAccent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/orgSignupFinish"
             android:layout_width="233dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@color/colorPrimary"
             android:text="Finish"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="18sp" />
+            android:textAllCaps="false" />
+
     </LinearLayout>
 
 </ScrollView>

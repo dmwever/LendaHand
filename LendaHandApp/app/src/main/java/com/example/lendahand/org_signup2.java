@@ -17,13 +17,19 @@ public class org_signup2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_org_signup2);
 
+        Intent intent = getIntent();
+        final ServiceOrganization newOrg = (ServiceOrganization)intent.getSerializableExtra("ServiceOrg");
         final TextInputEditText txtOrgDesc = (TextInputEditText)findViewById(R.id.orgDescText);
         final MaterialButton btnOrgSignUpNext2 = (MaterialButton) findViewById(R.id.orgSignupNext2);
+
 
         btnOrgSignUpNext2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String orgDesc = txtOrgDesc.getText().toString();
+                //Do input checking
+                newOrg.setOrgDescription(orgDesc);
+                newOrg.displayServiceOrg();
                 Intent nextScreen = new Intent(v.getContext(),  org_signup3.class);
                 startActivityForResult(nextScreen, 0);
             }

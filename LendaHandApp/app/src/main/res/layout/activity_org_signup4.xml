@@ -10,14 +10,44 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="200dp"
+            android:background="@color/colorAccent" />
+        <TextView
+            android:layout_width="138dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:text="Done!"
+            android:layout_marginBottom="19dp"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/FinishInstructions"
+            android:layout_width="259dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:text="Now you're ready to add your first service opportunity."
+            android:textAlignment="center" />
+
+        <ImageView
+            android:layout_width="259dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorAccent"
+            android:layout_marginBottom="100dp"/>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/orgAddServOp"
             android:layout_width="233dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@color/colorPrimary"
             android:text="Add a Service Opportunity"
-            android:textColor="@android:color/white"
+            android:textAllCaps="false"
             android:textSize="12sp" />
 
         <com.google.android.material.button.MaterialButton
