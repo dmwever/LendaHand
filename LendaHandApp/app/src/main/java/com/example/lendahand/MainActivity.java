@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         signupVolunteer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 //STEP 3: Create Intent for your class
                 Intent volunteerSignupScreen = new Intent(v.getContext(), Volunteer_Signup.class);
                 //STEP 4: Start your Activity
@@ -37,12 +39,15 @@ public class MainActivity extends AppCompatActivity {
 
         //STEP 2: Set onClickListener for YOUR button
         createServiceOp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //STEP 3: Create Intent for your class
+           @Override
+           public void onClick(View v) {
+               //STEP 3: Create Intent for your class
                 Intent createServiceOpScreen = new Intent(v.getContext(), createServiceOpGenInfo.class);
                 //STEP 4: Start your Activity
-                startActivity(createServiceOpScreen);
+               startActivity(createServiceOpScreen);
+
+            }
+        });
 
         MaterialButton createServiceOrg = (MaterialButton)findViewById(R.id.create_service_org);
         //STEP 2: Set onClickListener for YOUR button
