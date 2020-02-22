@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Organization Description *"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:textColor="@color/color_primary_variant"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/orgDescLayout"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Categories"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:textColor="@color/color_primary_variant"/>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/orgCategories1Layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -62,7 +62,7 @@
             android:layout_width="233dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@color/colorPrimary"
+            android:background="@color/color_primary_variant"
             android:text="Next"
             android:textAllCaps="false"
             android:textColor="@android:color/white"

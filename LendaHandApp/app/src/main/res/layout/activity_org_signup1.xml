@@ -35,7 +35,7 @@
             android:layout_height="35dp"
             android:layout_gravity="center_horizontal"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:boxStrokeColor="@color/colorPrimary"
+            app:boxStrokeColor="@color/color_primary"
             app:boxStrokeWidth="1dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Email *"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:textColor="@color/color_primary_variant"/>
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -65,7 +65,7 @@
             android:layout_height="35dp"
             android:layout_gravity="center_horizontal"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:boxStrokeColor="@color/colorPrimary"
+            app:boxStrokeColor="@color/color_primary"
             app:boxStrokeWidth="1dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Phone *"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@color/color_primary_variant" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/orgPhoneLayout"
@@ -110,7 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Website"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@color/color_primary_variant" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/orgWebsiteLayout"
@@ -134,7 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="YOUR PASSWORD IS NOT SEEN BY VOLUNTEERS"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/color_primary_variant"
             android:textSize="10sp" />
 
         <View
@@ -150,7 +150,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Password *"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@color/color_primary_variant" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/orgPasswordLayout"
@@ -173,7 +173,7 @@
             android:layout_width="233dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@color/colorPrimary"
+            android:background="@color/color_primary"
             android:text="Next"
             android:textColor="@android:color/white"
             android:textAllCaps="false"

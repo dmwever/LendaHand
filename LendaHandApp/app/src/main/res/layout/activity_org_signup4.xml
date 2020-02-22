@@ -15,7 +15,7 @@
             android:layout_width="233dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@color/colorPrimary"
+            android:background="@color/color_primary"
             android:text="Add a Service Opportunity"
             android:textColor="@android:color/white"
             android:textSize="12sp" />
@@ -27,11 +27,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="I'd rather see my page first"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/color_primary"
             android:textSize="12sp"
             android:textAllCaps="false"
             app:backgroundTint="@android:color/white"
-            app:strokeColor="@color/colorPrimary" />
+            app:strokeColor="@color/color_primary" />
     </LinearLayout>
 
 
