@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgServiceOpImage4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/ServiceOpImage"
+            app:srcCompat="@mipmap/page_icon_placeholder"
+            tools:srcCompat="@mipmap/page_icon_placeholder" />
+
+    <TextView
+        android:id="@+id/txtServiceOpPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Photos" />
+
+    <TextView
+        android:id="@+id/txtServiceOpPhotoDesc"
+        android:layout_width="271dp"
+        android:layout_height="109dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Service Opportunity pages with images and videos are much more likely to get noticed. Upload a header photo, event photos, and maybe even a promo video to make your page look great." />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/progress_4_of_4"
+            tools:srcCompat="@mipmap/progress_4_of_4" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnServiceOpPhotoNext"
+            android:layout_width="233dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="NEXT"
+            android:textAllCaps="false" />
+
+</LinearLayout>
+</ScrollView>
