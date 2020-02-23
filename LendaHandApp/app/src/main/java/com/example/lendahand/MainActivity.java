@@ -16,7 +16,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        addTemporaryButtons();
+    }
 
+    void addTemporaryButtons() {
+
+        //Adding button to Sign Up A Volunteer
         //STEP 1: Add reference to button using R.id
         MaterialButton signupVolunteer = findViewById(R.id.signup_a_volunteer);
 
@@ -31,20 +36,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        MaterialButton createServiceOrg = (MaterialButton)findViewById(R.id.create_service_org);
-        //STEP 2: Set onClickListener for YOUR button
-        createServiceOrg.setOnClickListener(new View.OnClickListener() {
+
+        //Adding button to Create Service Opportuntity
+        MaterialButton createServiceOp = findViewById(R.id.create_service_opportunity);
+        createServiceOp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //STEP 3: Create Intent for your class
-                Intent createServiceOrgScreen = new Intent(v.getContext(), org_signup1.class);
-                //STEP 4: Start your Activity
-                startActivity(createServiceOrgScreen);
+                Intent createServiceOpScreen = new Intent(v.getContext(), createServiceOpGenInfo.class);
+                startActivity(createServiceOpScreen);
+
             }
         });
 
+        //Adding button to Create Service Organization
+        MaterialButton createServiceOrg = (MaterialButton)findViewById(R.id.create_service_org);
+        createServiceOrg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent createServiceOrgScreen = new Intent(v.getContext(), org_signup1.class);
+                startActivity(createServiceOrgScreen);
+
+            }
+        });
+
+
+
     }
-
-
 
 }

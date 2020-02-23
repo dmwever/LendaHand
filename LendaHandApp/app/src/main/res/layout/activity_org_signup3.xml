@@ -88,6 +88,10 @@
             android:layout_width="233dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+<<<<<<< HEAD
+=======
+            android:background="@color/color_primary"
+>>>>>>> e2fdd38f4c1acda5728e89599c5b7d43c00dfc21
             android:text="Finish"
             android:textAllCaps="false" />
 

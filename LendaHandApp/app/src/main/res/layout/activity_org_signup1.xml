@@ -46,9 +46,15 @@
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+<<<<<<< HEAD
             android:layout_margin="4dp"
             android:hint="@string/organization_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+=======
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/color_primary"
+            app:boxStrokeWidth="1dp">
+>>>>>>> e2fdd38f4c1acda5728e89599c5b7d43c00dfc21
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/orgNameText"
@@ -59,14 +65,32 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+<<<<<<< HEAD
+=======
+        <TextView
+            android:id="@+id/orgEmailLabel"
+            android:layout_width="259dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Email *"
+            android:textColor="@color/color_primary_variant"/>
+
+
+>>>>>>> e2fdd38f4c1acda5728e89599c5b7d43c00dfc21
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/orgEmailLayout"
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+<<<<<<< HEAD
             android:layout_margin="4dp"
             android:hint="@string/organization_email"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+=======
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/color_primary"
+            app:boxStrokeWidth="1dp">
+>>>>>>> e2fdd38f4c1acda5728e89599c5b7d43c00dfc21
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/orgEmailText"
@@ -77,6 +101,17 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+<<<<<<< HEAD
+=======
+        <TextView
+            android:id="@+id/orgPhoneLabel"
+            android:layout_width="259dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Phone *"
+            android:textColor="@color/color_primary_variant" />
+
+>>>>>>> e2fdd38f4c1acda5728e89599c5b7d43c00dfc21
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/orgPhoneLayout"
             android:layout_width="259dp"
@@ -96,6 +131,17 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+<<<<<<< HEAD
+=======
+        <TextView
+            android:id="@+id/orgWebsiteLabel"
+            android:layout_width="259dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Website"
+            android:textColor="@color/color_primary_variant" />
+
+>>>>>>> e2fdd38f4c1acda5728e89599c5b7d43c00dfc21
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/orgWebsiteLayout"
             android:layout_width="259dp"
@@ -119,12 +165,18 @@
             android:layout_width="330dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+<<<<<<< HEAD
             android:layout_marginTop="19dp"
             android:maxLines="1"
             android:text="@string/your_password_is_not_seen_by_volunteers"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="12sp" />
+=======
+            android:text="YOUR PASSWORD IS NOT SEEN BY VOLUNTEERS"
+            android:textColor="@color/color_primary_variant"
+            android:textSize="10sp" />
+>>>>>>> e2fdd38f4c1acda5728e89599c5b7d43c00dfc21
 
         <View
             android:id="@+id/divider"
@@ -134,6 +186,17 @@
             android:layout_gravity="center_horizontal"
             android:background="@android:color/darker_gray" />
 
+<<<<<<< HEAD
+=======
+        <TextView
+            android:id="@+id/orgPasswordLabel"
+            android:layout_width="259dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Password *"
+            android:textColor="@color/color_primary_variant" />
+
+>>>>>>> e2fdd38f4c1acda5728e89599c5b7d43c00dfc21
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/orgPasswordLayout"
             android:layout_width="259dp"
@@ -162,7 +225,15 @@
             android:layout_width="233dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+<<<<<<< HEAD
             android:text="@string/next"
             android:textAllCaps="false"/>
+=======
+            android:background="@color/color_primary"
+            android:text="Next"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:textSize="18sp" />
+>>>>>>> e2fdd38f4c1acda5728e89599c5b7d43c00dfc21
     </LinearLayout>
 </ScrollView>

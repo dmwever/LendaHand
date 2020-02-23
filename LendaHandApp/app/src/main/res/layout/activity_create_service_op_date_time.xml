@@ -2,113 +2,143 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/viewCreateServiceOpDateTime"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Volunteer_Signup">
-
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+    >
+
+        <ImageView
+            android:id="@+id/imgServiceOpImage3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/ServiceOpImage"
+            app:srcCompat="@mipmap/page_icon_placeholder"
+            tools:srcCompat="@mipmap/page_icon_placeholder" />
+
         <TextView
-            android:layout_width="138dp"
-            android:layout_height="52dp"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/lh_header_basic_contact_info"
-            android:layout_marginBottom="19dp"
-            android:textSize="22sp" />
+        android:id="@+id/txtDateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Date, Time, Location"
+        android:textSize="18sp" />
+
         <TextView
-            android:layout_width="259dp"
-            android:layout_height="56dp"
-            android:layout_gravity="center_horizontal"
-            android:textAlignment="center"
-            android:text="@string/lh_volunteer_signup_description"
-            android:layout_marginBottom="11dp"
-            android:textSize="12sp" />
+        android:id="@+id/txtRepeat"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Does it repeat?" />
 
-        <com.google.android.material.textfield.TextInputLayout
+    <Switch
+        android:id="@+id/swtchServiceOpRepeat"
+        android:layout_gravity="center"
+        android:layout_width="65dp"
+        android:layout_height="22dp"
+        android:checked="false"
+        android:textOff="No"
+        android:textOn="Yes" />
+
+    <com.google.android.material.textfield.TextInputLayout
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="4dp"
-            android:hint="@string/lh_hint_last_name"
+            android:hint="Date"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="date"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="4dp"
-            android:hint="@string/lh_hint_email"
+            android:hint="Time"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="time"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="4dp"
-            android:hint="@string/lh_hint_phone"
+            android:hint="Cutoff Date"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="date"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="4dp"
-            android:hint="@string/lh_hint_date_of_birth"
+            android:hint="Cutoff Time"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="time"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="4dp"
-            android:hint="@string/lh_hint_password"
+            android:hint="Location"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="textPostalAddress"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/progress_2_of_4" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/start_serving_button"
+            android:id="@+id/btnServiceOpDateTimeNext"
             android:layout_width="233dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:textAllCaps="false"
-            android:text="@string/lh_button_start_serving"/>
 
+            android:text="NEXT"/>
     </LinearLayout>
 </ScrollView>
