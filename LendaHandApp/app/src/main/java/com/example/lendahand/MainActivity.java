@@ -16,7 +16,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        addTemporaryButtons();
+    }
 
+    void addTemporaryButtons() {
+
+        //Adding button to Sign Up A Volunteer
         //STEP 1: Add reference to button using R.id
         MaterialButton signupVolunteer = findViewById(R.id.signup_a_volunteer);
 
@@ -24,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
         signupVolunteer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 //STEP 3: Create Intent for your class
                 Intent volunteerSignupScreen = new Intent(v.getContext(), Volunteer_Signup.class);
                 //STEP 4: Start your Activity
@@ -34,36 +37,30 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //STEP 1: Add reference to button using R.id
+        //Adding button to Create Service Opportuntity
         MaterialButton createServiceOp = findViewById(R.id.create_service_opportunity);
-
-        //STEP 2: Set onClickListener for YOUR button
         createServiceOp.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               //STEP 3: Create Intent for your class
+            @Override
+            public void onClick(View v) {
                 Intent createServiceOpScreen = new Intent(v.getContext(), createServiceOpGenInfo.class);
-                //STEP 4: Start your Activity
-               startActivity(createServiceOpScreen);
+                startActivity(createServiceOpScreen);
 
             }
         });
 
+        //Adding button to Create Service Organization
         MaterialButton createServiceOrg = (MaterialButton)findViewById(R.id.create_service_org);
-        //STEP 2: Set onClickListener for YOUR button
         createServiceOrg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //STEP 3: Create Intent for your class
                 Intent createServiceOrgScreen = new Intent(v.getContext(), org_signup1.class);
-                //STEP 4: Start your Activity
                 startActivity(createServiceOrgScreen);
 
             }
         });
 
+
+
     }
-
-
 
 }
