@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ public class org_signup1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_org_signup1);
+
         final MaterialButton btnOrgSignUpNext1 = (MaterialButton) findViewById(R.id.orgSignupNext1);
         final TextInputEditText txtOrgName = (TextInputEditText) findViewById(R.id.orgNameText);
         final TextInputEditText txtOrgEmail = (TextInputEditText)findViewById(R.id.orgEmailText);
@@ -34,15 +36,37 @@ public class org_signup1 extends AppCompatActivity {
                 String orgPhone = txtOrgPhone.getText().toString();
                 String orgWebsite = txtOrgWebsite.getText().toString();
                 String orgPassword = txtOrgPassword.getText().toString();
-                //Do input checking
-                ServiceOrganization newOrg = new ServiceOrganization(orgName, orgEmail, orgPhone, orgWebsite, orgPassword, "");
-                newOrg.displayServiceOrg();
 
-                Intent nextScreen = new Intent(v.getContext(),  org_signup2.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("ServiceOrg", newOrg);
-                nextScreen.putExtras(bundle);
-                startActivityForResult(nextScreen, 0);
+                //Do input checking
+                InputChecker inputChecker = new InputChecker();
+                boolean hasError = false;
+                if(inputChecker.isEmpty(orgName)){
+                    System.out.println("ERROR");
+                    hasError = true;
+                }
+                if(inputChecker.isEmpty(orgEmail)){
+                    System.out.println("ERROR");
+                    hasError = true;
+                }
+                if(inputChecker.isEmpty(orgPhone)){
+                    System.out.println("ERROR");
+                    hasError = true;
+                }
+                if(inputChecker.isEmpty(orgPassword)){
+                    System.out.println("ERROR");
+                    hasError = true;
+                }
+
+                if(!hasError) {
+                    ServiceOrganization newOrg = new ServiceOrganization(orgName, orgEmail, orgPhone, orgWebsite, orgPassword, "");
+                    newOrg.displayServiceOrg();
+
+                    Intent nextScreen = new Intent(v.getContext(), org_signup2.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("ServiceOrg", newOrg);
+                    nextScreen.putExtras(bundle);
+                    startActivityForResult(nextScreen, 0);
+                }
 
             }
         });

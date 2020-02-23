@@ -19,6 +19,7 @@ public class org_signup2 extends AppCompatActivity {
 
         Intent intent = getIntent();
         final ServiceOrganization newOrg = (ServiceOrganization)intent.getSerializableExtra("ServiceOrg");
+
         final TextInputEditText txtOrgDesc = (TextInputEditText)findViewById(R.id.orgDescText);
         final MaterialButton btnOrgSignUpNext2 = (MaterialButton) findViewById(R.id.orgSignupNext2);
 
@@ -28,10 +29,20 @@ public class org_signup2 extends AppCompatActivity {
             public void onClick(View v) {
                 String orgDesc = txtOrgDesc.getText().toString();
                 //Do input checking
-                newOrg.setOrgDescription(orgDesc);
-                newOrg.displayServiceOrg();
-                Intent nextScreen = new Intent(v.getContext(),  org_signup3.class);
-                startActivityForResult(nextScreen, 0);
+                InputChecker inputChecker = new InputChecker();
+                if(orgDesc.isEmpty()){
+                    System.out.print("Error");
+                }
+                else{
+                    newOrg.setOrgDescription(orgDesc);
+                    newOrg.displayServiceOrg();
+
+                    Intent nextScreen = new Intent(v.getContext(),  org_signup3.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("ServiceOrg", newOrg);
+                    nextScreen.putExtras(bundle);
+                    startActivityForResult(nextScreen, 0);
+                }
             }
         });
 

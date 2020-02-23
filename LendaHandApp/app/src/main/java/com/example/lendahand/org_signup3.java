@@ -15,6 +15,10 @@ public class org_signup3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_org_signup3);
+
+        Intent intent = getIntent();
+        final ServiceOrganization newOrg = (ServiceOrganization)intent.getSerializableExtra("ServiceOrg");
+
         final MaterialButton btnOrgSignUpFinish = (MaterialButton) findViewById(R.id.orgSignupFinish);
 
         btnOrgSignUpFinish.setOnClickListener(new View.OnClickListener() {

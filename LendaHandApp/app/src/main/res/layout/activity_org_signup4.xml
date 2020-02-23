@@ -11,11 +11,12 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="200dp"
-            android:background="@color/colorAccent" />
+            app:srcCompat="@mipmap/done_icon_placeholder"
+            tools:srcCompat="@mipmap/done_icon_placeholder" />/>
+
         <TextView
             android:layout_width="138dp"
             android:layout_height="wrap_content"
@@ -30,26 +31,24 @@
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="11dp"
+            android:textSize="12sp"
             android:text="Now you're ready to add your first service opportunity."
             android:textAlignment="center" />
 
         <ImageView
-            android:layout_width="259dp"
-            android:layout_height="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@color/colorAccent"
-            android:layout_marginBottom="100dp"/>
+            app:srcCompat="@mipmap/progress_complete_3_of_3"
+            tools:srcCompat="@mipmap/progress_complete_3_of_3" />/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/orgAddServOp"
             android:layout_width="233dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-<<<<<<< HEAD
-=======
-            android:background="@color/color_primary"
->>>>>>> e2fdd38f4c1acda5728e89599c5b7d43c00dfc21
+            android:textColor="@android:color/white"
             android:text="Add a Service Opportunity"
             android:textAllCaps="false"
             android:textSize="12sp" />
@@ -61,7 +60,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="I'd rather see my page first"
-            android:textColor="@color/color_primary"
             android:textSize="12sp"
             android:textAllCaps="false"
             app:backgroundTint="@android:color/white"
