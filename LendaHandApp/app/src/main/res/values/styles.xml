@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/color_secondary</item>
     </style>
 
+    <style name="LendaHand_Top_Bar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/color_primary</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    </style>
+
 </resources>
