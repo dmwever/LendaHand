@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import androidx.appcompat.widget.Toolbar;
 
 
 import com.google.android.material.button.MaterialButton;
@@ -16,10 +17,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         addTemporaryButtons();
     }
 
-    void addTemporaryButtons() {
+    private void addTemporaryButtons() {
 
         //Adding button to Sign Up A Volunteer
         //STEP 1: Add reference to button using R.id
