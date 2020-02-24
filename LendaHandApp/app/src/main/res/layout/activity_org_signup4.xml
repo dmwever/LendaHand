@@ -10,6 +10,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/app_bar"
+                style="@style/LendaHand_Top_Bar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="@string/top_toolbar_organization_sign_up"/>
+        </com.google.android.material.appbar.AppBarLayout>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/orgAddServOp"
             android:layout_width="233dp"

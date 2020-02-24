@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Volunteer_Signup">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/app_bar"
+            style="@style/LendaHand_Top_Bar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/top_toolbar_volunteer_sign_up"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="?attr/actionBarSize"
         android:orientation="vertical">
         <TextView
             android:layout_width="138dp"
@@ -111,4 +125,4 @@
             android:text="@string/lh_button_start_serving"/>
 
     </LinearLayout>
-</ScrollView>
+</FrameLayout>
