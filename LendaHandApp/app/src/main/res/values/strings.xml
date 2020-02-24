@@ -26,5 +26,6 @@
     <string name="top_toolbar_volunteer_sign_up">Volunteer Sign Up</string>
     <string name="top_toolbar_organization_sign_up">Organization Sign Up</string>
     <string name="top_toolbar_create_service_op">Create Service Op</string>
+    <string name="volunteer_signup_disclaimer">YOUR PASSWORD IS NOT SENT TO SERVICE ORGS</string>
 
 </resources>

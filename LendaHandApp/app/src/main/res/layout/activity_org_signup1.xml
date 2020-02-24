@@ -26,6 +26,7 @@
         <TableRow
             android:layout_width="259dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="29dp"
             android:layout_gravity="center_horizontal">
 
             <ImageView
@@ -39,6 +40,7 @@
                 android:layout_width="138dp"
                 android:layout_height="52dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="11dp"
                 android:text="@string/lh_header_basic_contact_info"
                 android:layout_marginBottom="19dp"
                 android:textSize="22sp" />
@@ -59,7 +61,7 @@
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="4dp"
+            android:layout_marginBottom="12dp"
             android:hint="@string/organization_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
@@ -70,20 +72,14 @@
                 android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
-        <TextView
-            android:id="@+id/orgEmailLabel"
-            android:layout_width="259dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Email *"
-            android:textColor="@color/color_primary_variant"/>
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/orgEmailLayout"
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="4dp"
+            android:layout_marginBottom="12dp"
             android:hint="@string/organization_email"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
@@ -95,20 +91,14 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/orgPhoneLabel"
-            android:layout_width="259dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Phone *"
-            android:textColor="@color/color_primary_variant" />
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/orgPhoneLayout"
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="4dp"
+            android:layout_marginBottom="12dp"
             android:hint="@string/organization_phone"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -122,20 +112,13 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/orgWebsiteLabel"
-            android:layout_width="259dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Website"
-            android:textColor="@color/color_primary_variant" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/orgWebsiteLayout"
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="4dp"
+            android:layout_marginBottom="15dp"
             android:hint="@string/organization_website"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -166,13 +149,7 @@
             android:layout_margin="4dp"
             android:layout_gravity="center_horizontal"
             android:background="@android:color/darker_gray" />
-        <TextView
-            android:id="@+id/orgPasswordLabel"
-            android:layout_width="259dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Password *"
-            android:textColor="@color/color_primary_variant" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/orgPasswordLayout"
             android:layout_width="259dp"
@@ -186,6 +163,7 @@
                 android:id="@+id/orgPasswordText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
                 android:maxLines="1"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -194,6 +172,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="6dp"
             app:srcCompat="@mipmap/progress_1_of_3"
             tools:srcCompat="@mipmap/progress_1_of_3" />
 

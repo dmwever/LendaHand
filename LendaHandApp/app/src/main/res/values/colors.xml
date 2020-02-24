@@ -21,6 +21,7 @@
     <!--selection controls.-->
     <color name="color_primary">#121369</color>
     <color name="color_primary_variant">#00004F</color>
+    <color name="faded_primary">#7C7C9C</color>
     <color name="color_secondary">#FCD22A</color>
     <color name="color_secondary_variant">#FBE945</color>
 
@@ -39,5 +40,8 @@
     <color name="color_on_background">#000000</color>
     <color name="color_on_surface">#000000</color>
     <color name="color_on_error">#ffffff</color>
+
+
+
 
 </resources>

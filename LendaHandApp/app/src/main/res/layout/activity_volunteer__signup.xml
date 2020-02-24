@@ -24,13 +24,31 @@
         android:layout_height="wrap_content"
         android:paddingTop="?attr/actionBarSize"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="138dp"
-            android:layout_height="52dp"
+
+        <TableRow
+            android:layout_width="259dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/lh_header_basic_contact_info"
-            android:layout_marginBottom="19dp"
-            android:textSize="22sp" />
+            android:gravity=""
+            android:layout_marginTop="29dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:srcCompat="@mipmap/page_icon_placeholder"
+                tools:srcCompat="@mipmap/page_icon_placeholder" />
+
+            <TextView
+                android:layout_width="138dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginLeft="10dp"
+                android:text="@string/lh_header_basic_contact_info"
+                android:layout_marginBottom="19dp"
+                android:textSize="22sp" />
+        </TableRow>
+
         <TextView
             android:layout_width="259dp"
             android:layout_height="56dp"
@@ -44,74 +62,107 @@
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="4dp"
+            android:layout_marginBottom="12dp"
+            android:hint="@string/lh_hint_first_name"
+            style="@style/LendaHand_Text_Box">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="259dp"
+                android:layout_height="35dp"
+                android:inputType="text"
+                android:maxLines="1"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="259dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="12dp"
             android:hint="@string/lh_hint_last_name"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            >
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="259dp"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:inputType="text"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="4dp"
+            android:layout_marginBottom="12dp"
             android:hint="@string/lh_hint_email"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            >
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="259dp"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:inputType="text"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="4dp"
+            android:layout_marginBottom="12dp"
             android:hint="@string/lh_hint_phone"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            >
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="259dp"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:inputType="text"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="4dp"
             android:hint="@string/lh_hint_date_of_birth"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            >
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="259dp"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:inputType="text"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/orgPasswordNote"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            android:layout_marginTop="32dp"
+            android:maxLines="1"
+            android:text="@string/volunteer_signup_disclaimer"
+            android:textAlignment="center"
+            android:textSize="12sp" />
+        <View
+            android:id="@+id/divider"
+            android:layout_width="330dp"
+            android:layout_height="1dp"
+            android:layout_margin="7dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="21dp"
+            android:background="@android:color/darker_gray" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="4dp"
+            android:layout_marginBottom="25dp"
             android:hint="@string/lh_hint_password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            >
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="259dp"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:inputType="text"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
