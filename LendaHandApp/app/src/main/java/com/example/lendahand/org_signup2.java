@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.amazonaws.util.StringUtils;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -30,10 +32,10 @@ public class org_signup2 extends AppCompatActivity {
                 String orgDesc = txtOrgDesc.getText().toString();
                 //Do input checking
                 InputChecker inputChecker = new InputChecker();
-                if(orgDesc.isEmpty()){
-                    System.out.print("Error");
-                }
-                else{
+                String error = "";
+                error+= inputChecker.isBlank(orgDesc, "Organization Description");
+
+                if(StringUtils.isBlank(error)){
                     newOrg.setOrgDescription(orgDesc);
                     newOrg.displayServiceOrg();
 
@@ -42,6 +44,9 @@ public class org_signup2 extends AppCompatActivity {
                     bundle.putSerializable("ServiceOrg", newOrg);
                     nextScreen.putExtras(bundle);
                     startActivityForResult(nextScreen, 0);
+                }
+                else{
+                    Toast.makeText(v.getContext(), error, 10).show();
                 }
             }
         });
