@@ -72,7 +72,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imgCreateServiceOpAddPhoto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:srcCompat="@mipmap/progress_3_of_4" />
