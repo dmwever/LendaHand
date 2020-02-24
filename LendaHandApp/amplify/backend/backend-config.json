@@ -1,0 +1,20 @@
+{
+	"api": {
+		"lendahandapp": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "API_KEY",
+						"apiKeyConfig": {
+							"description": "landahandapp API",
+							"apiKeyExpirationDays": "180"
+						}
+					}
+				}
+			}
+		}
+	}
+}
