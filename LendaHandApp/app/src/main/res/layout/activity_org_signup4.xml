@@ -10,14 +10,57 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/app_bar"
+                style="@style/LendaHand_Top_Bar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="@string/top_toolbar_organization_sign_up"/>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@mipmap/done_icon_placeholder"
+            tools:srcCompat="@mipmap/done_icon_placeholder" />
+
+        <TextView
+            android:layout_width="138dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:text="Done!"
+            android:layout_marginBottom="19dp"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/FinishInstructions"
+            android:layout_width="259dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="11dp"
+            android:textSize="12sp"
+            android:text="Now you're ready to add your first service opportunity."
+            android:textAlignment="center" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@mipmap/progress_complete_3_of_3"
+            tools:srcCompat="@mipmap/progress_complete_3_of_3" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/orgAddServOp"
             android:layout_width="233dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@color/colorPrimary"
-            android:text="Add a Service Opportunity"
             android:textColor="@android:color/white"
+            android:text="Add a Service Opportunity"
+            android:textAllCaps="false"
             android:textSize="12sp" />
 
         <com.google.android.material.button.MaterialButton
@@ -27,11 +70,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="I'd rather see my page first"
-            android:textColor="@color/colorPrimary"
             android:textSize="12sp"
             android:textAllCaps="false"
             app:backgroundTint="@android:color/white"
-            app:strokeColor="@color/colorPrimary" />
+            app:strokeColor="@color/color_primary" />
     </LinearLayout>
 
 

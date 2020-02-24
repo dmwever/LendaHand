@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         addTemporaryButtons();
     }
 
+
     private void addTemporaryButtons() {
 
         //Adding button to Sign Up A Volunteer
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Adding button to Create Service Organization
         MaterialButton createServiceOrg = (MaterialButton) findViewById(R.id.create_service_org);
+
         createServiceOrg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

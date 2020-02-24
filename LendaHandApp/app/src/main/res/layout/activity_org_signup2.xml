@@ -10,62 +10,73 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/app_bar"
+                style="@style/LendaHand_Top_Bar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="@string/top_toolbar_organization_sign_up"/>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@mipmap/page_icon_placeholder"
+            tools:srcCompat="@mipmap/page_icon_placeholder" />
+
+        <TextView
+            android:layout_width="138dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:text="Description"
+            android:layout_marginBottom="19dp"
+            android:textSize="22sp" />
+
         <TextView
             android:id="@+id/orgDescInstructions"
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="11dp"
+            android:textSize="12sp"
             android:text="Volunteers often search for places to serve based on their interests. Summarize your organization in a few sentences and tell us what categories best match you."
             android:textAlignment="center" />
-
-        <TextView
-            android:id="@+id/orgDescLabel"
-            android:layout_width="259dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Organization Description *"
-            android:textColor="@color/colorPrimaryDark"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/orgDescLayout"
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:hint="Organization Description *"
+            android:layout_margin="4dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/orgDescText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="259dp"
+                android:gravity="top"
                 android:inputType="textImeMultiLine" />
         </com.google.android.material.textfield.TextInputLayout>
-        <TextView
-            android:id="@+id/orgCategoriesLabel"
-            android:layout_width="259dp"
+
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Categories"
-            android:textColor="@color/colorPrimaryDark"/>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/orgCategories1Layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="259dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center_horizontal">
-            <AutoCompleteTextView
-                android:id="@+id/orgCategories1Dropdown"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
+            app:srcCompat="@mipmap/progress_2_of_3"
+            tools:srcCompat="@mipmap/progress_2_of_3" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/orgSignupNext2"
             android:layout_width="233dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@color/colorPrimary"
-            android:text="Next"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="18sp" />
+            android:text="@string/next"
+            android:textAllCaps="false"/>
     </LinearLayout>
 </ScrollView>
