@@ -8,8 +8,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-    >
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/app_bar"
+                style="@style/LendaHand_Top_Bar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="@string/top_toolbar_create_service_op"/>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <ImageView
             android:id="@+id/imgServiceOpImage3"
@@ -21,30 +31,30 @@
             tools:srcCompat="@mipmap/page_icon_placeholder" />
 
         <TextView
-        android:id="@+id/txtDateTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Date, Time, Location"
-        android:textSize="18sp" />
+            android:id="@+id/txtDateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Date, Time, Location"
+            android:textSize="18sp" />
 
         <TextView
-        android:id="@+id/txtRepeat"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Does it repeat?" />
+            android:id="@+id/txtRepeat"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Does it repeat?" />
 
-    <Switch
-        android:id="@+id/swtchServiceOpRepeat"
-        android:layout_gravity="center"
-        android:layout_width="65dp"
-        android:layout_height="22dp"
-        android:checked="false"
-        android:textOff="No"
-        android:textOn="Yes" />
+        <Switch
+            android:id="@+id/swtchServiceOpRepeat"
+            android:layout_gravity="center"
+            android:layout_width="65dp"
+            android:layout_height="22dp"
+            android:checked="false"
+            android:textOff="No"
+            android:textOn="Yes" />
 
-    <com.google.android.material.textfield.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="259dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
