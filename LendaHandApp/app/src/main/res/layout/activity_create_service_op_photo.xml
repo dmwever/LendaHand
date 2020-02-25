@@ -44,18 +44,52 @@
             android:layout_gravity="center_horizontal"
             android:text="Service Opportunity pages with images and videos are much more likely to get noticed. Upload a header photo, event photos, and maybe even a promo video to make your page look great." />
 
-        <ImageView
-            android:id="@+id/imgCreateServiceOpAddPhoto"
-            android:layout_width="match_parent"
+        <TableRow
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/mini_service_opportunity_screen"
-            tools:srcCompat="@mipmap/mini_service_opportunity_screen" />
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                app:srcCompat="@mipmap/mini_service_opportunity_screen"
+                tools:srcCompat="@mipmap/mini_service_opportunity_screen" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upload Header Photo *"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:background="@color/color_secondary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Upload Event Photos or Videos*"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:layout_width="140dp"
+                    android:layout_height="70dp"
+                    android:background="@color/color_secondary_variant" />
+            </LinearLayout>
+        </TableRow>
 
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/page_icon_placeholder" />
+            app:srcCompat="@color/color_background" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnServiceOpAddPhoto"
