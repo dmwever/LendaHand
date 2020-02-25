@@ -8,7 +8,9 @@ import android.renderscript.ScriptGroup;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.amazonaws.util.StringUtils;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -37,27 +39,17 @@ public class org_signup1 extends AppCompatActivity {
                 String orgWebsite = txtOrgWebsite.getText().toString();
                 String orgPassword = txtOrgPassword.getText().toString();
 
-                //Do input checking
                 InputChecker inputChecker = new InputChecker();
-                boolean hasError = false;
-                if(inputChecker.isEmpty(orgName)){
-                    System.out.println("ERROR");
-                    hasError = true;
-                }
-                if(inputChecker.isEmpty(orgEmail)){
-                    System.out.println("ERROR");
-                    hasError = true;
-                }
-                if(inputChecker.isEmpty(orgPhone)){
-                    System.out.println("ERROR");
-                    hasError = true;
-                }
-                if(inputChecker.isEmpty(orgPassword)){
-                    System.out.println("ERROR");
-                    hasError = true;
-                }
+                String error = "";
+                error += inputChecker.isBlank(orgName, "Organization Name");
+                error += inputChecker.isBlank(orgEmail, "Organization Email");
+                error += inputChecker.isBlank(orgPhone, "Organization Phone");
+                error += inputChecker.isBlank(orgPassword, "Organization Password");
+                error += inputChecker.isEmailValid(orgEmail);
+                error += inputChecker.isPhoneValid(orgPhone);
+                error += inputChecker.isPasswordValid(orgPassword);
 
-                if(!hasError) {
+                if(StringUtils.isBlank(error)) {
                     ServiceOrganization newOrg = new ServiceOrganization(orgName, orgEmail, orgPhone, orgWebsite, orgPassword, "");
                     newOrg.displayServiceOrg();
 
@@ -66,6 +58,9 @@ public class org_signup1 extends AppCompatActivity {
                     bundle.putSerializable("ServiceOrg", newOrg);
                     nextScreen.putExtras(bundle);
                     startActivityForResult(nextScreen, 0);
+                }
+                else{
+                    Toast.makeText(v.getContext(), error, 10).show();
                 }
 
             }
