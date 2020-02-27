@@ -38,21 +38,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Categories and Requirements" />
+        android:text="Requirements" />
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="259dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="4dp"
+            android:hint="Age Requirements"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
 
-    <TextView
-        android:id="@+id/txtServiceOpAgeReq"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Age Requirements" />
-
-        <Spinner
-            android:id="@+id/spinner2"
-            android:layout_width="209dp"
-            android:layout_height="18dp"
-            android:layout_gravity="center_horizontal" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="259dp"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="259dp"
@@ -72,7 +74,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imgCreateServiceOpAddPhoto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:srcCompat="@mipmap/progress_3_of_4" />
