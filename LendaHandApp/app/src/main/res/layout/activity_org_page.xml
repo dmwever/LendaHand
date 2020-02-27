@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".org_page">
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/orgheader"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                android:background="@color/color_secondary_variant" />
+
+            <ImageView
+            android:id="@+id/orglogo"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="120dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
+            android:background="@color/color_secondary"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/orgname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ORGANIZATION NAME"
+            android:layout_marginBottom="19dp"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textSize="22sp" />
+        <TextView
+            android:id="@+id/orgemail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ORGANIZATION EMAIL"
+            android:layout_marginBottom="19dp"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/orgphone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ORGANIZATION PHONE"
+            android:layout_marginBottom="19dp"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/orgwebsite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ORGANIZATION WEBSITE"
+            android:layout_marginBottom="19dp"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/orgdesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ORGANIZATION DESCRIPTION"
+            android:layout_marginBottom="19dp"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textSize="12sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/orgEditPage"
+            android:layout_width="233dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Edit"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+</ScrollView>
