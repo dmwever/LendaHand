@@ -10,6 +10,11 @@
             "StackName": "amplify-lendahandapp-lendahand-143647",
             "StackId": "arn:aws:cloudformation:us-east-2:672381719276:stack/amplify-lendahandapp-lendahand-143647/b71d5160-5420-11ea-a173-02d970724e3a",
             "AmplifyAppId": "d2unrafkltqdsc"
+        },
+        "categories": {
+            "auth": {
+                "lendahandCognito": {}
+            }
         }
     }
 }
