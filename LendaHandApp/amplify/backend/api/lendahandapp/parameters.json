@@ -1,5 +1,11 @@
 {
-    "AppSyncApiName": "lendahandapp",
+    "AppSyncApiName": "LendaHandApp",
     "DynamoDBBillingMode": "PAY_PER_REQUEST",
-    "DynamoDBEnableServerSideEncryption": "false"
+    "DynamoDBEnableServerSideEncryption": "false",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authlendahandappe2ae4506",
+            "Outputs.UserPoolId"
+        ]
+    }
 }

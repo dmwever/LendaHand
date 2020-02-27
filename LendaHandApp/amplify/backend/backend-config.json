@@ -1,24 +1,32 @@
-<<<<<<< HEAD
 {
+	"auth": {
+		"lendahandappe2ae4506": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	},
 	"api": {
-		"lendahandapp": {
+		"LendaHandApp": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {
 				"authConfig": {
 					"additionalAuthenticationProviders": [],
 					"defaultAuthentication": {
-						"authenticationType": "API_KEY",
-						"apiKeyConfig": {
-							"description": "landahandapp API",
-							"apiKeyExpirationDays": "180"
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authlendahandappe2ae4506"
 						}
 					}
 				}
 			}
 		}
+	},
+	"storage": {
+		"LendaHandStorage": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
 	}
 }
-=======
-{}
->>>>>>> master
