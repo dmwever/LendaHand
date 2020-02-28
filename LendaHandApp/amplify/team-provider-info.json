@@ -16,5 +16,25 @@
                 "lendahandCognito": {}
             }
         }
+    },
+    "awslend": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-lendahandapp-awslend-95105-authRole",
+            "UnauthRoleArn": "arn:aws:iam::672381719276:role/amplify-lendahandapp-awslend-95105-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::672381719276:role/amplify-lendahandapp-awslend-95105-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "amplify-lendahandapp-awslend-95105-deployment",
+            "UnauthRoleName": "amplify-lendahandapp-awslend-95105-unauthRole",
+            "StackName": "amplify-lendahandapp-awslend-95105",
+            "StackId": "arn:aws:cloudformation:us-east-2:672381719276:stack/amplify-lendahandapp-awslend-95105/203a8970-5a42-11ea-babd-023ebc410218",
+            "AmplifyAppId": "d2unrafkltqdsc"
+        },
+        "categories": {
+            "auth": {
+                "lendahandappb77a139c": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"1522462471250265\",\"client_secret\":\"d487363e98e8ebdadc6d5bad985c828d\"}]"
+                }
+            }
+        }
     }
 }

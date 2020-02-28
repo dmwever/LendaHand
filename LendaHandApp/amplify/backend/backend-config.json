@@ -1,32 +1,29 @@
 {
 	"auth": {
-		"lendahandappe2ae4506": {
+		"lendahandappb77a139c": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
-			"dependsOn": []
+			"dependsOn": [],
+			"customAuth": false
 		}
 	},
 	"api": {
-		"LendaHandApp": {
+		"LendaHandAPI": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {
 				"authConfig": {
 					"additionalAuthenticationProviders": [],
 					"defaultAuthentication": {
-						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
-						"userPoolConfig": {
-							"userPoolId": "authlendahandappe2ae4506"
+						"authenticationType": "API_KEY",
+						"apiKeyConfig": {
+							"description": "lendahandkey",
+							"apiKeyExpirationDays": "180"
 						}
 					}
 				}
 			}
 		}
 	},
-	"storage": {
-		"LendaHandStorage": {
-			"service": "S3",
-			"providerPlugin": "awscloudformation"
-		}
-	}
+	"storage": {}
 }
