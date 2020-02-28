@@ -33,6 +33,9 @@
             "auth": {
                 "lendahandappb77a139c": {
                     "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"1522462471250265\",\"client_secret\":\"d487363e98e8ebdadc6d5bad985c828d\"}]"
+                },
+                "lendahandStorage": {
+                    "facebookAppId": "1522462471250265"
                 }
             }
         }
