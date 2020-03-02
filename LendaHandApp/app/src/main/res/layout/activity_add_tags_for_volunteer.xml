@@ -57,6 +57,25 @@
             android:layout_marginLeft="29dp"
             android:layout_marginRight="29dp">
         </com.google.android.material.chip.ChipGroup>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/start_serving_button"
+            android:layout_width="233dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textAllCaps="false"
+            android:text="@string/lh_button_start_serving"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/volunteer_skip"
+            android:layout_width="233dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textAllCaps="false"
+            style="@style/LendaHand_Secondary_Button"
+            android:text="@string/skip"/>
+
     </LinearLayout>
 
 

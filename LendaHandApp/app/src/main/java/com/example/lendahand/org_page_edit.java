@@ -28,9 +28,11 @@ public class org_page_edit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_org_page_edit);
 
+
         Intent intent = getIntent();
         newOrg = (ServiceOrganization)intent.getSerializableExtra("ServiceOrg");
 
+        //Get a reference to all the text fields in edit page
         final TextInputEditText txtOrgName = (TextInputEditText) findViewById(R.id.orgNameText);
         final TextInputEditText txtOrgEmail = (TextInputEditText)findViewById(R.id.orgEmailText);
         final TextInputEditText txtOrgPhone = (TextInputEditText) findViewById(R.id.orgPhoneText);
@@ -40,6 +42,7 @@ public class org_page_edit extends AppCompatActivity {
         final MaterialButton btnOrgChangeLogo = findViewById(R.id.btnOrgChangeLogo);
         final MaterialButton btnOrgChangeHeader = findViewById(R.id.btnOrgChangeHeader);
         final MaterialButton btnOrgSavePage = (MaterialButton)findViewById(R.id.orgSavePage);
+
 
         txtOrgName.setText(newOrg.getOrgName());
         txtOrgEmail.setText(newOrg.getOrgEmail());

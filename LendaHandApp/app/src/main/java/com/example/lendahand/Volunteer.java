@@ -2,7 +2,9 @@ package com.example.lendahand;
 
 import android.util.Log;
 
-public class Volunteer {
+import java.io.Serializable;
+
+public class Volunteer implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
