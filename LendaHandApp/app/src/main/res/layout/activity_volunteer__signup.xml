@@ -51,7 +51,7 @@
 
         <TextView
             android:layout_width="259dp"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:textAlignment="center"
             android:text="@string/lh_volunteer_signup_description"
@@ -67,8 +67,9 @@
             style="@style/LendaHand_Text_Box">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/volunteerFirstNameText"
                 android:layout_width="259dp"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:inputType="text"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -82,8 +83,9 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/volunteerLastNameText"
                 android:layout_width="259dp"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:inputType="text"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -97,8 +99,9 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/volunteerEmailText"
                 android:layout_width="259dp"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:inputType="text"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -112,8 +115,9 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/volunteerPhoneText"
                 android:layout_width="259dp"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:inputType="text"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -126,8 +130,9 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/volunteerDateOfBirthText"
                 android:layout_width="259dp"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:inputType="text"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -144,7 +149,7 @@
             android:textAlignment="center"
             android:textSize="12sp" />
         <View
-            android:id="@+id/divider"
+            android:id="@+id/passwordDividerVolunteer"
             android:layout_width="330dp"
             android:layout_height="1dp"
             android:layout_margin="7dp"
@@ -161,8 +166,9 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/volunteerPasswordText"
                 android:layout_width="259dp"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:inputType="text"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
