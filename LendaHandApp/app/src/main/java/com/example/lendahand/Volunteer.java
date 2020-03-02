@@ -1,5 +1,7 @@
 package com.example.lendahand;
 
+import android.util.Log;
+
 public class Volunteer {
     private String firstName;
     private String lastName;
@@ -71,10 +73,7 @@ public class Volunteer {
     }
 
     public void displayVolunteer(){
-        System.out.println(firstName + " " + lastName);
-        System.out.println(email);
-        System.out.println(phone);
-        System.out.println(dateOfBirth);
+        Log.d("Volunteer Class", firstName + " " + lastName + " " + email + " " + phone + " " + dateOfBirth + " " + dateOfBirth);
     }
 }
 
