@@ -51,5 +51,7 @@
                 android:layout_gravity="center_horizontal"
                 android:textAllCaps="false"
                 android:text="@string/lh_create_service_opportunity"/>
+
+
     </LinearLayout>
 </FrameLayout>
