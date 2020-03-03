@@ -1,4 +1,4 @@
-package AWSPackage;
+/*package AWSPackage;
 
 import android.util.Log;
 
@@ -44,3 +44,4 @@ public class AWSInitialize {
     });
 
 }
+*/

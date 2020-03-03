@@ -1,4 +1,4 @@
-package AWSPackage;
+/*package AWSPackage;
 
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.mobile.client.AWSMobileClient
@@ -27,3 +27,4 @@ public final class AWSMobileClient
     })
 }
 }
+*/
