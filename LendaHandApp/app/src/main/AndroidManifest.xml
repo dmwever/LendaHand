@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddTagsForVolunteer"></activity>
+        <activity android:name=".EditVolunteerPage"></activity>
+        <activity android:name=".VolunteerPage" />
+        <activity android:name=".AddTagsForVolunteer" />
         <activity android:name=".org_page_edit" />
         <activity android:name=".org_page" />
         <activity android:name=".createServiceOpPhoto" />

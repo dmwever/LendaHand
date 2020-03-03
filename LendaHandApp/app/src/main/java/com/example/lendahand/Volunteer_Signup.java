@@ -61,7 +61,7 @@ public class Volunteer_Signup extends AppCompatActivity {
                     //Save the volunteer on disk
                     Intent tagsScreen = new Intent(v.getContext(), AddTagsForVolunteer.class);
                     Bundle volunteerBundle = new Bundle();
-                    volunteerBundle.putSerializable("Volunteer", newVolunteer);
+                    volunteerBundle.putSerializable("CurrentVolunteer", newVolunteer);
                     tagsScreen.putExtras(volunteerBundle);
 
                     //And go to the tags screen
