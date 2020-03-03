@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+/*
 //      AWS client creation
         AppSync = AWSAppSyncClient.builder()
                 .context(getApplicationContext())
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         runQuery();
         subscribe();
 
-
+*/
         addTemporaryButtons();
     }
 
