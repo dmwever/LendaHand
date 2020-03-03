@@ -28,24 +28,13 @@ import type.CreateBlogInput;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AWSAppSync AppSync = new AWSAppSync(); //AWS APP Sync Client
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //AWS client creation
-
-        AppSync.initialize();
-
-        AppSync.runQuery();
-        AppSync.runMutation();
-
-
         addTemporaryButtons();
     }
-
 
     private void addTemporaryButtons() {
 
@@ -87,9 +76,17 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        //Adding button to Login
+        MaterialButton Login = (MaterialButton) findViewById(R.id.login);
+
+        Login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent LoginScreen = new Intent(v.getContext(), Login.class);
+                startActivity(LoginScreen);
+
+            }
+        });
     }
-
-
-
-
 }

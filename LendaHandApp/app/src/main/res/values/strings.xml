@@ -27,5 +27,9 @@
     <string name="top_toolbar_organization_sign_up">Organization Sign Up</string>
     <string name="top_toolbar_create_service_op">Create Service Op</string>
     <string name="volunteer_signup_disclaimer">YOUR PASSWORD IS NOT SENT TO SERVICE ORGS</string>
+    <string name="lh_volunteer_tags_header">What are you interested in?</string>
+    <string name="lh_volunteer_tags_description">Talior your discover feed to  your interests and help us match you with Service Organizaions. Tap categories you are interetested in serving.</string>
+    <string name="skip">Skip</string>
+    <string name="edit_volunteer">Edit Volunteer</string>
 
 </resources>
