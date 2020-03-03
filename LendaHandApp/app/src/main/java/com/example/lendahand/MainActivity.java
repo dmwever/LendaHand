@@ -88,6 +88,19 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        //Adding button to Login
+        MaterialButton Login = (MaterialButton) findViewById(R.id.login);
+
+        Login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent LoginScreen = new Intent(v.getContext(), Login.class);
+                startActivity(LoginScreen);
+
+            }
+        });
+
     }
 
 
