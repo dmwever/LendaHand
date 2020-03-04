@@ -28,7 +28,7 @@ public class org_page extends AppCompatActivity {
         final TextView OrgDesc = (TextView) findViewById(R.id.orgdesc);
         final ImageView OrgLogo = (ImageView) findViewById(R.id.orglogo);
         final ImageView OrgHeader = (ImageView) findViewById(R.id.orgheader);
-        final MaterialButton btnOrgEdit =  (MaterialButton) findViewById(R.id.orgEditPage);
+        final ImageView btnOrgEdit =  (ImageView) findViewById(R.id.orgEditPage);
 
         OrgName.setText(newOrg.getOrgName());
         OrgEmail.setText(newOrg.getOrgEmail());
