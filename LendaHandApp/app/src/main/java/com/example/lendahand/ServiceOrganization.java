@@ -3,6 +3,7 @@ package com.example.lendahand;
 import android.net.Uri;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class ServiceOrganization implements Serializable {
     private String orgName;
@@ -13,6 +14,8 @@ public class ServiceOrganization implements Serializable {
     private String orgDescription;
     private String orgLogo;
     private String orgHeader;
+    private ArrayList<ServiceOpportunity> orgServiceOps;
+
 
     public ServiceOrganization(String name, String email, String phone, String website, String password, String description, String logo, String header){
         orgName = name;
@@ -23,6 +26,7 @@ public class ServiceOrganization implements Serializable {
         orgDescription = description;
         orgLogo = logo;
         orgHeader = header;
+        orgServiceOps = new ArrayList<ServiceOpportunity>();
     }
 
     public void setOrgName(String name){
@@ -93,6 +97,10 @@ public class ServiceOrganization implements Serializable {
     }
 
     public String getOrgHeader(){ return orgHeader; }
+
+    public void addOrgServiceOps(ServiceOpportunity serviceop) { orgServiceOps.add(serviceop); }
+
+    public ArrayList<ServiceOpportunity> getOrgServiceOps() { return orgServiceOps; }
 
 
     public void displayServiceOrg(){
