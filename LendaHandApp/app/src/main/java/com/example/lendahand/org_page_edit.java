@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -39,6 +40,8 @@ public class org_page_edit extends AppCompatActivity {
         final TextInputEditText txtOrgWebsite = (TextInputEditText) findViewById(R.id.orgWebsiteText);
         final TextInputEditText txtOrgPassword = (TextInputEditText) findViewById(R.id.orgPasswordText);
         final TextInputEditText txtOrgDesc = (TextInputEditText)findViewById(R.id.orgDescText);
+        final ImageView imgOrgLogo = (ImageView) findViewById(R.id.orgLogo);
+        final ImageView imgOrgHeader = (ImageView) findViewById(R.id.orgHeader);
         final MaterialButton btnOrgChangeLogo = findViewById(R.id.btnOrgChangeLogo);
         final MaterialButton btnOrgChangeHeader = findViewById(R.id.btnOrgChangeHeader);
         final MaterialButton btnOrgSavePage = (MaterialButton)findViewById(R.id.orgSavePage);
@@ -50,6 +53,8 @@ public class org_page_edit extends AppCompatActivity {
         txtOrgWebsite.setText(newOrg.getOrgWebsite());
         txtOrgPassword.setText(newOrg.getOrgPassword());
         txtOrgDesc.setText(newOrg.getOrgDescription());
+        imgOrgLogo.setImageURI(Uri.parse(newOrg.getOrgLogo()));
+        imgOrgHeader.setImageURI(Uri.parse(newOrg.getOrgHeader()));
 
         //STEP 2: Set onClickListener for YOUR button
         btnOrgChangeLogo.setOnClickListener(new View.OnClickListener() {
