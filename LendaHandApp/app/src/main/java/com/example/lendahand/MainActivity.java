@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+/*
 //      AWS client creation
         AppSync = AWSAppSyncClient.builder()
                 .context(getApplicationContext())
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         runQuery();
         subscribe();
 
-
+*/
         addTemporaryButtons();
     }
 
@@ -88,6 +88,19 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        //Adding button to Login
+        MaterialButton Login = (MaterialButton) findViewById(R.id.login);
+
+        Login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent LoginScreen = new Intent(v.getContext(), Login.class);
+                startActivity(LoginScreen);
+
+            }
+        });
+
     }
 
 

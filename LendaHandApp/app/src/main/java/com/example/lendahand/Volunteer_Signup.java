@@ -37,19 +37,20 @@ public class Volunteer_Signup extends AppCompatActivity {
             public void onClick(View v) {
 
                 //Retrieve the values from each text Field
-                String firstName = textVolunteerFirstName.toString();
-                String lastName = textVolunteeerLastName.toString();
-                String email = textVolunteerEmail.toString();
-                String phone = textVolunteerPhone.toString();
-                String dateOfBirth = textVolunteerDateofBirth.toString();
-                String password = textVolunteerPassword.toString();
+                String firstName = textVolunteerFirstName.getText().toString();
+                String lastName = textVolunteeerLastName.getText().toString();
+                String email = textVolunteerEmail.getText().toString();
+                String phone = textVolunteerPhone.getText().toString();
+                String dateOfBirth = textVolunteerDateofBirth.getText().toString();
+                String password = textVolunteerPassword.getText().toString();
 
                 //Check each text field for input errors and save the errors in a string
                 InputChecker inputChecker = new InputChecker();
                 String signupError= "";
                 signupError += inputChecker.isBlank(firstName, "First Name");
                 signupError += inputChecker.isBlank(lastName, "Last Name");
-//                signupError += inputChecker.isEmailValid(email);
+                signupError += inputChecker.isBlank(phone, "Phone");
+                signupError += inputChecker.isEmailValid(email);
                 signupError += inputChecker.isBlank(dateOfBirth, "Date Of Birth");
                 signupError += inputChecker.isPasswordValid(password);
 
