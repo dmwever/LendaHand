@@ -18,8 +18,8 @@ public class org_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_org_page);
 
-        Intent intent = getIntent();
-        final ServiceOrganization newOrg = (ServiceOrganization)intent.getSerializableExtra("ServiceOrg");
+        Intent getServiceOrg = getIntent();
+        final ServiceOrganization serviceOrg = (ServiceOrganization)getServiceOrg.getSerializableExtra("ServiceOrg");
 
         final TextView OrgName = (TextView) findViewById(R.id.orgname);
         final TextView OrgEmail = (TextView) findViewById(R.id.orgemail);
@@ -30,20 +30,20 @@ public class org_page extends AppCompatActivity {
         final ImageView OrgHeader = (ImageView) findViewById(R.id.orgheader);
         final MaterialButton btnOrgEdit =  (MaterialButton) findViewById(R.id.orgEditPage);
 
-        OrgName.setText(newOrg.getOrgName());
-        OrgEmail.setText(newOrg.getOrgEmail());
-        OrgPhone.setText(newOrg.getOrgPhone());
-        OrgWebsite.setText(newOrg.getOrgWebsite());
-        OrgDesc.setText(newOrg.getOrgDescription());
-        OrgLogo.setImageURI(Uri.parse(newOrg.getOrgLogo()));
-        OrgHeader.setImageURI(Uri.parse(newOrg.getOrgHeader()));
+        OrgName.setText(serviceOrg.getOrgName());
+        OrgEmail.setText(serviceOrg.getOrgEmail());
+        OrgPhone.setText(serviceOrg.getOrgPhone());
+        OrgWebsite.setText(serviceOrg.getOrgWebsite());
+        OrgDesc.setText(serviceOrg.getOrgDescription());
+        OrgLogo.setImageURI(Uri.parse(serviceOrg.getOrgLogo()));
+        OrgHeader.setImageURI(Uri.parse(serviceOrg.getOrgHeader()));
 
         btnOrgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent nextScreen = new Intent(v.getContext(),  org_page_edit.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("ServiceOrg", newOrg);
+                bundle.putSerializable("ServiceOrg", serviceOrg);
                 nextScreen.putExtras(bundle);
                 startActivityForResult(nextScreen, 0);
             }
