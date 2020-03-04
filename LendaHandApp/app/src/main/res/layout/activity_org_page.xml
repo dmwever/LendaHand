@@ -30,6 +30,7 @@
             android:background="@color/color_secondary"/>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/orgEditPage"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="330dp"

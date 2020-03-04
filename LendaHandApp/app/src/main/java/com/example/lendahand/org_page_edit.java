@@ -22,7 +22,7 @@ public class org_page_edit extends AppCompatActivity {
 
     private static final int LOGO_REQUEST_CODE = 100;
     private static final int HEADER_REQUEST_CODE = 101;
-    ServiceOrganization newOrg;
+    ServiceOrganization serviceOrg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +30,8 @@ public class org_page_edit extends AppCompatActivity {
         setContentView(R.layout.activity_org_page_edit);
 
 
-        Intent intent = getIntent();
-        newOrg = (ServiceOrganization)intent.getSerializableExtra("ServiceOrg");
+        Intent getServiceOrg = getIntent();
+        serviceOrg = (ServiceOrganization)getServiceOrg.getSerializableExtra("ServiceOrg");
 
         //Get a reference to all the text fields in edit page
         final TextInputEditText txtOrgName = (TextInputEditText) findViewById(R.id.orgNameText);
@@ -47,14 +47,14 @@ public class org_page_edit extends AppCompatActivity {
         final MaterialButton btnOrgSavePage = (MaterialButton)findViewById(R.id.orgSavePage);
 
 
-        txtOrgName.setText(newOrg.getOrgName());
-        txtOrgEmail.setText(newOrg.getOrgEmail());
-        txtOrgPhone.setText(newOrg.getOrgPhone());
-        txtOrgWebsite.setText(newOrg.getOrgWebsite());
-        txtOrgPassword.setText(newOrg.getOrgPassword());
-        txtOrgDesc.setText(newOrg.getOrgDescription());
-        imgOrgLogo.setImageURI(Uri.parse(newOrg.getOrgLogo()));
-        imgOrgHeader.setImageURI(Uri.parse(newOrg.getOrgHeader()));
+        txtOrgName.setText(serviceOrg.getOrgName());
+        txtOrgEmail.setText(serviceOrg.getOrgEmail());
+        txtOrgPhone.setText(serviceOrg.getOrgPhone());
+        txtOrgWebsite.setText(serviceOrg.getOrgWebsite());
+        txtOrgPassword.setText(serviceOrg.getOrgPassword());
+        txtOrgDesc.setText(serviceOrg.getOrgDescription());
+        imgOrgLogo.setImageURI(Uri.parse(serviceOrg.getOrgLogo()));
+        imgOrgHeader.setImageURI(Uri.parse(serviceOrg.getOrgHeader()));
 
         //STEP 2: Set onClickListener for YOUR button
         btnOrgChangeLogo.setOnClickListener(new View.OnClickListener() {
@@ -101,23 +101,22 @@ public class org_page_edit extends AppCompatActivity {
                 error += inputChecker.isPasswordValid(orgPassword);
 
                 if(StringUtils.isBlank(error)) {
-                    newOrg.setOrgName(orgName);
-                    newOrg.setOrgEmail(orgEmail);
-                    newOrg.setOrgPhone(orgPhone);
-                    newOrg.setOrgWebsite(orgWebsite);
-                    newOrg.setOrgPassword(orgPassword);
-                    newOrg.setOrgDescription(orgDesc);
+                    serviceOrg.setOrgName(orgName);
+                    serviceOrg.setOrgEmail(orgEmail);
+                    serviceOrg.setOrgPhone(orgPhone);
+                    serviceOrg.setOrgWebsite(orgWebsite);
+                    serviceOrg.setOrgPassword(orgPassword);
+                    serviceOrg.setOrgDescription(orgDesc);
 
                     Intent nextScreen = new Intent(v.getContext(), org_page.class);
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("ServiceOrg", newOrg);
+                    bundle.putSerializable("ServiceOrg", serviceOrg);
                     nextScreen.putExtras(bundle);
                     startActivityForResult(nextScreen, 0);
                 }
                 else{
                     Toast.makeText(v.getContext(), error, 10).show();
                 }
-
             }
         });
 
@@ -131,13 +130,13 @@ public class org_page_edit extends AppCompatActivity {
                 case LOGO_REQUEST_CODE:
                     //data.getData returns the content URI for the selected Image
                     Uri selectedImage = data.getData();
-                    newOrg.setOrgLogo(selectedImage.toString());
+                    serviceOrg.setOrgLogo(selectedImage.toString());
                     ImageView imageView = findViewById(R.id.orgLogo);
                     imageView.setImageURI(selectedImage);
                     break;
                 case HEADER_REQUEST_CODE:
                     Uri selectImage = data.getData();
-                    newOrg.setOrgHeader(selectImage.toString());
+                    serviceOrg.setOrgHeader(selectImage.toString());
                     ImageView imageview = findViewById(R.id.orgHeader);
                     imageview.setImageURI(selectImage);
                     break;
