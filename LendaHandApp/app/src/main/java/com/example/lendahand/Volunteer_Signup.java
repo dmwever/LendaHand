@@ -1,24 +1,17 @@
 package com.example.lendahand;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.amazonaws.util.StringUtils;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
-import org.w3c.dom.Text;
-
 public class Volunteer_Signup extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +45,8 @@ public class Volunteer_Signup extends AppCompatActivity {
                 String signupError= "";
                 signupError += inputChecker.isBlank(firstName, "First Name");
                 signupError += inputChecker.isBlank(lastName, "Last Name");
-//                signupError += inputChecker.isEmailValid(email);
+                signupError += inputChecker.isBlank(phone, "Phone");
+                signupError += inputChecker.isEmailValid(email);
                 signupError += inputChecker.isBlank(dateOfBirth, "Date Of Birth");
                 signupError += inputChecker.isPasswordValid(password);
 

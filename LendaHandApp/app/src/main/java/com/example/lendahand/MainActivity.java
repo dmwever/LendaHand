@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 
 import com.amazonaws.amplify.generated.graphql.CreateBlogMutation;
@@ -21,6 +23,8 @@ import com.apollographql.apollo.exception.ApolloException;
 import com.google.android.material.button.MaterialButton;
 
 import com.AWSinfrastructure.*;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import javax.annotation.Nonnull;
 
@@ -28,10 +32,14 @@ import type.CreateBlogInput;
 
 public class MainActivity extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mAuth = FirebaseAuth.getInstance();
 
         addTemporaryButtons();
     }
@@ -88,5 +96,32 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        MaterialButton SignOut = (MaterialButton) findViewById(R.id.signOut);
+
+        SignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.getInstance().signOut();
+                updateUI(mAuth.getCurrentUser());
+
+            }
+        });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
+
+    public void  updateUI(FirebaseUser account){
+        if(account != null){
+            Toast.makeText(this,"U Signed In successfully",Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(this,"U Didnt signed in",Toast.LENGTH_LONG).show();
+        }
     }
 }
