@@ -64,10 +64,11 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtServiceOpDate"
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
                 android:inputType="date"
-                android:maxLines="1"/>
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -80,10 +81,11 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtServiceOpTime"
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
                 android:inputType="time"
-                android:maxLines="1"/>
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -97,10 +99,11 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtServiceOpCutoffDate"
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
                 android:inputType="date"
-                android:maxLines="1"/>
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -113,10 +116,11 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtServiceOpCutoffTime"
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
                 android:inputType="time"
-                android:maxLines="1"/>
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -130,10 +134,11 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtServiceOpLocation"
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
                 android:inputType="textPostalAddress"
-                android:maxLines="1"/>
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
