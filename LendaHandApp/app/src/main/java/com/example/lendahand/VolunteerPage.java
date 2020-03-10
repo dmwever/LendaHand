@@ -27,13 +27,17 @@ public class VolunteerPage extends AppCompatActivity {
 
         //Get a reference to all the text fields on the volunteer page
         final TextView volunteerFullName = findViewById(R.id.volunteerFullName_volunteerScreen);
-        final TextView volunteeerDescription = findViewById(R.id.volunteerDescription_VolunteerScreen);
+        final TextView volunteerDescription = findViewById(R.id.volunteerDescription_VolunteerScreen);
         final TextView volunteerEmail = findViewById(R.id.volunteerEmail_volunteerscreen);
         final TextView volunteerPhone = findViewById(R.id.volunteerPhone_volunteerscreen);
         final TextView volunteerDateOfBirth = findViewById(R.id.volunteerBirthday_volunteerScreen);
         final TextView volunteerPassword = findViewById(R.id.volunteerPassword_volunterScreen);
-        final CardView editButton = findViewById(R.id.editVolunteerInformationButton);
+        final CardView editButton = findViewById(R.id.editButton_VolunteerScreen);
+        final CardView cardView = findViewById(R.id.cardView);
 
+        //This makes the edges round. The XML method does not work.
+        cardView.setClipToOutline(true);
+        editButton.setClipToOutline(true);
 
 
         //Set each text field with the appropriate text

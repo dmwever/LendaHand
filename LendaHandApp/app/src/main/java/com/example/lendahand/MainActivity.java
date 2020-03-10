@@ -22,7 +22,6 @@ import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.google.android.material.button.MaterialButton;
 
-import com.AWSinfrastructure.*;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -33,6 +32,7 @@ import type.CreateBlogInput;
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
+        database = new Database();
+        database.test();
 
         addTemporaryButtons();
     }
