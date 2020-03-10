@@ -1,7 +1,6 @@
 package com.example.lendahand;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class ServiceOpportunity implements Serializable {
 
@@ -22,6 +21,7 @@ public class ServiceOpportunity implements Serializable {
     private String opAdditionalReq;
     private String opHeaderPhoto;
     private String opEventPhoto;
+    private ServiceOrganization opServiceOrg;
 
     public ServiceOpportunity(
             String name,
@@ -139,6 +139,10 @@ public class ServiceOpportunity implements Serializable {
     public String getOpEventPhoto () {return opEventPhoto;}
 
 
+    public void setOpServiceOrg (ServiceOrganization serviceOrg) {opServiceOrg = serviceOrg;}
+
+    public ServiceOrganization getOpServiceOrg () {return opServiceOrg;}
+
     public void displayServiceOp() {
         System.out.println("opName: " + opName);
         System.out.println("opSubtitle: " + opSubtitle);
@@ -156,6 +160,7 @@ public class ServiceOpportunity implements Serializable {
         System.out.println("opAdditionalReq: " + opAdditionalReq);
         System.out.println("opHeaderPhoto: " + opHeaderPhoto);
         System.out.println("opEventPhoto: " + opEventPhoto);
+        System.out.println("opServiceOrg" + opServiceOrg.getOrgName());
 
     }
 }

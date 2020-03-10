@@ -60,10 +60,12 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+
+                android:id="@+id/txtServiceOpName"
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:maxLines="1"/>
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -76,10 +78,12 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+
+                android:id="@+id/txtServiceOpSub"
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:maxLines="1"/>
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -92,10 +96,12 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+
+                android:id="@+id/txtServiceOpDesc"
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:maxLines="1"/>
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -115,10 +121,12 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+
+                android:id="@+id/txtServiceOpContactName"
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:maxLines="1"/>
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -131,10 +139,12 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+
+                android:id="@+id/txtServiceOpContactEmail"
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:maxLines="1"/>
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -147,16 +157,19 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+
+                android:id="@+id/txtServiceOpContactPhone"
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:maxLines="1"/>
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="serviceop1of4"
             app:srcCompat="@mipmap/progress_1_of_4" />
 
         <com.google.android.material.button.MaterialButton

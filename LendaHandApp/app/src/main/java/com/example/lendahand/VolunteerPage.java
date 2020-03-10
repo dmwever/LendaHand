@@ -1,6 +1,7 @@
 package com.example.lendahand;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,26 +26,27 @@ public class VolunteerPage extends AppCompatActivity {
         final Volunteer currentVolunteer = (Volunteer) intent.getSerializableExtra("CurrentVolunteer");
 
         //Get a reference to all the text fields on the volunteer page
-        final TextInputEditText volunteerFirstName = findViewById(R.id.volunteerFirstName);
-        final TextInputEditText volunteeerLastName = findViewById(R.id.volunteerLastName);
-        final TextInputEditText volunteerEmail = findViewById(R.id.volunteerEmail);
-        final TextInputEditText volunteerPhone = findViewById(R.id.volunteerPhone);
-        final TextInputEditText volunteerDateOfBirth = findViewById(R.id.volunteerDateOfBirth);
-        final TextInputEditText volunteerPassword = findViewById(R.id.volunteerPassword);
-        final MaterialButton editVolunteerButton =  (MaterialButton) findViewById(R.id.editVolunteerInformationButton);
+        final TextView volunteerFullName = findViewById(R.id.volunteerFullName_volunteerScreen);
+        final TextView volunteeerDescription = findViewById(R.id.volunteerDescription_VolunteerScreen);
+        final TextView volunteerEmail = findViewById(R.id.volunteerEmail_volunteerscreen);
+        final TextView volunteerPhone = findViewById(R.id.volunteerPhone_volunteerscreen);
+        final TextView volunteerDateOfBirth = findViewById(R.id.volunteerBirthday_volunteerScreen);
+        final TextView volunteerPassword = findViewById(R.id.volunteerPassword_volunterScreen);
+        final CardView editButton = findViewById(R.id.editVolunteerInformationButton);
 
 
 
         //Set each text field with the appropriate text
-        volunteerFirstName.setText(currentVolunteer.getFirstName());
-        volunteeerLastName.setText(currentVolunteer.getLastName());
+        String fullname = currentVolunteer.getFirstName() + currentVolunteer.getLastName();
+        volunteerFullName.setText(fullname);
         volunteerEmail.setText(currentVolunteer.getEmail());
         volunteerPhone.setText(currentVolunteer.getPhone());
         volunteerDateOfBirth.setText(currentVolunteer.getDateOfBirth());
         volunteerPassword.setText(currentVolunteer.getPassword());
+        editButton.isClickable();
 
         //Allow button to be clicked to edit volunteer information
-        editVolunteerButton.setOnClickListener(new View.OnClickListener() {
+        editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent editScreen = new Intent(v.getContext(), EditVolunteerPage.class);
