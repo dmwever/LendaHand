@@ -236,7 +236,7 @@
                 android:layout_alignParentRight="true"/>
 
             <View
-                android:id="@+id/divider3"
+                android:id="@+id/divider4"
                 android:layout_width="330dp"
                 android:layout_height="1dp"
                 android:layout_margin="10dp"
