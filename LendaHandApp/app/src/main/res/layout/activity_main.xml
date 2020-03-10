@@ -61,5 +61,13 @@
                 android:textAllCaps="false"
                 android:text="Login"/>
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/signOut"
+                android:layout_width="233dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textAllCaps="false"
+                android:text="Sign Out" />
+
     </LinearLayout>
 </FrameLayout>

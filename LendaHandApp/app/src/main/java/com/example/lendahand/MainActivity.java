@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 
 import com.amazonaws.amplify.generated.graphql.CreateBlogMutation;
@@ -20,33 +22,29 @@ import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.google.android.material.button.MaterialButton;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import javax.annotation.Nonnull;
 
 import type.CreateBlogInput;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AWSAppSyncClient AppSync; //AWS APP Sync Client
+    private FirebaseAuth mAuth;
+    Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/*
-//      AWS client creation
-        AppSync = AWSAppSyncClient.builder()
-                .context(getApplicationContext())
-                .awsConfiguration(new AWSConfiguration(getApplicationContext()))
-                .build();
 
-        runMutation();
-        runQuery();
-        subscribe();
+        mAuth = FirebaseAuth.getInstance();
+        database = new Database();
+        database.test();
 
-*/
         addTemporaryButtons();
     }
-
 
     private void addTemporaryButtons() {
 
@@ -101,77 +99,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        MaterialButton SignOut = (MaterialButton) findViewById(R.id.signOut);
+
+        SignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.getInstance().signOut();
+                updateUI(mAuth.getCurrentUser());
+
+            }
+        });
     }
 
-
-    //AWS runMutation methods (move to new class later on?)
-    public void runMutation(){
-        CreateBlogInput createBlogInput = CreateBlogInput.builder().
-                name("Use AppSync").
-                id("Realtime and Offline").
-                build();
-
-        AppSync.mutate(CreateBlogMutation.builder().input(createBlogInput).build())
-                .enqueue(mutationCallback);
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
     }
 
-    private GraphQLCall.Callback<CreateBlogMutation.Data> mutationCallback = new GraphQLCall.Callback<CreateBlogMutation.Data>() {
-        @Override
-        public void onResponse(@Nonnull Response<CreateBlogMutation.Data> response) {
-            Log.i("Results", "Added Todo");
+    public void  updateUI(FirebaseUser account){
+        if(account != null){
+            Toast.makeText(this,"U Signed In successfully",Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(this,"U Didnt signed in",Toast.LENGTH_LONG).show();
         }
-
-        @Override
-        public void onFailure(@Nonnull ApolloException e) {
-            Log.e("Error", e.toString());
-        }
-    };
-
-    //AWS runQuery methods (move later?)
-
-    public void runQuery(){
-        AppSync.query(ListBlogsQuery.builder().build())
-                .responseFetcher(AppSyncResponseFetchers.CACHE_AND_NETWORK)
-                .enqueue(blogsCallback);
     }
-
-    private GraphQLCall.Callback<ListBlogsQuery.Data> blogsCallback = new GraphQLCall.Callback<ListBlogsQuery.Data>() {
-        @Override
-        public void onResponse(@Nonnull Response<ListBlogsQuery.Data> response) {
-            Log.i("Results", response.data().listBlogs().items().toString());
-        }
-
-        @Override
-        public void onFailure(@Nonnull ApolloException e) {
-            Log.e("ERROR", e.toString());
-        }
-    };
-
-    //AWS subscribe methods
-
-    private AppSyncSubscriptionCall subscriptionWatcher;
-
-    private void subscribe(){
-        OnCreateBlogSubscription subscription = OnCreateBlogSubscription.builder().build();
-        subscriptionWatcher = AppSync.subscribe(subscription);
-        subscriptionWatcher.execute(subCallback);
-    }
-
-    private AppSyncSubscriptionCall.Callback subCallback = new AppSyncSubscriptionCall.Callback() {
-        @Override
-        public void onResponse(@Nonnull Response response) {
-            Log.i("Response", response.data().toString());
-        }
-
-        @Override
-        public void onFailure(@Nonnull ApolloException e) {
-            Log.e("Error", e.toString());
-        }
-
-        @Override
-        public void onCompleted() {
-            Log.i("Completed", "Subscription completed");
-        }
-    };
-
 }

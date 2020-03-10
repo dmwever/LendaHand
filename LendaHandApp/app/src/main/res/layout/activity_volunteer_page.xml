@@ -31,7 +31,6 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToOutline="true"
             android:contentDescription=""
             android:scaleType="centerCrop"
             android:src="@drawable/volunteer_photo" />
@@ -39,7 +38,7 @@
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/EditButton_VolunteerScreen"
+        android:id="@+id/editButton_VolunteerScreen"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginEnd="15dp"
@@ -53,7 +52,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="4dp"
-            android:clipToOutline="true"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_edit_black_24dp" />
     </androidx.cardview.widget.CardView>
