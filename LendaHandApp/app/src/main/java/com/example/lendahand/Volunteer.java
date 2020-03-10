@@ -16,7 +16,7 @@ public class Volunteer implements Serializable {
     public Volunteer(String firstName, String lastName, String email, String phone, String dateOfBirth, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = lastName;
+        this.email = email;
         this.phone = phone;
         this.dateOfBirth = dateOfBirth;
         this.password = password;

@@ -11,16 +11,12 @@ import com.amazonaws.util.StringUtils;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
-import org.w3c.dom.Text;
-
 public class Volunteer_Signup extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volunteer__signup);
-
-
 
         //Create Outlets for all buttons and text fields
         MaterialButton startServingButton = findViewById(R.id.volunteerSignupNext);
@@ -37,12 +33,12 @@ public class Volunteer_Signup extends AppCompatActivity {
             public void onClick(View v) {
 
                 //Retrieve the values from each text Field
-                String firstName = textVolunteerFirstName.getText().toString();
-                String lastName = textVolunteeerLastName.getText().toString();
-                String email = textVolunteerEmail.getText().toString();
-                String phone = textVolunteerPhone.getText().toString();
-                String dateOfBirth = textVolunteerDateofBirth.getText().toString();
-                String password = textVolunteerPassword.getText().toString();
+                String firstName = textVolunteerFirstName.getText().toString().trim();
+                String lastName = textVolunteeerLastName.getText().toString().trim();
+                String email = textVolunteerEmail.getText().toString().trim();
+                String phone = textVolunteerPhone.getText().toString().trim();
+                String dateOfBirth = textVolunteerDateofBirth.getText().toString().trim();
+                String password = textVolunteerPassword.getText().toString().trim();
 
                 //Check each text field for input errors and save the errors in a string
                 InputChecker inputChecker = new InputChecker();
@@ -73,6 +69,5 @@ public class Volunteer_Signup extends AppCompatActivity {
                 }
             }
         });
-
     }
 }
