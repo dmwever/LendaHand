@@ -26,16 +26,26 @@ public class createServiceOpPhoto extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_service_op_photo);
+
+        Intent intent = getIntent();
+        final ServiceOpportunity newServiceOp = (ServiceOpportunity) intent.getSerializableExtra("ServiceOp");
+
         //STEP 1: Add reference to button using R.id
         MaterialButton createServiceOpPhoto = findViewById(R.id.btnServiceOpPhotoNext);
         //STEP 2: Set onClickListener for YOUR button
         createServiceOpPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 //STEP 3: Create Intent for your class
-                Intent createServiceOpScreen = new Intent(v.getContext(), MainActivity.class);
+                Intent createServiceOpScreen = new Intent(v.getContext(), ManageServiceOp.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("CurrentServiceOp", newServiceOp);
+                    createServiceOpScreen.putExtras(bundle);
                 //STEP 4: Start your Activity
-                startActivity(createServiceOpScreen);
+                startActivityForResult(createServiceOpScreen, 0);
+
+
             }
         });
 
