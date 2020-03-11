@@ -61,11 +61,6 @@ public class Volunteer_Signup extends AppCompatActivity {
                     volunteerBundle.putSerializable("CurrentVolunteer", newVolunteer);
                     tagsScreen.putExtras(volunteerBundle);
 
-                    //FIXME TEMPORARY, MOVE TO AddTagsForVolunteer
-                    Database database = new Database();
-                    database.init();
-                    database.addVolunteer(newVolunteer);
-
                     //And go to the tags screen
                     startActivity(tagsScreen);
 
