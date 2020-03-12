@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         database = new Database();
-        database.test();
+        database.init();
 
         addTemporaryButtons();
     }

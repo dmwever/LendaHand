@@ -41,7 +41,7 @@ public class AddTagsForVolunteer extends AppCompatActivity {
 
         LayoutInflater inflater = LayoutInflater.from(AddTagsForVolunteer.this);
 
-        String[] tags = new String[]{"Environment", "Hunger Relief", "Health", "Senior", "People with Disabilities", "Animals", "Education", "Construction", "Community", "Animal", "Hunger Relief"};
+        final String[] tags = new String[]{"Environment", "Hunger Relief", "Health", "Senior", "People with Disabilities", "Animals", "Education", "Construction", "Community", "Animal", "Hunger Relief"};
         final ArrayList<String> userSelectedTags = new ArrayList<String>();
 
         for (String tagString : tags) {
@@ -74,7 +74,12 @@ public class AddTagsForVolunteer extends AppCompatActivity {
                     };
                 }
 
-                createAccount(newVol.getEmail(), newVol.getPassword());
+                //Add volunteer to database
+                newVol.setTags(userSelectedTags);
+                Database db = new Database();
+                db.init();
+                db.addVolunteer(newVol);
+                createAccount(newVol.getEmail(), newVol.getPassword(), newVol);
 
                 Log.d("AddTags", msg);
                 Intent home = new Intent(v.getContext(), MainActivity.class);
@@ -103,7 +108,7 @@ public class AddTagsForVolunteer extends AppCompatActivity {
         }
     }
 
-    public void createAccount(String email, String password) {
+    public void createAccount(String email, String password, final Volunteer newVol) {
         Log.i("email", email + " " + password);
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
