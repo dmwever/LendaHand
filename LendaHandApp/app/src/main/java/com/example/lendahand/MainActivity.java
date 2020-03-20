@@ -39,13 +39,6 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         database = new Database();
         database.init();
-        //FIXME
-        ServiceOrganization test = database.getOrganization("Test");
-        ServiceOpportunity test2 = database.getService("testorg1");
-        /*while (test2.getOpName() == null) {
-            continue;
-        }*/
-        test2.displayServiceOp();
 
         addTemporaryButtons();
     }
