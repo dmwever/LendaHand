@@ -10,9 +10,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
-import com.amazonaws.amplify.generated.graphql.CreateBlogMutation;
-import com.amazonaws.amplify.generated.graphql.ListBlogsQuery;
-import com.amazonaws.amplify.generated.graphql.OnCreateBlogSubscription;
 import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.appsync.AWSAppSyncClient;
 import com.amazonaws.mobileconnectors.appsync.AppSyncSubscriptionCall;
@@ -27,7 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import javax.annotation.Nonnull;
 
-import type.CreateBlogInput;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,6 +39,13 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         database = new Database();
         database.init();
+        //FIXME
+        ServiceOrganization test = database.getOrganization("Test");
+        ServiceOpportunity test2 = database.getService("testorg1");
+        /*while (test2.getOpName() == null) {
+            continue;
+        }*/
+        test2.displayServiceOp();
 
         addTemporaryButtons();
     }

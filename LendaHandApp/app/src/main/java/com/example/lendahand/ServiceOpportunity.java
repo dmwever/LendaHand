@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class ServiceOpportunity implements Serializable {
 
-
     private String opName;
     private String opSubtitle;
     private String opDescription;
@@ -24,6 +23,10 @@ public class ServiceOpportunity implements Serializable {
     private ServiceOrganization opServiceOrg;
 
     private String id;
+
+    public ServiceOpportunity(String id) {
+        this.id = id;
+    }
 
     public ServiceOpportunity(
             String name,
@@ -174,7 +177,7 @@ public class ServiceOpportunity implements Serializable {
         System.out.println("opAdditionalReq: " + opAdditionalReq);
         System.out.println("opHeaderPhoto: " + opHeaderPhoto);
         System.out.println("opEventPhoto: " + opEventPhoto);
-        System.out.println("opServiceOrg" + opServiceOrg.getOrgName());
+        //FIXME System.out.println("opServiceOrg" + opServiceOrg.getOrgName());
 
     }
 }

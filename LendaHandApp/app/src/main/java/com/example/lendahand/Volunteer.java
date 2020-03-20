@@ -18,10 +18,15 @@ public class Volunteer implements Serializable {
     private String password;
     private ArrayList<String> tags;
     private List prevServe;
-/*TODO flags
-    private int yellowFlag;
-    private boolean redFlag;
-*/
+    /*TODO flags
+        private int yellowFlag;
+        private boolean redFlag;
+    */
+
+    public Volunteer(String ID) {
+        this.email = ID;
+    }
+
     public Volunteer(String firstName, String lastName, String email, String phone, String dateOfBirth, String password) {
         this.firstName = firstName;
         this.lastName = lastName;

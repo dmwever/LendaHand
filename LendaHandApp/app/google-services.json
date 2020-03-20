@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "721330880441-jbtaplaa2b9fg00931muh5pic3lv8jmb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lendahand",
+            "certificate_hash": "3a72356cd0453dcdcef8b9370f7ac8309ef3e12f"
+          }
+        },
+        {
           "client_id": "721330880441-4o3g6c4cah6ei3574fg339f42erjq5tv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
