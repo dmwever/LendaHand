@@ -29,6 +29,10 @@ public class ServiceOrganization implements Serializable {
         orgServiceOps = new ArrayList<ServiceOpportunity>();
     }
 
+    public ServiceOrganization(String ID) {
+        this.orgEmail = ID;
+    }
+
     public void setOrgName(String name){
         orgName = name;
     }
@@ -98,9 +102,19 @@ public class ServiceOrganization implements Serializable {
 
     public String getOrgHeader(){ return orgHeader; }
 
-    public void addOrgServiceOps(ServiceOpportunity serviceop) { orgServiceOps.add(serviceop); }
+    public void addOrgServiceOp(ServiceOpportunity serviceop) { orgServiceOps.add(serviceop); }
 
-    public ArrayList<ServiceOpportunity> getOrgServiceOps() { return orgServiceOps; }
+    public ArrayList<ServiceOpportunity> getOrgServiceOpsList() { return orgServiceOps; }
+
+    public ServiceOpportunity getOrgServiceOp(String opName){
+
+        for (ServiceOpportunity serviceOp : orgServiceOps){
+            if(serviceOp.getOpName().equals(opName)){
+                return serviceOp;
+            }
+        }
+        return null;
+    }
 
 
     public void displayServiceOrg(){

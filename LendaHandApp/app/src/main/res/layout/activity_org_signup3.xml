@@ -101,7 +101,7 @@
             tools:srcCompat="@mipmap/progress_3_of_3" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnOrgAddLogo"
+            android:id="@+id/orgAddLogo"
             android:layout_width="233dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -109,7 +109,7 @@
             android:textAllCaps="false" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnOrgAddHeader"
+            android:id="@+id/orgAddHeader"
             android:layout_width="233dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

@@ -16,9 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Login"></activity>
+        <activity android:name=".org_page_upcoming_opportunities"></activity>
+        <activity android:name=".Login" />
         <activity android:name=".ManageServiceOp" />
-        <activity android:name=".EditVolunteerPage"></activity>
+        <activity android:name=".EditVolunteerPage" />
         <activity android:name=".VolunteerPage" />
         <activity android:name=".AddTagsForVolunteer" />
         <activity android:name=".org_page_edit" />
@@ -42,6 +43,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService" android:enabled="true" />
+
 
         <meta-data
             android:name="preloaded_fonts"

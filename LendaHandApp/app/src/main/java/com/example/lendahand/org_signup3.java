@@ -26,8 +26,8 @@ public class org_signup3 extends AppCompatActivity {
         newOrg = (ServiceOrganization)serviceOrg.getSerializableExtra("ServiceOrg");
 
         //STEP 1: Add reference to button using R.id
-        final MaterialButton btnOrgAddLogo = findViewById(R.id.btnOrgAddLogo);
-        final MaterialButton btnOrgAddHeader = findViewById(R.id.btnOrgAddHeader);
+        final MaterialButton btnOrgAddLogo = findViewById(R.id.orgAddLogo);
+        final MaterialButton btnOrgAddHeader = findViewById(R.id.orgAddHeader);
         final MaterialButton btnOrgSignUpFinish = (MaterialButton) findViewById(R.id.orgSignupFinish);
 
         //STEP 2: Set onClickListener for YOUR button
@@ -74,16 +74,16 @@ public class org_signup3 extends AppCompatActivity {
             switch (requestCode) {
                 case LOGO_REQUEST_CODE:
                     //data.getData returns the content URI for the selected Image
-                    Uri selectedImage = data.getData();
-                    newOrg.setOrgLogo(selectedImage.toString());
-                    ImageView imageView = findViewById(R.id.orgLogo);
-                    imageView.setImageURI(selectedImage);
+                    Uri selectLogo = data.getData();
+                    newOrg.setOrgLogo(selectLogo.toString());
+                    ImageView imgOrgLogo = findViewById(R.id.orgLogo);
+                    imgOrgLogo.setImageURI(selectLogo);
                     break;
                 case HEADER_REQUEST_CODE:
-                    Uri selectImage = data.getData();
-                    newOrg.setOrgHeader(selectImage.toString());
-                    ImageView imageview = findViewById(R.id.orgHeader);
-                    imageview.setImageURI(selectImage);
+                    Uri selectHeader = data.getData();
+                    newOrg.setOrgHeader(selectHeader.toString());
+                    ImageView imgOrgHeader = findViewById(R.id.orgHeader);
+                    imgOrgHeader.setImageURI(selectHeader);
                     break;
             }
     }

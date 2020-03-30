@@ -117,7 +117,14 @@ public class ManageServiceOp extends AppCompatActivity {
                     currentServiceOp.setOpAgeReq(opAgeReq);
                     currentServiceOp.setOpAdditionalReq(opAdditionalReq);
                 }
-                
+
+                //Add service to database
+                //FIXME add ID implementation
+                currentServiceOp.setId("testorg1");
+                Database db = new Database();
+                db.init();
+                db.addService(currentServiceOp);
+
                 //STEP 3: Create Intent for your class
                 Intent createServiceOpScreen = new Intent(v.getContext(), MainActivity.class);
                 //STEP 4: Start your Activity
