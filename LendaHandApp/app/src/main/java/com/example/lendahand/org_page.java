@@ -25,9 +25,17 @@ public class org_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_org_page);
 
-        Intent getServiceOrg = getIntent();
-        serviceOrg = (ServiceOrganization)getServiceOrg.getSerializableExtra("ServiceOrg");
+        Bundle bundle = getIntent().getExtras();
+        String ID = bundle.getString("ID");
 
+        final Database db = new Database();
+        db.init();
+        serviceOrg = db.getOrganization(ID);
+        if(serviceOrg == null){
+            System.out.println("FAILURE");
+        }
+
+        /*
         ServiceOpportunity s1 = new ServiceOpportunity("one", "one", "one", "one", "one", "one", false, "01/01/01", "0100", "01/01/01", "0100", "oneoneone", "1", "", serviceOrg.getOrgHeader(), serviceOrg.getOrgLogo(), "org1");
         ServiceOpportunity s2 = new ServiceOpportunity("two", "two", "two", "two", "two", "two", false, "02/02/02", "0200", "02/02/02", "0200", "twotwotwo", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgHeader(),"org2");
         ServiceOpportunity s3 = new ServiceOpportunity("three", "three", "two", "three", "three", "three", false, "03/03/03", "0300", "03/03/03", "0300", "threethreethree", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgHeader(), "org3");
@@ -37,7 +45,7 @@ public class org_page extends AppCompatActivity {
         serviceOrg.addOrgServiceOp(s1);
         serviceOrg.addOrgServiceOp(s2);
         serviceOrg.addOrgServiceOp(s3);
-
+        */
 
         final TextView txtOrgName = (TextView) findViewById(R.id.orgNameText);
         final TextView txtOrgEmail = (TextView) findViewById(R.id.orgEmailText);
@@ -55,9 +63,11 @@ public class org_page extends AppCompatActivity {
         txtOrgPhone.setText(serviceOrg.getOrgPhone());
         txtOrgWebsite.setText(serviceOrg.getOrgWebsite());
         txtOrgDesc.setText(serviceOrg.getOrgDescription());
-        imgOrgLogo.setImageURI(Uri.parse(serviceOrg.getOrgLogo()));
-        imgOrgHeader.setImageURI(Uri.parse(serviceOrg.getOrgHeader()));
-
+        //FIXME
+        //imgOrgLogo.setImageURI(Uri.parse(serviceOrg.getOrgLogo()));
+        //imgOrgHeader.setImageURI(Uri.parse(serviceOrg.getOrgHeader()));
+        //FIXME
+        /*
         ArrayList <ServiceOpportunity> serviceOps = serviceOrg.getOrgServiceOpsList();
         LayoutInflater inflater = LayoutInflater.from(this);
         for(int i = 0; i < 2; i++){
@@ -90,9 +100,7 @@ public class org_page extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent nextScreen = new Intent(v.getContext(),  org_page_upcoming_opportunities.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("ServiceOrg", serviceOrg);
-                    nextScreen.putExtras(bundle);
+                    nextScreen.putExtra("ID", serviceOrg.getOrgEmail());
                     startActivityForResult(nextScreen, 0);
                 }
             });
@@ -101,13 +109,13 @@ public class org_page extends AppCompatActivity {
             btnOrgSeeMoreOps.setVisibility(View.GONE);
         }
 
+         */
+
         btnOrgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent nextScreen = new Intent(v.getContext(),  org_page_edit.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("ServiceOrg", serviceOrg);
-                nextScreen.putExtras(bundle);
+                nextScreen.putExtra("ID", serviceOrg.getOrgEmail());
                 startActivityForResult(nextScreen, 0);
             }
         });

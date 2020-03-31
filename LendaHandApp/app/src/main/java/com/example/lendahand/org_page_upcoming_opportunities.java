@@ -19,8 +19,12 @@ public class org_page_upcoming_opportunities extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_org_page_upcoming_opportunities);
 
-        Intent getServiceOrg = getIntent();
-        serviceOrg = (ServiceOrganization)getServiceOrg.getSerializableExtra("ServiceOrg");
+        Bundle bundle = getIntent().getExtras();
+        String ID = bundle.getString("ID");
+
+        final Database db = new Database();
+        db.init();
+        serviceOrg = db.getOrganization(ID);
 
         ArrayList<ServiceOpportunity> serviceOps = serviceOrg.getOrgServiceOpsList();
         RecyclerView recyclerViewOrgServiceOpsList = (RecyclerView) findViewById(R.id.orgServiceOpsList);
