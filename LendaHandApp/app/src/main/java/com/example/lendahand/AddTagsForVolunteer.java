@@ -17,6 +17,7 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
@@ -122,8 +123,8 @@ public class AddTagsForVolunteer extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user
                             Log.w("create", "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(AddTagsForVolunteer.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            FirebaseAuthException e = (FirebaseAuthException )task.getException();
+                            Toast.makeText(AddTagsForVolunteer.this, "Failed Registration: "+e.getMessage(), Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
 
