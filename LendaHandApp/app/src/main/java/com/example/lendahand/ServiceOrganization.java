@@ -29,6 +29,10 @@ public class ServiceOrganization implements Serializable {
         orgServiceOps = new ArrayList<ServiceOpportunity>();
     }
 
+    public ServiceOrganization(String ID) {
+        this.orgEmail = ID;
+    }
+
     public void setOrgName(String name){
         orgName = name;
     }
