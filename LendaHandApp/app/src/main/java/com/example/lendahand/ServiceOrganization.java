@@ -102,6 +102,8 @@ public class ServiceOrganization implements Serializable {
 
     public String getOrgHeader(){ return orgHeader; }
 
+    public void setOrgServiceOpsList(ArrayList<ServiceOpportunity> serviceOp) {this.orgServiceOps = serviceOp;}
+
     public void addOrgServiceOp(ServiceOpportunity serviceop) { orgServiceOps.add(serviceop); }
 
     public ArrayList<ServiceOpportunity> getOrgServiceOpsList() { return orgServiceOps; }
