@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "721330880441-3s71a43i9andch0hflel5anpd27s7ete.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lendahand",
+            "certificate_hash": "faaa8de15191da8bd4e6c33c175ef74fac50689c"
+          }
+        },
+        {
+          "client_id": "721330880441-64ohdrb0c71d7k3334lhcn5cvk164pac.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lendahand",
+            "certificate_hash": "28ac7749fac3a4f20785f20ed63e459042a52e8d"
+          }
+        },
+        {
           "client_id": "721330880441-jbtaplaa2b9fg00931muh5pic3lv8jmb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
