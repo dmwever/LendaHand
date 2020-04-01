@@ -32,4 +32,15 @@
     <string name="skip">Skip</string>
     <string name="edit_volunteer">Edit Volunteer</string>
 
+    <string-array name="featured_service_ops_titles">
+        <item>Build Day</item>
+        <item>Pancake Day</item>
+        <item>Meals on Wheels</item>
+    </string-array>
+
+    <string-array name="featured_service_ops_subtitles">
+        <item>Invest in a familys future</item>
+        <item>A sweet treat for everyone</item>
+        <item>Food for all</item>
+    </string-array>
 </resources>
