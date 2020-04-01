@@ -1,6 +1,7 @@
 package com.example.lendahand;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class ServiceOpportunity implements Serializable {
 
@@ -21,11 +22,13 @@ public class ServiceOpportunity implements Serializable {
     private String opHeaderPhoto;
     private String opEventPhoto;
     private ServiceOrganization opServiceOrg;
+    private ArrayList<String> opVolunteerIDs;
 
     private String id;
 
     public ServiceOpportunity(String id) {
         this.id = id;
+        opVolunteerIDs = new ArrayList<>();
     }
 
     public ServiceOpportunity(
@@ -64,6 +67,15 @@ public class ServiceOpportunity implements Serializable {
             opHeaderPhoto = headerPhoto;
             opEventPhoto = eventPhoto;
             this.id = id;
+            opVolunteerIDs = new ArrayList<String>();
+    }
+
+    public ArrayList<String> getOpVolunteers() {
+        return opVolunteerIDs;
+    }
+
+    public void addOpVolunteer(String opVolunteers) {
+        this.opVolunteerIDs.add(opVolunteers);
     }
 
     public void setOpName (String name) {opName = name;}

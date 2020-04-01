@@ -47,6 +47,14 @@ public class Database extends AppCompatActivity {
         org.put("orgWebsite", newOrg.getOrgWebsite());
         org.put("orgDescription", newOrg.getOrgDescription());
 
+        ArrayList<ServiceOpportunity> opportunityList = newOrg.getOrgServiceOpsList();
+        ArrayList<String> opportunityIDs = new ArrayList<>();
+        for (int i = 0; i < opportunityList.size(); i++) {
+            ServiceOpportunity currentOp = opportunityList.get(i);
+            opportunityIDs.add(currentOp.getId());
+        }
+        org.put("orgServiceOps", opportunityIDs);
+
         CollectionReference orgRef = db.collection("serviceOrganizations");
         orgRef.document(ID)
                 .set(org)
@@ -79,6 +87,11 @@ public class Database extends AppCompatActivity {
             newOrg.setOrgWebsite(document.getString("orgWebsite"));
             newOrg.setOrgDescription(document.getString("orgDescription"));
             newOrg.setOrgPhone(document.getString("orgPhone"));
+            ArrayList<String> ServiceOpsList = (ArrayList<String>) document.get("orgServiceOps");
+            for (int i = 0; i < ServiceOpsList.size(); i++) {
+                ServiceOpportunity findService = getService(ServiceOpsList.get(i));
+                newOrg.addOrgServiceOp(findService);
+            }
 
         } else {
             Log.d("getOrg", "No such document");
