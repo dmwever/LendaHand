@@ -63,13 +63,13 @@ public class EditVolunteerPage extends AppCompatActivity {
 
                 if (StringUtils.isBlank(signupError)) {
                     //If no errors, create a new volunteer
-                    Volunteer newVolunteer = new Volunteer(firstName,lastName,email,phone,dateOfBirth,password);
-                    newVolunteer.displayVolunteer();
+                    currentVolunteer.editVolunteer(firstName,lastName,email,phone,dateOfBirth,password);
+                    currentVolunteer.displayVolunteer();
 
                     //Save the volunteer on disk
                     Intent volunteerPage = new Intent(v.getContext(), Volunteer.class);
                     Bundle volunteerBundle = new Bundle();
-                    volunteerBundle.putSerializable("CurrentVolunteer", newVolunteer);
+                    volunteerBundle.putSerializable("CurrentVolunteer", currentVolunteer);
                     volunteerPage.putExtras(volunteerBundle);
 
                     //And go to the tags screen

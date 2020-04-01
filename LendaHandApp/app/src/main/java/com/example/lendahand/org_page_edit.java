@@ -57,8 +57,9 @@ public class org_page_edit extends AppCompatActivity {
         txtOrgWebsite.setText(serviceOrg.getOrgWebsite());
         txtOrgPassword.setText(serviceOrg.getOrgPassword());
         txtOrgDesc.setText(serviceOrg.getOrgDescription());
-        imgOrgLogo.setImageURI(Uri.parse(serviceOrg.getOrgLogo()));
-        imgOrgHeader.setImageURI(Uri.parse(serviceOrg.getOrgHeader()));
+        //FIXME
+        //imgOrgLogo.setImageURI(Uri.parse(serviceOrg.getOrgLogo()));
+        //imgOrgHeader.setImageURI(Uri.parse(serviceOrg.getOrgHeader()));
 
         //STEP 2: Set onClickListener for YOUR button
         btnOrgChangeLogo.setOnClickListener(new View.OnClickListener() {
@@ -105,13 +106,8 @@ public class org_page_edit extends AppCompatActivity {
                 error += inputChecker.isPasswordValid(orgPassword);
 
                 if(StringUtils.isBlank(error)) {
-                    serviceOrg.setOrgName(orgName);
-                    serviceOrg.setOrgEmail(orgEmail);
-                    serviceOrg.setOrgPhone(orgPhone);
-                    serviceOrg.setOrgWebsite(orgWebsite);
-                    serviceOrg.setOrgPassword(orgPassword);
-                    serviceOrg.setOrgDescription(orgDesc);
-
+                    serviceOrg.editServiceOrg(orgName, orgPhone, orgEmail, orgWebsite, orgPassword, orgDesc, "", "");
+                    db.addOrganization(serviceOrg);
                     Intent nextScreen = new Intent(v.getContext(), org_page.class);
                     nextScreen.putExtra("ID", serviceOrg.getOrgEmail());
                     startActivityForResult(nextScreen, 0);
