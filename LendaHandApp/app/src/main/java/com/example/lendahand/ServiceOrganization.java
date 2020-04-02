@@ -2,6 +2,7 @@ package com.example.lendahand;
 
 import android.net.Uri;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -12,12 +13,12 @@ public class ServiceOrganization implements Serializable {
     private String orgWebsite;
     private String orgPassword;
     private String orgDescription;
-    private String orgLogo;
+    private File orgLogo;
     private String orgHeader;
     private ArrayList<ServiceOpportunity> orgServiceOps;
 
 
-    public ServiceOrganization(String name, String email, String phone, String website, String password, String description, String logo, String header){
+    public ServiceOrganization(String name, String email, String phone, String website, String password, String description, File logo, String header){
         orgName = name;
         orgEmail = email;
         orgPhone = phone;
@@ -87,11 +88,11 @@ public class ServiceOrganization implements Serializable {
     }
 
 
-    public void setOrgLogo(String logo){
+    public void setOrgLogo(File logo){
         orgLogo = logo;
     }
 
-    public String getOrgLogo(){
+    public File getOrgLogo(){
         return orgLogo;
     }
 
@@ -102,7 +103,7 @@ public class ServiceOrganization implements Serializable {
 
     public String getOrgHeader(){ return orgHeader; }
 
-    public void editServiceOrg(String name, String phone, String email, String website, String password, String description, String logo, String header){
+    public void editServiceOrg(String name, String phone, String email, String website, String password, String description, File logo, String header){
         this.setOrgName(name);
         this.setOrgPhone(phone);
         this.setOrgEmail(email);

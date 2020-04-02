@@ -14,6 +14,8 @@ import com.amazonaws.util.StringUtils;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.File;
+
 public class org_page_edit extends AppCompatActivity {
 
     private static final int LOGO_REQUEST_CODE = 100;
@@ -53,9 +55,8 @@ public class org_page_edit extends AppCompatActivity {
         txtOrgWebsite.setText(serviceOrg.getOrgWebsite());
         txtOrgPassword.setText(serviceOrg.getOrgPassword());
         txtOrgDesc.setText(serviceOrg.getOrgDescription());
-        //FIXME
-        //imgOrgLogo.setImageURI(Uri.parse(serviceOrg.getOrgLogo()));
-        //imgOrgHeader.setImageURI(Uri.parse(serviceOrg.getOrgHeader()));
+        imgOrgLogo.setImageURI(Uri.fromFile(serviceOrg.getOrgLogo()));
+        imgOrgHeader.setImageURI(Uri.parse(serviceOrg.getOrgHeader()));
 
         //STEP 2: Set onClickListener for YOUR button
         btnOrgChangeLogo.setOnClickListener(new View.OnClickListener() {
@@ -102,8 +103,13 @@ public class org_page_edit extends AppCompatActivity {
                 error += inputChecker.isPasswordValid(orgPassword);
 
                 if(StringUtils.isBlank(error)) {
-                    serviceOrg.editServiceOrg(orgName, orgPhone, orgEmail, orgWebsite, orgPassword, orgDesc, "", "");
-                    db.addOrganization(serviceOrg);
+                    serviceOrg.setOrgName(orgName);
+                    serviceOrg.setOrgEmail(orgEmail);
+                    serviceOrg.setOrgPhone(orgPhone);
+                    serviceOrg.setOrgWebsite(orgWebsite);
+                    serviceOrg.setOrgPassword(orgPassword);
+                    serviceOrg.setOrgDescription(orgDesc);
+
                     Intent nextScreen = new Intent(v.getContext(), org_page.class);
                     nextScreen.putExtra("ID", serviceOrg.getOrgEmail());
                     startActivityForResult(nextScreen, 0);
@@ -124,7 +130,8 @@ public class org_page_edit extends AppCompatActivity {
                 case LOGO_REQUEST_CODE:
                     //data.getData returns the content URI for the selected Image
                     Uri selectedImage = data.getData();
-                    serviceOrg.setOrgLogo(selectedImage.toString());
+                    File imageFile = new File(selectedImage.getPath());
+                    serviceOrg.setOrgLogo(imageFile);
                     ImageView imageView = findViewById(R.id.orgLogo);
                     imageView.setImageURI(selectedImage);
                     break;

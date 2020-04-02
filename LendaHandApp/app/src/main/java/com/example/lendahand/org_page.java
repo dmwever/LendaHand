@@ -34,7 +34,7 @@ public class org_page extends AppCompatActivity {
         }
 
 
-        ServiceOpportunity s1 = new ServiceOpportunity("one", "one", "one", "one", "one", "one", false, "01/01/01", "0100", "01/01/01", "0100", "oneoneone", "1", "", "", "", "one@one.com" ,"org1");
+        ServiceOpportunity s1 = new ServiceOpportunity("one", "one", "one", "one", "one", "one", false, "01/01/01", "0100", "01/01/01", "0100", "oneoneone", "1", "", null, "", "one@one.com" ,"org1");
         serviceOrg.addOrgServiceOp(s1);
         s1.setOpServiceOrg(serviceOrg.getOrgEmail());
         ServiceOpportunity s2 = new ServiceOpportunity("two", "two", "two", "two", "two", "two", false, "02/02/02", "0200", "02/02/02", "0200", "twotwotwo", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgHeader(), "two@two.com", "org2");

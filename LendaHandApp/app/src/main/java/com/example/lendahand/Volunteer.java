@@ -2,12 +2,9 @@ package com.example.lendahand;
 
 import android.util.Log;
 
-import com.google.android.material.chip.ChipGroup;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Volunteer implements Serializable {
     private String firstName;
@@ -18,6 +15,7 @@ public class Volunteer implements Serializable {
     private String password;
     private ArrayList<String> tags;
     private List prevServe;
+    private String photo;
     /*TODO flags
         private int yellowFlag;
         private boolean redFlag;
@@ -35,6 +33,7 @@ public class Volunteer implements Serializable {
         this.dateOfBirth = dateOfBirth;
         this.password = password;
         this.tags = null;
+        this.photo = "drawable/default_user.jpg";
 //        this.yellowFlag = 0;
 //        this.redFlag = false;
     }
@@ -107,6 +106,15 @@ public class Volunteer implements Serializable {
         return this.password;
     }
 
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
     public void editVolunteer(String firstName, String lastName, String email, String phone, String dateOfBirth, String password){
         this.setFirstName(firstName);
         this.setLastName(lastName);
@@ -117,7 +125,7 @@ public class Volunteer implements Serializable {
     }
 
     public void displayVolunteer(){
-        Log.d("Volunteer Class", firstName + " " + lastName + " " + email + " " + phone + " " + dateOfBirth + " " + dateOfBirth);
+        Log.d("Volunteer Class", firstName + " " + lastName + " " + email + " " + phone + " " + dateOfBirth + " " + dateOfBirth + " " + photo);
     }
 }
 
