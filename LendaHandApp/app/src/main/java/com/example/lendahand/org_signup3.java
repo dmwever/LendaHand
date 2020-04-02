@@ -82,7 +82,7 @@ public class org_signup3 extends AppCompatActivity {
                 case HEADER_REQUEST_CODE:
                     Uri selectHeader = data.getData();
                     newOrg.setOrgHeader(selectHeader.toString());
-                    ImageView imgOrgHeader = findViewById(R.id.orgHeader);
+                    ImageView imgOrgHeader = findViewById(R.id.imgOpHeader);
                     imgOrgHeader.setImageURI(selectHeader);
                     break;
             }

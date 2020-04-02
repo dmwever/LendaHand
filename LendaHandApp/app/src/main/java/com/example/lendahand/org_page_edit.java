@@ -1,20 +1,16 @@
 package com.example.lendahand;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amazonaws.util.StringUtils;
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -45,7 +41,7 @@ public class org_page_edit extends AppCompatActivity {
         final TextInputEditText txtOrgPassword = (TextInputEditText) findViewById(R.id.orgPasswordText);
         final TextInputEditText txtOrgDesc = (TextInputEditText)findViewById(R.id.orgDescText);
         final ImageView imgOrgLogo = (ImageView) findViewById(R.id.orgLogo);
-        final ImageView imgOrgHeader = (ImageView) findViewById(R.id.orgHeader);
+        final ImageView imgOrgHeader = (ImageView) findViewById(R.id.imgOpHeader);
         final MaterialButton btnOrgChangeLogo = findViewById(R.id.btnOrgChangeLogo);
         final MaterialButton btnOrgChangeHeader = findViewById(R.id.btnOrgChangeHeader);
         final MaterialButton btnOrgSavePage = (MaterialButton)findViewById(R.id.orgSavePage);
@@ -135,7 +131,7 @@ public class org_page_edit extends AppCompatActivity {
                 case HEADER_REQUEST_CODE:
                     Uri selectImage = data.getData();
                     serviceOrg.setOrgHeader(selectImage.toString());
-                    ImageView imageview = findViewById(R.id.orgHeader);
+                    ImageView imageview = findViewById(R.id.imgOpHeader);
                     imageview.setImageURI(selectImage);
                     break;
             }

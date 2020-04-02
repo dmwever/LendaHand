@@ -50,7 +50,7 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtAgeReq"
+                android:id="@+id/txtDispServOpAgeReq"
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
                 android:inputType="text"

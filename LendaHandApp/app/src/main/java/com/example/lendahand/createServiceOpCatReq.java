@@ -21,7 +21,7 @@ public class createServiceOpCatReq extends AppCompatActivity {
         Intent intent = getIntent();
         final ServiceOpportunity newServiceOp = (ServiceOpportunity) intent.getSerializableExtra("ServiceOp");
 
-        final TextInputEditText txtAgeReq = findViewById(R.id.txtAgeReq);
+        final TextInputEditText txtAgeReq = findViewById(R.id.txtDispServOpAgeReq);
         final TextInputEditText txtAdditionalReq = findViewById(R.id.txtAdditionalReq);
 
 

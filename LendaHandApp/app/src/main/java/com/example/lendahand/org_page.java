@@ -2,7 +2,6 @@ package com.example.lendahand;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +12,6 @@ import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class org_page extends AppCompatActivity {
@@ -57,7 +53,7 @@ public class org_page extends AppCompatActivity {
         final TextView txtOrgWebsite = (TextView) findViewById(R.id.orgWebsiteText);
         final TextView txtOrgDesc = (TextView) findViewById(R.id.orgDescText);
         final ImageView imgOrgLogo = (ImageView) findViewById(R.id.orgLogo);
-        final ImageView imgOrgHeader = (ImageView) findViewById(R.id.orgHeader);
+        final ImageView imgOrgHeader = (ImageView) findViewById(R.id.imgOpHeader);
         final ImageButton btnOrgEdit = (ImageButton) findViewById(R.id.orgEditPage);
         final LinearLayout listOrgServiceOps = (LinearLayout) findViewById(R.id.orgServiceOpsList);
         MaterialButton btnOrgSeeMoreOps = (MaterialButton) findViewById(R.id.orgSeeMoreOps);

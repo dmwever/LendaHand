@@ -10,11 +10,16 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.amazonaws.services.s3.model.HeadBucketRequest;
 import com.google.android.material.button.MaterialButton;
+
+import java.util.Random;
 
 public class createServiceOpPhoto extends AppCompatActivity {
 
-    private static final int GALLERY_REQUEST_CODE = 100;
+    private static final int HEADER_REQUEST_CODE = 100;
+    private static final int EVENT_REQUEST_CODE = 101;
+    ServiceOpportunity newServiceOp;
 
 
     @Override
@@ -23,18 +28,19 @@ public class createServiceOpPhoto extends AppCompatActivity {
         setContentView(R.layout.activity_create_service_op_photo);
 
         Intent intent = getIntent();
-        final ServiceOpportunity newServiceOp = (ServiceOpportunity) intent.getSerializableExtra("ServiceOp");
+       newServiceOp = (ServiceOpportunity) intent.getSerializableExtra("ServiceOp");
 
         final Database db = new Database();
         db.init();
-
+        Random rand = new Random();
+        newServiceOp.setId(newServiceOp.getOpServiceOrg() + (rand.nextInt(999999)));
         //STEP 1: Add reference to button using R.id
         MaterialButton createServiceOpPhoto = findViewById(R.id.btnServiceOpPhotoNext);
         //STEP 2: Set onClickListener for YOUR button
         createServiceOpPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db.addService(newServiceOp);
+                //db.addService(newServiceOp);
                 //STEP 3: Create Intent for your class
                 Intent createServiceOpScreen = new Intent(v.getContext(), ManageServiceOp.class);
                     Bundle bundle = new Bundle();
@@ -51,11 +57,12 @@ public class createServiceOpPhoto extends AppCompatActivity {
         createServiceOpFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db.addService(newServiceOp);
+                //db.addService(newServiceOp);
                 //STEP 3: Create Intent for your class
                 Intent createServiceOpScreen = new Intent(v.getContext(), DisplayServiceOpportunity.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("CurrentServiceOp", newServiceOp);
+                    bundle.putString("ID", newServiceOp.getId());
                 createServiceOpScreen.putExtras(bundle);
                 //STEP 4: Start your Activity
                 startActivityForResult(createServiceOpScreen, 0);
@@ -72,7 +79,7 @@ public class createServiceOpPhoto extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY_REQUEST_CODE);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), HEADER_REQUEST_CODE);
 
 
             }
@@ -88,7 +95,7 @@ public class createServiceOpPhoto extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY_REQUEST_CODE);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), EVENT_REQUEST_CODE);
 
 
             }
@@ -101,11 +108,19 @@ public class createServiceOpPhoto extends AppCompatActivity {
         // Result code is RESULT_OK only if the user selects an Image
         if (resultCode == Activity.RESULT_OK)
             switch (requestCode){
-                case GALLERY_REQUEST_CODE:
+                case HEADER_REQUEST_CODE:
                     //data.getData returns the content URI for the selected Image
                     Uri selectedImage = data.getData();
-                    ImageView imageView = findViewById(R.id.imageView4);
+                    newServiceOp.setOpHeaderPhoto(selectedImage.toString());
+                    ImageView imageView = findViewById(R.id.btnServiceOpAddHeadPhoto);
                     imageView.setImageURI(selectedImage);
+                    break;
+                case EVENT_REQUEST_CODE:
+                    //data.getData returns the content URI for the selected Image
+                    Uri selectedEventImage = data.getData();
+                    newServiceOp.setOpEventPhoto(selectedEventImage.toString());
+                    ImageView imageEventView = findViewById(R.id.btnServiceOpAddEventPhoto);
+                    imageEventView.setImageURI(selectedEventImage);
                     break;
             }
     }
