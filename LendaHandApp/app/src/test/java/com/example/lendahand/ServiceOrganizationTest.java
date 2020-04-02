@@ -1,15 +1,9 @@
 package com.example.lendahand;
 
-
-import android.net.Uri;
-
-import com.google.firebase.firestore.FirebaseFirestore;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
-import java.net.URI;
 
 import static org.junit.Assert.*;
 
@@ -64,10 +58,6 @@ public class ServiceOrganizationTest {
 
     @Test
     public void serviceOrganizationAddServiceOp_isCorrect(){
-        Database db = new Database();
-        db.init();
-        ServiceOrganization serviceOrganization = new ServiceOrganization(serviceOrgName, serviceOrgEmail, serviceOrgPhone, serviceOrgWebsite, serviceOrgPassword, serviceOrgDescription, serviceOrgLogo, serviceOrgHeader);
-        db.addOrganization(serviceOrganization);
         ServiceOpportunity serviceOpportunity = new ServiceOpportunity("service op name", "service op subtitle", "service op desc", "service op contactName", "service op contactEmail", "service op contactPhoto", false, "03/10/2020", "1600", "03/26/2020", "1600", "UA", "18", "None", null, "eventphoto.jpg", "", "org1");
         serviceOrganization.addOrgServiceOp(serviceOpportunity);
         assertEquals(serviceOrganization.getOrgServiceOpsList().size(), 1);
