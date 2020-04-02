@@ -5,9 +5,11 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,6 +19,8 @@ import com.amazonaws.util.StringUtils;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.io.File;
 
 public class org_page_edit extends AppCompatActivity {
 
@@ -57,9 +61,8 @@ public class org_page_edit extends AppCompatActivity {
         txtOrgWebsite.setText(serviceOrg.getOrgWebsite());
         txtOrgPassword.setText(serviceOrg.getOrgPassword());
         txtOrgDesc.setText(serviceOrg.getOrgDescription());
-        //FIXME
-        //imgOrgLogo.setImageURI(Uri.parse(serviceOrg.getOrgLogo()));
-        //imgOrgHeader.setImageURI(Uri.parse(serviceOrg.getOrgHeader()));
+        imgOrgLogo.setImageURI(Uri.fromFile(serviceOrg.getOrgLogo()));
+        imgOrgHeader.setImageURI(Uri.parse(serviceOrg.getOrgHeader()));
 
         //STEP 2: Set onClickListener for YOUR button
         btnOrgChangeLogo.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +131,8 @@ public class org_page_edit extends AppCompatActivity {
                 case LOGO_REQUEST_CODE:
                     //data.getData returns the content URI for the selected Image
                     Uri selectedImage = data.getData();
-                    serviceOrg.setOrgLogo(selectedImage.toString());
+                    File imageFile = new File(getRealPathFromURI(selectedImage));
+                    serviceOrg.setOrgLogo(imageFile);
                     ImageView imageView = findViewById(R.id.orgLogo);
                     imageView.setImageURI(selectedImage);
                     break;
@@ -139,5 +143,19 @@ public class org_page_edit extends AppCompatActivity {
                     imageview.setImageURI(selectImage);
                     break;
             }
+    }
+
+    private String getRealPathFromURI(Uri contentURI) {
+        String result;
+        Cursor cursor = getContentResolver().query(contentURI, null, null, null, null);
+        if (cursor == null) { // Source is Dropbox or other similar local file path
+            result = contentURI.getPath();
+        } else {
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            result = cursor.getString(idx);
+            cursor.close();
+        }
+        return result;
     }
 }

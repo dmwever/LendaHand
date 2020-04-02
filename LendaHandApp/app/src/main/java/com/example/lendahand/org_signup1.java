@@ -50,7 +50,7 @@ public class org_signup1 extends AppCompatActivity {
                 error += inputChecker.isPasswordValid(orgPassword);
 
                 if(StringUtils.isBlank(error)) {
-                    ServiceOrganization newOrg = new ServiceOrganization(orgName, orgEmail, orgPhone, orgWebsite, orgPassword, "", "", "");
+                    ServiceOrganization newOrg = new ServiceOrganization(orgName, orgEmail, orgPhone, orgWebsite, orgPassword, "", null, "");
                     newOrg.displayServiceOrg();
 
                     Intent nextScreen = new Intent(v.getContext(), org_signup2.class);
