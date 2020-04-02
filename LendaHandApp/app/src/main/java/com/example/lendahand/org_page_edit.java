@@ -109,13 +109,8 @@ public class org_page_edit extends AppCompatActivity {
                 error += inputChecker.isPasswordValid(orgPassword);
 
                 if(StringUtils.isBlank(error)) {
-                    serviceOrg.setOrgName(orgName);
-                    serviceOrg.setOrgEmail(orgEmail);
-                    serviceOrg.setOrgPhone(orgPhone);
-                    serviceOrg.setOrgWebsite(orgWebsite);
-                    serviceOrg.setOrgPassword(orgPassword);
-                    serviceOrg.setOrgDescription(orgDesc);
-
+                    serviceOrg.editServiceOrg(orgName, orgPhone, orgEmail, orgWebsite, orgPassword, orgDesc, "", "");
+                    db.addOrganization(serviceOrg);
                     Intent nextScreen = new Intent(v.getContext(), org_page.class);
                     nextScreen.putExtra("ID", serviceOrg.getOrgEmail());
                     startActivityForResult(nextScreen, 0);

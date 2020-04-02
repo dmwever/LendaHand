@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DisplayServiceOpportunity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/orgHeader"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/color_secondary_variant"
+            android:contentDescription="TODO"
+            android:scaleType="fitXY"
+            app:layout_constraintDimensionRatio="H,2.5:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageButton
+            android:id="@+id/orgEditPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_access_time_black_24dp"
+            app:layout_constraintStart_toEndOf="@+id/orgEditPage3"
+            app:layout_constraintTop_toTopOf="@+id/orgEditPage3" />
+
+        <ImageButton
+            android:id="@+id/orgEditPage3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_perm_contact_calendar_black_24dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+        <ImageButton
+            android:id="@+id/orgEditPage2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@android:color/transparent"
+            android:src="@mipmap/edit_button"
+            app:layout_constraintBottom_toBottomOf="@id/orgHeader"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="97dp"
+            android:layout_height="86dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/orgHeader"
+            app:srcCompat="@color/color_secondary_variant" />
+
+        <TextView
+            android:id="@+id/txtDispServOpName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:text="TextView"
+            android:textSize="22sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView5"
+            app:layout_constraintTop_toBottomOf="@+id/orgHeader" />
+
+        <TextView
+            android:id="@+id/txtDispServOpSub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="@+id/txtDispServOpName"
+            app:layout_constraintTop_toBottomOf="@+id/txtDispServOpName" />
+
+        <Button
+            android:id="@+id/btnServiceOpSignUP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="176dp"
+            android:text="Sign Up"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/orgHeader" />
+
+        <TextView
+            android:id="@+id/txtDispServOpDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="@+id/orgEditPage3"
+            app:layout_constraintTop_toBottomOf="@+id/orgEditPage3" />
+
+        <TextView
+            android:id="@+id/txtDispServOpTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="@+id/orgEditPage"
+            app:layout_constraintTop_toBottomOf="@+id/orgEditPage" />
+
+        <TextView
+            android:id="@+id/txtDispServOpDes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/btnServiceOpSignUP" />
+
+        <TextView
+            android:id="@+id/txtDispServOpDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/txtDispServOpDes" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -103,9 +103,26 @@ public class ServiceOrganization implements Serializable {
 
     public String getOrgHeader(){ return orgHeader; }
 
+    public void editServiceOrg(String name, String phone, String email, String website, String password, String description, String logo, String header){
+        this.setOrgName(name);
+        this.setOrgPhone(phone);
+        this.setOrgEmail(email);
+        this.setOrgWebsite(website);
+        this.setOrgPassword(password);
+        this.setOrgDescription(description);
+        this.setOrgLogo(logo);
+        this.setOrgHeader(header);
+
+    }
+
     public void setOrgServiceOpsList(ArrayList<ServiceOpportunity> serviceOp) {this.orgServiceOps = serviceOp;}
 
-    public void addOrgServiceOp(ServiceOpportunity serviceop) { orgServiceOps.add(serviceop); }
+    public void addOrgServiceOp(ServiceOpportunity serviceop) {
+        if(orgServiceOps == null){
+            orgServiceOps = new ArrayList<ServiceOpportunity>();
+        }
+        orgServiceOps.add(serviceop);
+    }
 
     public ArrayList<ServiceOpportunity> getOrgServiceOpsList() { return orgServiceOps; }
 
