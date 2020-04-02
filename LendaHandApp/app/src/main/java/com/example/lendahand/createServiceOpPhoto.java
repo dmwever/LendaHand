@@ -111,7 +111,7 @@ public class createServiceOpPhoto extends AppCompatActivity {
                 case HEADER_REQUEST_CODE:
                     //data.getData returns the content URI for the selected Image
                     Uri selectedImage = data.getData();
-                    newServiceOp.setOpHeaderPhoto(selectedImage.toString());
+                    //newServiceOp.setOpHeaderPhoto(selectedImage.toString());
                     ImageView imageView = findViewById(R.id.btnServiceOpAddHeadPhoto);
                     imageView.setImageURI(selectedImage);
                     break;
