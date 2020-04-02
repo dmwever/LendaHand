@@ -21,7 +21,7 @@ public class ServiceOpportunity implements Serializable {
     private String opAdditionalReq;
     private String opHeaderPhoto;
     private String opEventPhoto;
-    private ServiceOrganization opServiceOrg;
+    private String opServiceOrg;
     private ArrayList<String> opVolunteerIDs;
 
     private String id;
@@ -48,6 +48,7 @@ public class ServiceOpportunity implements Serializable {
             String additionalReq,
             String headerPhoto,
             String eventPhoto,
+            String serviceOrgEmail,
             String id)
     {
             opName = name;
@@ -66,6 +67,7 @@ public class ServiceOpportunity implements Serializable {
             opAdditionalReq = additionalReq;
             opHeaderPhoto = headerPhoto;
             opEventPhoto = eventPhoto;
+            opServiceOrg = serviceOrgEmail;
             this.id = id;
             opVolunteerIDs = new ArrayList<String>();
     }
@@ -158,7 +160,7 @@ public class ServiceOpportunity implements Serializable {
     public String getOpEventPhoto () {return opEventPhoto;}
 
 
-    public void setOpServiceOrg (ServiceOrganization serviceOrg) {opServiceOrg = serviceOrg;}
+    //public void setOpServiceOrg (ServiceOrganization serviceOrg) {opServiceOrg = serviceOrg;}
 
     public String getId() {
         return id;
@@ -168,9 +170,11 @@ public class ServiceOpportunity implements Serializable {
         this.id = id;
     }
 
-    public ServiceOrganization getOpServiceOrg () {return opServiceOrg;}
+    public void setOpServiceOrg(String orgEmail){opServiceOrg = orgEmail;}
 
-    public String getOpServiceOrgName () {return opServiceOrg.getOrgName();}
+    public String getOpServiceOrg () {return opServiceOrg;}
+
+    //public String getOpServiceOrgName () {return opServiceOrg.getOrgName();}
 
     public void displayServiceOp() {
         System.out.println("opName: " + opName);

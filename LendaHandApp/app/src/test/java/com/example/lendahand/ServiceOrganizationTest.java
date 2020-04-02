@@ -82,7 +82,7 @@ public class ServiceOrganizationTest {
         db.init();
         ServiceOrganization serviceOrganization = new ServiceOrganization(serviceOrgName, serviceOrgEmail, serviceOrgPhone, serviceOrgWebsite, serviceOrgPassword, serviceOrgDescription, serviceOrgLogo, serviceOrgHeader);
         db.addOrganization(serviceOrganization);
-        ServiceOpportunity serviceOpportunity = new ServiceOpportunity("service op name", "service op subtitle", "service op desc", "service op contactName", "service op contactEmail", "service op contactPhoto", false, "03/10/2020", "1600", "03/26/2020", "1600", "UA", "18", "None", "header.jpg", "eventphoto.jpg", "org1");
+        ServiceOpportunity serviceOpportunity = new ServiceOpportunity("service op name", "service op subtitle", "service op desc", "service op contactName", "service op contactEmail", "service op contactPhoto", false, "03/10/2020", "1600", "03/26/2020", "1600", "UA", "18", "None", "header.jpg", "eventphoto.jpg", "", "org1");
         serviceOrganization.addOrgServiceOp(serviceOpportunity);
         db.addOrganization(serviceOrganization);
         ServiceOrganization serviceOrg = db.getOrganization(serviceOrgEmail);

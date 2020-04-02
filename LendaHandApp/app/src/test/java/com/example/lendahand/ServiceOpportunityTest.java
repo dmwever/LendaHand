@@ -25,6 +25,7 @@ public class ServiceOpportunityTest {
     private static String serviceOpAdditionalReq = "ReqTest";
     private static String serviceOpHeaderPhoto = "PhotoTest";
     private static String serviceOpEventPhoto = "PhotoTest2";
+    private static String serviceOpOrgEmail = "ABCD@Hab.com";
     private static String serviceOpId = "TestId";
     public ServiceOpportunity newOp;
 
@@ -47,6 +48,7 @@ public class ServiceOpportunityTest {
                 serviceOpAdditionalReq,
                 serviceOpHeaderPhoto,
                 serviceOpEventPhoto,
+                serviceOpOrgEmail,
                 serviceOpId
         );
     }
@@ -83,5 +85,12 @@ public class ServiceOpportunityTest {
     public void testSetOpRepeat(){
         newOp.setOpRepeat(true);
         assertTrue(newOp.getOpRepeat());
+    }
+
+    @Test
+    public void testServiceOrgEmail(){
+        newOp.setOpServiceOrg("Email@gmail.com");
+        assertNotEquals(serviceOpOrgEmail, newOp.getOpServiceOrg());
+        assertEquals("Email@gmail.com", newOp.getOpServiceOrg());
     }
 }
