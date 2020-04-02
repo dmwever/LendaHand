@@ -38,14 +38,14 @@ public class org_page extends AppCompatActivity {
         }
 
 
-        ServiceOpportunity s1 = new ServiceOpportunity("one", "one", "one", "one", "one", "one", false, "01/01/01", "0100", "01/01/01", "0100", "oneoneone", "1", "", "", "", "org1");
+        ServiceOpportunity s1 = new ServiceOpportunity("one", "one", "one", "one", "one", "one", false, "01/01/01", "0100", "01/01/01", "0100", "oneoneone", "1", "", "", "", "one@one.com" ,"org1");
         serviceOrg.addOrgServiceOp(s1);
-        s1.setOpServiceOrg(serviceOrg);
-        ServiceOpportunity s2 = new ServiceOpportunity("two", "two", "two", "two", "two", "two", false, "02/02/02", "0200", "02/02/02", "0200", "twotwotwo", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgHeader(),"org2");
-        s2.setOpServiceOrg(serviceOrg);
+        s1.setOpServiceOrg(serviceOrg.getOrgEmail());
+        ServiceOpportunity s2 = new ServiceOpportunity("two", "two", "two", "two", "two", "two", false, "02/02/02", "0200", "02/02/02", "0200", "twotwotwo", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgHeader(), "two@two.com", "org2");
+        s2.setOpServiceOrg(serviceOrg.getOrgEmail());
         serviceOrg.addOrgServiceOp(s2);
-        ServiceOpportunity s3 = new ServiceOpportunity("three", "three", "two", "three", "three", "three", false, "03/03/03", "0300", "03/03/03", "0300", "threethreethree", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgHeader(), "org3");
-        s3.setOpServiceOrg(serviceOrg);
+        ServiceOpportunity s3 = new ServiceOpportunity("three", "three", "two", "three", "three", "three", false, "03/03/03", "0300", "03/03/03", "0300", "threethreethree", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgHeader(), "three@three.com","org3");
+        s3.setOpServiceOrg(serviceOrg.getOrgEmail());
         serviceOrg.addOrgServiceOp(s3);
 
         db.addOrganization(serviceOrg);

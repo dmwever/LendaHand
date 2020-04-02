@@ -4,19 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.google.android.material.button.MaterialButton;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 public class createServiceOpPhoto extends AppCompatActivity {
 
@@ -48,10 +42,23 @@ public class createServiceOpPhoto extends AppCompatActivity {
                     createServiceOpScreen.putExtras(bundle);
                 //STEP 4: Start your Activity
                 startActivityForResult(createServiceOpScreen, 0);
+            }
+        });
 
-
-
-
+        //STEP 1: Add reference to button using R.id
+        MaterialButton createServiceOpFinish = findViewById(R.id.btnCreateServiceOpFinish);
+        //STEP 2: Set onClickListener for YOUR button
+        createServiceOpFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db.addService(newServiceOp);
+                //STEP 3: Create Intent for your class
+                Intent createServiceOpScreen = new Intent(v.getContext(), DisplayServiceOpportunity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("CurrentServiceOp", newServiceOp);
+                createServiceOpScreen.putExtras(bundle);
+                //STEP 4: Start your Activity
+                startActivityForResult(createServiceOpScreen, 0);
             }
         });
 

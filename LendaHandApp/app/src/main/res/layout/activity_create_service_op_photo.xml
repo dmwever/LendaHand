@@ -93,14 +93,6 @@
             android:layout_height="wrap_content"
             app:srcCompat="@color/color_background" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnServiceOpAddPhoto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Add Photo"
-            android:textAllCaps="false" />
-
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
@@ -109,11 +101,20 @@
             tools:srcCompat="@mipmap/progress_4_of_4" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCreateServiceOpFinish"
+            android:layout_width="233dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Finish"
+            android:textAllCaps="false" />
+
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnServiceOpPhotoNext"
             android:layout_width="233dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="NEXT"
+            android:text="Edit Service Opportunity"
             android:textAllCaps="false" />
 
     </LinearLayout>
