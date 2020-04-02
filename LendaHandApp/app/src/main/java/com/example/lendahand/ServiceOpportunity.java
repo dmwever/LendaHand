@@ -1,5 +1,6 @@
 package com.example.lendahand;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -19,9 +20,9 @@ public class ServiceOpportunity implements Serializable {
     private String opLocation;
     private String opAgeReq;
     private String opAdditionalReq;
-    private String opHeaderPhoto;
+    private File opHeaderPhoto;
     private String opEventPhoto;
-    private ServiceOrganization opServiceOrg;
+    private String opServiceOrg;
     private ArrayList<String> opVolunteerIDs;
 
     private String id;
@@ -46,8 +47,9 @@ public class ServiceOpportunity implements Serializable {
             String location,
             String ageReq,
             String additionalReq,
-            String headerPhoto,
+            File headerPhoto,
             String eventPhoto,
+            String serviceOrgEmail,
             String id)
     {
             opName = name;
@@ -66,6 +68,7 @@ public class ServiceOpportunity implements Serializable {
             opAdditionalReq = additionalReq;
             opHeaderPhoto = headerPhoto;
             opEventPhoto = eventPhoto;
+            opServiceOrg = serviceOrgEmail;
             this.id = id;
             opVolunteerIDs = new ArrayList<String>();
     }
@@ -148,9 +151,9 @@ public class ServiceOpportunity implements Serializable {
     public String getOpAdditionalReq () {return opAdditionalReq;}
 
 
-    public void setOpHeaderPhoto (String headerPhoto) {opHeaderPhoto = headerPhoto;}
+    public void setOpHeaderPhoto (File headerPhoto) {opHeaderPhoto = headerPhoto;}
 
-    public String getOpHeaderPhoto () {return opHeaderPhoto;}
+    public File getOpHeaderPhoto () {return opHeaderPhoto;}
 
 
     public void setOpEventPhoto (String eventPhoto) {opEventPhoto = eventPhoto;}
@@ -158,7 +161,7 @@ public class ServiceOpportunity implements Serializable {
     public String getOpEventPhoto () {return opEventPhoto;}
 
 
-    public void setOpServiceOrg (ServiceOrganization serviceOrg) {opServiceOrg = serviceOrg;}
+    //public void setOpServiceOrg (ServiceOrganization serviceOrg) {opServiceOrg = serviceOrg;}
 
     public String getId() {
         return id;
@@ -168,9 +171,11 @@ public class ServiceOpportunity implements Serializable {
         this.id = id;
     }
 
-    public ServiceOrganization getOpServiceOrg () {return opServiceOrg;}
+    public void setOpServiceOrg(String orgEmail){opServiceOrg = orgEmail;}
 
-    public String getOpServiceOrgName () {return opServiceOrg.getOrgName();}
+    public String getOpServiceOrg () {return opServiceOrg;}
+
+    //public String getOpServiceOrgName () {return opServiceOrg.getOrgName();}
 
     public void displayServiceOp() {
         System.out.println("opName: " + opName);

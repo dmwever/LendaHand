@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.appsync.AWSAppSyncClient;
@@ -31,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     Database database;
 
+    RecyclerView featuredServiceOpsRecyclerView;
+    String titles_featured[];
+    String subtitles_featured[];
+    int images_featured[] = {R.drawable.build_day_image, R.drawable.pancake_image, R.drawable.kids_image};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +47,22 @@ public class MainActivity extends AppCompatActivity {
         database = new Database();
         database.init();
 
+        //Featured Service Op Banners
+        featuredServiceOpsRecyclerView = findViewById(R.id.featured_Service_Ops);
+        titles_featured = getResources().getStringArray(R.array.featured_service_ops_titles);
+        subtitles_featured = getResources().getStringArray(R.array.featured_service_ops_subtitles);
+
+        FeaturedServeOpsAdaptor myAdaptor = new FeaturedServeOpsAdaptor(this, titles_featured, subtitles_featured, images_featured);
+        featuredServiceOpsRecyclerView.setAdapter(myAdaptor);
+        featuredServiceOpsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+
+
+
         addTemporaryButtons();
     }
+
+    
 
     private void addTemporaryButtons() {
 
