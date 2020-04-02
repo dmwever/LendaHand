@@ -1,33 +1,36 @@
 package com.example.lendahand;
 
+import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.CountDownLatch;
 
 public class Database extends AppCompatActivity {
 
     private FirebaseFirestore db;
+    private StorageReference storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class Database extends AppCompatActivity {
 
     public void init() {
         db = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance().getReference();
     }
 
     public void addOrganization (final ServiceOrganization newOrg) {
@@ -71,7 +75,32 @@ public class Database extends AppCompatActivity {
                         Log.w("init", "Error adding document", e);
                     }
                 });
+/*
+        Uri file = Uri.fromFile(newOrg.getOrgLogo());
+        StorageReference riversRef = storage.child("images/" + newOrg.getOrgEmail());
 
+        riversRef.putFile(file)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // Get a URL to the uploaded content
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                        Log.v("photo", "Did not successfully add photo");
+                    }
+                });
+        riversRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Uri downloadUrl = uri;
+                Toast.makeText(getBaseContext(), "Upload success! URL - " + downloadUrl.toString() , Toast.LENGTH_SHORT).show();
+            }
+        });
+*/
     }
 
     public ServiceOrganization getOrganization (String ID) {
@@ -92,6 +121,29 @@ public class Database extends AppCompatActivity {
                 ServiceOpportunity findService = getService(ServiceOpsList.get(i));
                 newOrg.addOrgServiceOp(findService);
             }
+            StorageReference photoRef = storage.child("images/" + newOrg.getOrgEmail());
+            File storagePath = new File(Environment.getExternalStorageDirectory(), "Lendahand_images");
+            if (!storagePath.exists()) {
+                storagePath.mkdir();
+            }
+            final File localFile = new File(storagePath, newOrg.getOrgEmail() + "logo.jpg");
+            photoRef.getFile(localFile)
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            // Successfully downloaded data to local file
+                            // ...
+                            Log.v("photo", "loaded photo successfully!");
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle failed download
+                    // ...
+                    Log.e("photo", "I hate everything");
+                }
+            });
+            newOrg.setOrgLogo(localFile);
 
         } else {
             Log.d("getOrg", "No such document");
@@ -134,6 +186,8 @@ public class Database extends AppCompatActivity {
                         Log.w("init", "Error adding document", e);
                     }
                 });
+
+
     }
 
     public ServiceOpportunity getService (String ID) {
@@ -176,7 +230,9 @@ public class Database extends AppCompatActivity {
         user.put("pNum", newVolunteer.getPhone());
         user.put("DoB", newVolunteer.getDateOfBirth());
         user.put("tags", newVolunteer.getTags());
+        user.put("photo", "images/" + ID + "photo.jpg");
 
+        //add info to database
         CollectionReference volunteersRef = db.collection("volunteers");
         volunteersRef.document(ID)
                 .set(user)
@@ -192,6 +248,27 @@ public class Database extends AppCompatActivity {
                         Log.w("init", "Error adding document", e);
                     }
                 });
+
+        /*get user photo
+        ClassLoader classLoader = new Database().getClass().getClassLoader();
+        Uri photo = Uri.fromFile(new File(classLoader.getResource("drawable/default_user.jpg").getFile()));
+        //TODO remove next line
+        newVolunteer.displayVolunteer();
+        StorageReference photoRef = storage.child("images/"  + ID + "photo.jpg");
+        photoRef.putFile(photo)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Log.d("photo", "Photo added for ID:" + ID);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.v("photo", "Did not successfully add photo");
+                    }
+                });
+         */
     }
 
     public Volunteer getVolunteer (String ID) {
