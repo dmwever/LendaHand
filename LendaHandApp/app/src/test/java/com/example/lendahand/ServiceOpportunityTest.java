@@ -5,6 +5,8 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
+
 import static org.junit.Assert.*;
 
 public class ServiceOpportunityTest {
@@ -23,7 +25,7 @@ public class ServiceOpportunityTest {
     private static String serviceOpLocation = "LocationTest";
     private static String serviceOpAgeReq = "AgeTest";
     private static String serviceOpAdditionalReq = "ReqTest";
-    private static String serviceOpHeaderPhoto = "PhotoTest";
+    private static File serviceOpHeaderPhoto = null;
     private static String serviceOpEventPhoto = "PhotoTest2";
     private static String serviceOpOrgEmail = "ABCD@Hab.com";
     private static String serviceOpId = "TestId";

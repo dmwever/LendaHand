@@ -5,11 +5,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -109,8 +107,13 @@ public class org_page_edit extends AppCompatActivity {
                 error += inputChecker.isPasswordValid(orgPassword);
 
                 if(StringUtils.isBlank(error)) {
-                    serviceOrg.editServiceOrg(orgName, orgPhone, orgEmail, orgWebsite, orgPassword, orgDesc, "", "");
-                    db.addOrganization(serviceOrg);
+                    serviceOrg.setOrgName(orgName);
+                    serviceOrg.setOrgEmail(orgEmail);
+                    serviceOrg.setOrgPhone(orgPhone);
+                    serviceOrg.setOrgWebsite(orgWebsite);
+                    serviceOrg.setOrgPassword(orgPassword);
+                    serviceOrg.setOrgDescription(orgDesc);
+
                     Intent nextScreen = new Intent(v.getContext(), org_page.class);
                     nextScreen.putExtra("ID", serviceOrg.getOrgEmail());
                     startActivityForResult(nextScreen, 0);
@@ -131,7 +134,7 @@ public class org_page_edit extends AppCompatActivity {
                 case LOGO_REQUEST_CODE:
                     //data.getData returns the content URI for the selected Image
                     Uri selectedImage = data.getData();
-                    File imageFile = new File(getRealPathFromURI(selectedImage));
+                    File imageFile = new File(selectedImage.getPath());
                     serviceOrg.setOrgLogo(imageFile);
                     ImageView imageView = findViewById(R.id.orgLogo);
                     imageView.setImageURI(selectedImage);
@@ -143,19 +146,5 @@ public class org_page_edit extends AppCompatActivity {
                     imageview.setImageURI(selectImage);
                     break;
             }
-    }
-
-    private String getRealPathFromURI(Uri contentURI) {
-        String result;
-        Cursor cursor = getContentResolver().query(contentURI, null, null, null, null);
-        if (cursor == null) { // Source is Dropbox or other similar local file path
-            result = contentURI.getPath();
-        } else {
-            cursor.moveToFirst();
-            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-            result = cursor.getString(idx);
-            cursor.close();
-        }
-        return result;
     }
 }

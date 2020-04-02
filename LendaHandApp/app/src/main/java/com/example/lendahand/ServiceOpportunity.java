@@ -1,5 +1,6 @@
 package com.example.lendahand;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ public class ServiceOpportunity implements Serializable {
     private String opLocation;
     private String opAgeReq;
     private String opAdditionalReq;
-    private String opHeaderPhoto;
+    private File opHeaderPhoto;
     private String opEventPhoto;
     private String opServiceOrg;
     private ArrayList<String> opVolunteerIDs;
@@ -46,7 +47,7 @@ public class ServiceOpportunity implements Serializable {
             String location,
             String ageReq,
             String additionalReq,
-            String headerPhoto,
+            File headerPhoto,
             String eventPhoto,
             String serviceOrgEmail,
             String id)
@@ -150,9 +151,9 @@ public class ServiceOpportunity implements Serializable {
     public String getOpAdditionalReq () {return opAdditionalReq;}
 
 
-    public void setOpHeaderPhoto (String headerPhoto) {opHeaderPhoto = headerPhoto;}
+    public void setOpHeaderPhoto (File headerPhoto) {opHeaderPhoto = headerPhoto;}
 
-    public String getOpHeaderPhoto () {return opHeaderPhoto;}
+    public File getOpHeaderPhoto () {return opHeaderPhoto;}
 
 
     public void setOpEventPhoto (String eventPhoto) {opEventPhoto = eventPhoto;}

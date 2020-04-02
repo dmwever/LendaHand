@@ -103,7 +103,7 @@ public class ServiceOrganization implements Serializable {
 
     public String getOrgHeader(){ return orgHeader; }
 
-    public void editServiceOrg(String name, String phone, String email, String website, String password, String description, String logo, String header){
+    public void editServiceOrg(String name, String phone, String email, String website, String password, String description, File logo, String header){
         this.setOrgName(name);
         this.setOrgPhone(phone);
         this.setOrgEmail(email);
