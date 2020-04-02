@@ -15,6 +15,7 @@ import com.google.android.material.button.MaterialButton;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class org_page extends AppCompatActivity {
@@ -31,21 +32,24 @@ public class org_page extends AppCompatActivity {
         final Database db = new Database();
         db.init();
         serviceOrg = db.getOrganization(ID);
-        if(serviceOrg == null){
-            System.out.println("FAILURE");
+
+        if(serviceOrg.getOrgServiceOpsList() == null){
+            System.out.println("IS NULL");
         }
 
-        /*
-        ServiceOpportunity s1 = new ServiceOpportunity("one", "one", "one", "one", "one", "one", false, "01/01/01", "0100", "01/01/01", "0100", "oneoneone", "1", "", serviceOrg.getOrgHeader(), serviceOrg.getOrgLogo(), "org1");
-        ServiceOpportunity s2 = new ServiceOpportunity("two", "two", "two", "two", "two", "two", false, "02/02/02", "0200", "02/02/02", "0200", "twotwotwo", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgHeader(),"org2");
-        ServiceOpportunity s3 = new ServiceOpportunity("three", "three", "two", "three", "three", "three", false, "03/03/03", "0300", "03/03/03", "0300", "threethreethree", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgHeader(), "org3");
-        s1.setOpServiceOrg(serviceOrg);
-        s2.setOpServiceOrg(serviceOrg);
-        s3.setOpServiceOrg(serviceOrg);
+
+        ServiceOpportunity s1 = new ServiceOpportunity("one", "one", "one", "one", "one", "one", false, "01/01/01", "0100", "01/01/01", "0100", "oneoneone", "1", "", "", "", "org1");
         serviceOrg.addOrgServiceOp(s1);
+        s1.setOpServiceOrg(serviceOrg);
+        ServiceOpportunity s2 = new ServiceOpportunity("two", "two", "two", "two", "two", "two", false, "02/02/02", "0200", "02/02/02", "0200", "twotwotwo", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgHeader(),"org2");
+        s2.setOpServiceOrg(serviceOrg);
         serviceOrg.addOrgServiceOp(s2);
+        ServiceOpportunity s3 = new ServiceOpportunity("three", "three", "two", "three", "three", "three", false, "03/03/03", "0300", "03/03/03", "0300", "threethreethree", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgHeader(), "org3");
+        s3.setOpServiceOrg(serviceOrg);
         serviceOrg.addOrgServiceOp(s3);
-        */
+
+        db.addOrganization(serviceOrg);
+
 
         final TextView txtOrgName = (TextView) findViewById(R.id.orgNameText);
         final TextView txtOrgEmail = (TextView) findViewById(R.id.orgEmailText);
@@ -65,9 +69,7 @@ public class org_page extends AppCompatActivity {
         txtOrgDesc.setText(serviceOrg.getOrgDescription());
         //FIXME
         //imgOrgLogo.setImageURI(Uri.parse(serviceOrg.getOrgLogo()));
-        //imgOrgHeader.setImageURI(Uri.parse(serviceOrg.getOrgHeader()));
-        //FIXME
-        /*
+        //imgOrgHeader.setImageURI(Uri.parse(serviceOrg.getOrgHeader()))
         ArrayList <ServiceOpportunity> serviceOps = serviceOrg.getOrgServiceOpsList();
         LayoutInflater inflater = LayoutInflater.from(this);
         for(int i = 0; i < 2; i++){
@@ -80,7 +82,7 @@ public class org_page extends AppCompatActivity {
                 ImageView imgOrgServiceOp = (ImageView) serviceOpView.findViewById(R.id.orgServiceOp);
                 txtOrgServiceOpName.setText(serviceOp.getOpName());
                 txtOrgServiceOpSubtitle.setText(serviceOp.getOpSubtitle());
-                imgOrgServiceOp.setImageURI(Uri.parse(serviceOp.getOpEventPhoto()));
+                //imgOrgServiceOp.setImageURI(Uri.parse(serviceOp.getOpEventPhoto()));
                 btnOrgEditServiceOp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -108,8 +110,6 @@ public class org_page extends AppCompatActivity {
         else{
             btnOrgSeeMoreOps.setVisibility(View.GONE);
         }
-
-         */
 
         btnOrgEdit.setOnClickListener(new View.OnClickListener() {
             @Override

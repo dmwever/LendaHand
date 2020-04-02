@@ -40,6 +40,8 @@
     <color name="color_on_background">#000000</color>
     <color name="color_on_surface">#000000</color>
     <color name="color_on_error">#ffffff</color>
+    <color name="white_color">#ffffff</color>
+    <color name="black_color">#000000</color>
 
 
 

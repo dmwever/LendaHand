@@ -41,7 +41,8 @@ public class ServiceOrgServiceOpsAdapter extends RecyclerView.Adapter<ServiceOrg
         final ServiceOpportunity serviceOp = serviceOps.get(position);
         holder.txtOrgServiceOpName.setText(serviceOp.getOpName());
         holder.txtOrgServiceOpSubtitle.setText(serviceOp.getOpSubtitle());
-        holder.imgOrgServiceOp.setImageURI(Uri.parse(serviceOp.getOpEventPhoto()));
+        //FIXME
+        //holder.imgOrgServiceOp.setImageURI(Uri.parse(serviceOp.getOpEventPhoto()));
         holder.btnOrgEditServiceOp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

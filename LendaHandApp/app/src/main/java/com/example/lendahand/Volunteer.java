@@ -107,6 +107,15 @@ public class Volunteer implements Serializable {
         return this.password;
     }
 
+    public void editVolunteer(String firstName, String lastName, String email, String phone, String dateOfBirth, String password){
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.setEmail(email);
+        this.setPhone(phone);
+        this.setDateOfBirth(dateOfBirth);
+        this.setPassword(password);
+    }
+
     public void displayVolunteer(){
         Log.d("Volunteer Class", firstName + " " + lastName + " " + email + " " + phone + " " + dateOfBirth + " " + dateOfBirth);
     }
