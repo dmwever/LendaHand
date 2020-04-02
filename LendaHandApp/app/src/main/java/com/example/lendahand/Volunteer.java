@@ -106,14 +106,6 @@ public class Volunteer implements Serializable {
         return this.password;
     }
 
-    public void editVolunteer(String firstName, String lastName, String email, String phone, String dateOfBirth, String password){
-        this.setFirstName(firstName);
-        this.setLastName(lastName);
-        this.setEmail(email);
-        this.setPhone(phone);
-        this.setDateOfBirth(dateOfBirth);
-        this.setPassword(password);
-    }
 
     public String getPhoto() {
         return photo;
@@ -121,6 +113,15 @@ public class Volunteer implements Serializable {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public void editVolunteer(String firstName, String lastName, String email, String phone, String dateOfBirth, String password){
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.setEmail(email);
+        this.setPhone(phone);
+        this.setDateOfBirth(dateOfBirth);
+        this.setPassword(password);
     }
 
     public void displayVolunteer(){
