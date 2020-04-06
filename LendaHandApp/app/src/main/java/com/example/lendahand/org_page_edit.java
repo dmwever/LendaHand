@@ -33,7 +33,7 @@ public class org_page_edit extends AppCompatActivity {
 
         final Database db = new Database();
         db.init();
-        serviceOrg = db.getOrganization(ID);
+        serviceOrg = db.getOrganization(ID, this);
 
         //Get a reference to all the text fields in edit page
         final TextInputEditText txtOrgName = (TextInputEditText) findViewById(R.id.orgNameText);
@@ -115,7 +115,7 @@ public class org_page_edit extends AppCompatActivity {
                     startActivityForResult(nextScreen, 0);
                 }
                 else{
-                    Toast.makeText(v.getContext(), error, 10).show();
+                    Toast.makeText(v.getContext(), error, Toast.LENGTH_LONG).show();
                 }
             }
         });

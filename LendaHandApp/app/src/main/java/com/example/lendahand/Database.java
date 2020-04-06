@@ -1,5 +1,6 @@
 package com.example.lendahand;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -27,15 +28,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Database extends AppCompatActivity {
+public class Database {
 
     private FirebaseFirestore db;
     private StorageReference storage;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     public void init() {
         db = FirebaseFirestore.getInstance();
@@ -103,7 +99,7 @@ public class Database extends AppCompatActivity {
 */
     }
 
-    public ServiceOrganization getOrganization (String ID) {
+    public ServiceOrganization getOrganization (String ID, Context appContext) {
 
         ServiceOrganization newOrg = new ServiceOrganization(ID);
         DocumentReference service = db.collection("serviceOrganizations").document(ID);
@@ -111,8 +107,9 @@ public class Database extends AppCompatActivity {
         while (!task.isComplete()) { }
         DocumentSnapshot document = task.getResult();
         if (document.exists()) {
-            Log.d("getOrg", "DocumentSnapshot data: " + document.getData());
-            newOrg.setOrgName(document.getString("orgName"));            newOrg.setOrgDescription(document.getString("orgName"));
+            Log.d("getOrg", "DocumentSnapshot data: " + document.getData() + newOrg.getOrgEmail());
+            newOrg.setOrgName(document.getString("orgName"));
+            newOrg.setOrgDescription(document.getString("orgName"));
             newOrg.setOrgWebsite(document.getString("orgWebsite"));
             newOrg.setOrgDescription(document.getString("orgDescription"));
             newOrg.setOrgPhone(document.getString("orgPhone"));
@@ -122,27 +119,10 @@ public class Database extends AppCompatActivity {
                 newOrg.addOrgServiceOp(findService);
             }
             StorageReference photoRef = storage.child("images/" + newOrg.getOrgEmail());
-            File storagePath = new File(Environment.getExternalStorageDirectory(), "Lendahand_images");
-            if (!storagePath.exists()) {
-                storagePath.mkdir();
-            }
-            final File localFile = new File(storagePath, newOrg.getOrgEmail() + "logo.jpg");
-            photoRef.getFile(localFile)
-                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                            // Successfully downloaded data to local file
-                            // ...
-                            Log.v("photo", "loaded photo successfully!");
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    // Handle failed download
-                    // ...
-                    Log.e("photo", "I hate everything");
-                }
-            });
+            File mydir = appContext.getDir("images", Context.MODE_PRIVATE); //Creating an internal dir;
+            final File localFile = new File(mydir, newOrg.getOrgEmail() + ".jpg");
+            Task<FileDownloadTask.TaskSnapshot> task2 = photoRef.getFile(localFile);
+            while (!task2.isComplete()) { }
             newOrg.setOrgLogo(localFile);
 
         } else {

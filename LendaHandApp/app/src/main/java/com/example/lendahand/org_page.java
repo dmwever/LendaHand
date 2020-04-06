@@ -2,6 +2,7 @@ package com.example.lendahand;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +28,7 @@ public class org_page extends AppCompatActivity {
 
         final Database db = new Database();
         db.init();
-        serviceOrg = db.getOrganization(ID);
+        serviceOrg = db.getOrganization(ID, this);
 
         if(serviceOrg.getOrgServiceOpsList() == null){
             System.out.println("IS NULL");
@@ -64,7 +65,7 @@ public class org_page extends AppCompatActivity {
         txtOrgWebsite.setText(serviceOrg.getOrgWebsite());
         txtOrgDesc.setText(serviceOrg.getOrgDescription());
         //FIXME
-        //imgOrgLogo.setImageURI(Uri.parse(serviceOrg.getOrgLogo()));
+        imgOrgLogo.setImageURI(Uri.fromFile(serviceOrg.getOrgLogo()));
         //imgOrgHeader.setImageURI(Uri.parse(serviceOrg.getOrgHeader()))
         ArrayList <ServiceOpportunity> serviceOps = serviceOrg.getOrgServiceOpsList();
         LayoutInflater inflater = LayoutInflater.from(this);

@@ -40,7 +40,7 @@ public class org_signup4 extends AppCompatActivity {
         db.addOrganization(newOrg);
         createAccount(newOrg.getOrgEmail(), newOrg.getOrgPassword(), newOrg);
 
-        ServiceOrganization serv = db.getOrganization(newOrg.getOrgEmail());
+        ServiceOrganization serv = db.getOrganization(newOrg.getOrgEmail(), this);
         System.out.println(serv.getOrgEmail());
 
 
@@ -75,7 +75,6 @@ public class org_signup4 extends AppCompatActivity {
     public void  updateUI(FirebaseUser account){
         if(account != null){
             Toast.makeText(this,"U Signed In successfully",Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this,MainActivity.class));
         }else {
             Toast.makeText(this,"U Didnt signed in",Toast.LENGTH_LONG).show();
         }
