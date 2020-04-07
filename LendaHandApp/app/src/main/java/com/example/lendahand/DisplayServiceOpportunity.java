@@ -91,10 +91,10 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
         txtServiceOpAgeReq.setText(CurrentServiceOp.getOpAgeReq());
         txtServiceOpAddReq.setText(CurrentServiceOp.getOpAdditionalReq());
 
-        //Uri headerImage = Uri.parse( CurrentServiceOp.getOpHeaderPhoto());
-        Uri eventImage = Uri.parse( CurrentServiceOp.getOpEventPhoto());
+        Uri headerImage = Uri.fromFile( CurrentServiceOp.getOpHeaderPhoto());
+        Uri eventImage = Uri.fromFile( CurrentServiceOp.getOpEventPhoto());
 
-        //imgHeader.setImageURI(headerImage);
+        imgHeader.setImageURI(headerImage);
         imgEvent.setImageURI(eventImage);
     }
 }
