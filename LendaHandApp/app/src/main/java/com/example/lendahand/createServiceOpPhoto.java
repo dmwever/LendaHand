@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.amazonaws.services.s3.model.HeadBucketRequest;
 import com.google.android.material.button.MaterialButton;
 
+import java.io.File;
 import java.util.Random;
 
 public class createServiceOpPhoto extends AppCompatActivity {
@@ -111,14 +112,16 @@ public class createServiceOpPhoto extends AppCompatActivity {
                 case HEADER_REQUEST_CODE:
                     //data.getData returns the content URI for the selected Image
                     Uri selectedImage = data.getData();
-                    //newServiceOp.setOpHeaderPhoto(selectedImage.toString());
+                    File headerPhoto = new File(selectedImage.getPath());
+                    newServiceOp.setOpHeaderPhoto(headerPhoto);
                     ImageView imageView = findViewById(R.id.btnServiceOpAddHeadPhoto);
                     imageView.setImageURI(selectedImage);
                     break;
                 case EVENT_REQUEST_CODE:
                     //data.getData returns the content URI for the selected Image
                     Uri selectedEventImage = data.getData();
-                    newServiceOp.setOpEventPhoto(selectedEventImage.toString());
+                    File eventPhoto = new File(selectedEventImage.getPath());
+                    newServiceOp.setOpEventPhoto(eventPhoto);
                     ImageView imageEventView = findViewById(R.id.btnServiceOpAddEventPhoto);
                     imageEventView.setImageURI(selectedEventImage);
                     break;

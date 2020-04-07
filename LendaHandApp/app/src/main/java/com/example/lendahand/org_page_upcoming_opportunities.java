@@ -24,7 +24,7 @@ public class org_page_upcoming_opportunities extends AppCompatActivity {
 
         final Database db = new Database();
         db.init();
-        serviceOrg = db.getOrganization(ID);
+        serviceOrg = db.getOrganization(ID,this);
 
         ArrayList<ServiceOpportunity> serviceOps = serviceOrg.getOrgServiceOpsList();
         RecyclerView recyclerViewOrgServiceOpsList = (RecyclerView) findViewById(R.id.orgServiceOpsList);

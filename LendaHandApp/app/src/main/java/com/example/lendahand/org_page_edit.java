@@ -33,7 +33,7 @@ public class org_page_edit extends AppCompatActivity {
 
         final Database db = new Database();
         db.init();
-        serviceOrg = db.getOrganization(ID);
+        serviceOrg = db.getOrganization(ID, this);
 
         //Get a reference to all the text fields in edit page
         final TextInputEditText txtOrgName = (TextInputEditText) findViewById(R.id.orgNameText);
@@ -56,7 +56,7 @@ public class org_page_edit extends AppCompatActivity {
         txtOrgPassword.setText(serviceOrg.getOrgPassword());
         txtOrgDesc.setText(serviceOrg.getOrgDescription());
         imgOrgLogo.setImageURI(Uri.fromFile(serviceOrg.getOrgLogo()));
-        imgOrgHeader.setImageURI(Uri.parse(serviceOrg.getOrgHeader()));
+        imgOrgHeader.setImageURI(Uri.fromFile(serviceOrg.getOrgHeader()));
 
         //STEP 2: Set onClickListener for YOUR button
         btnOrgChangeLogo.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +115,7 @@ public class org_page_edit extends AppCompatActivity {
                     startActivityForResult(nextScreen, 0);
                 }
                 else{
-                    Toast.makeText(v.getContext(), error, 10).show();
+                    Toast.makeText(v.getContext(), error, Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -129,17 +129,18 @@ public class org_page_edit extends AppCompatActivity {
             switch (requestCode) {
                 case LOGO_REQUEST_CODE:
                     //data.getData returns the content URI for the selected Image
-                    Uri selectedImage = data.getData();
-                    File imageFile = new File(selectedImage.getPath());
-                    serviceOrg.setOrgLogo(imageFile);
+                    Uri logoImage = data.getData();
+                    File logoFile = new File(logoImage.getPath());
+                    serviceOrg.setOrgLogo(logoFile);
                     ImageView imageView = findViewById(R.id.orgLogo);
-                    imageView.setImageURI(selectedImage);
+                    imageView.setImageURI(logoImage);
                     break;
                 case HEADER_REQUEST_CODE:
-                    Uri selectImage = data.getData();
-                    serviceOrg.setOrgHeader(selectImage.toString());
+                    Uri headerImage = data.getData();
+                    File headerFile = new File(headerImage.getPath());
+                    serviceOrg.setOrgHeader(headerFile);
                     ImageView imageview = findViewById(R.id.imgOpHeader);
-                    imageview.setImageURI(selectImage);
+                    imageview.setImageURI(headerImage);
                     break;
             }
     }
