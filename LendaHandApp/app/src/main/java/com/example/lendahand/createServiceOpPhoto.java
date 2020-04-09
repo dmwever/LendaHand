@@ -40,7 +40,7 @@ public class createServiceOpPhoto extends AppCompatActivity {
         createServiceOpPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //db.addService(newServiceOp);
+                db.addService(newServiceOp);
                 //STEP 3: Create Intent for your class
                 Intent createServiceOpScreen = new Intent(v.getContext(), ManageServiceOp.class);
                     Bundle bundle = new Bundle();
@@ -57,7 +57,7 @@ public class createServiceOpPhoto extends AppCompatActivity {
         createServiceOpFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //db.addService(newServiceOp);
+                db.addService(newServiceOp);
                 //STEP 3: Create Intent for your class
                 Intent createServiceOpScreen = new Intent(v.getContext(), DisplayServiceOpportunity.class);
                     Bundle bundle = new Bundle();
