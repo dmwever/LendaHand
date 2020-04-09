@@ -17,6 +17,8 @@
             style="@style/LendaHand_Top_Bar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_lendahand_logo_with_divider"
+            app:contentInsetStartWithNavigation="0dp"
             app:title="@string/app_name" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -33,16 +35,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/featured_Service_Ops"
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-            <View
-                android:id="@+id/divider_featured"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:background="@android:color/darker_gray"/>
+                android:layout_height="200dp"/>
 
             <TextView
                 android:id="@+id/servesWeLove"
