@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     Database database;
 
     RecyclerView featuredServiceOpsRecyclerView;
+    RecyclerView servesWeLoveRecyclerView;
+    RecyclerView helpCommunityRecylerView;
     String titles_featured[];
     String subtitles_featured[];
     int images_featured[] = {R.drawable.build_day_image, R.drawable.pancake_image, R.drawable.kids_image};
@@ -56,14 +58,28 @@ public class MainActivity extends AppCompatActivity {
         titles_featured = getResources().getStringArray(R.array.featured_service_ops_titles);
         subtitles_featured = getResources().getStringArray(R.array.featured_service_ops_subtitles);
 
-        FeaturedServeOpsAdaptor myAdaptor = new FeaturedServeOpsAdaptor(this, titles_featured, subtitles_featured, images_featured);
-        featuredServiceOpsRecyclerView.setAdapter(myAdaptor);
+        FeaturedServeOpsAdaptor featuredAdaptor = new FeaturedServeOpsAdaptor(this, titles_featured, subtitles_featured, images_featured);
+        featuredServiceOpsRecyclerView.setAdapter(featuredAdaptor);
         featuredServiceOpsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Home");
+
+        //Serves We Love Recycler View
+        servesWeLoveRecyclerView = findViewById(R.id.serves_we_love_recycler_view);
+        ServesWeLoveAdaptor servesWeLoveAdaptor = new ServesWeLoveAdaptor(this);
+        servesWeLoveRecyclerView.setAdapter(servesWeLoveAdaptor);
+        servesWeLoveRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        //Help Your Community Recycler View
+        helpCommunityRecylerView = findViewById(R.id.help_your_community_recycler_view);
+        ServesWeLoveAdaptor helpYourCommunityAdaptor = new ServesWeLoveAdaptor(this);
+        helpCommunityRecylerView.setAdapter(helpYourCommunityAdaptor);
+        helpCommunityRecylerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+
 
         addTemporaryButtons();
     }
@@ -172,4 +188,5 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
 }
