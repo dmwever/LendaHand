@@ -45,6 +45,7 @@
                 android:layout_marginTop="13dp"
                 android:text="Serves We Love Right Now"
                 android:layout_marginLeft="30dp"
+                android:fontFamily="@font/lato_bold"
                 android:textSize="18sp"
                 android:textAppearance="@font/work_sans_bold"
                 android:textColor="@color/black_color" />
@@ -74,6 +75,7 @@
                 android:layout_marginTop="13dp"
                 android:layout_marginLeft="30dp"
                 android:text="Help Your Community"
+                android:fontFamily="@font/lato_bold"
                 android:textSize="18sp"
                 android:textAppearance="@font/work_sans_bold"
                 android:textColor="@color/black_color" />
