@@ -8,20 +8,9 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/app_bar"
-            style="@style/LendaHand_Top_Bar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:navigationIcon="@drawable/ic_lendahand_logo_with_divider"
-            app:contentInsetStartWithNavigation="0dp"
-            app:title="@string/app_name" />
-
-    </com.google.android.material.appbar.AppBarLayout>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/lh_toolbar"/>
 
     <ScrollView
         android:layout_width="match_parent"

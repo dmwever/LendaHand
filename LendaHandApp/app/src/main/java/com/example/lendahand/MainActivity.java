@@ -1,10 +1,14 @@
 package com.example.lendahand;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -57,7 +61,9 @@ public class MainActivity extends AppCompatActivity {
         featuredServiceOpsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
 
-
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Home");
 
         addTemporaryButtons();
     }
@@ -142,6 +148,28 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,"U Signed In successfully",Toast.LENGTH_LONG).show();
         }else {
             Toast.makeText(this,"U Didnt signed in",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.lh_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.profileIcon:
+                Intent LoginScreen = new Intent(MainActivity.this, Login.class);
+                startActivity(LoginScreen);
+                return true;
+
+            default:
+                return this.onOptionsItemSelected(item);
+
         }
     }
 }
