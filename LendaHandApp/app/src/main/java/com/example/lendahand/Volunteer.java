@@ -2,6 +2,7 @@ package com.example.lendahand;
 
 import android.util.Log;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class Volunteer implements Serializable {
     private String password;
     private ArrayList<String> tags;
     private List prevServe;
-    private String photo;
+    private File photo;
     /*TODO flags
         private int yellowFlag;
         private boolean redFlag;
@@ -33,7 +34,7 @@ public class Volunteer implements Serializable {
         this.dateOfBirth = dateOfBirth;
         this.password = password;
         this.tags = null;
-        this.photo = "drawable/default_user.jpg";
+        this.photo = null;
 //        this.yellowFlag = 0;
 //        this.redFlag = false;
     }
@@ -107,11 +108,11 @@ public class Volunteer implements Serializable {
     }
 
 
-    public String getPhoto() {
+    public File getPhoto() {
         return photo;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(File photo) {
         this.photo = photo;
     }
 
@@ -125,7 +126,7 @@ public class Volunteer implements Serializable {
     }
 
     public void displayVolunteer(){
-        Log.d("Volunteer Class", firstName + " " + lastName + " " + email + " " + phone + " " + dateOfBirth + " " + dateOfBirth + " " + photo);
+        Log.d("Volunteer Class", firstName + " " + lastName + " " + email + " " + phone + " " + dateOfBirth + " " + dateOfBirth);
     }
 }
 
