@@ -3,6 +3,7 @@ package com.example.lendahand;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +16,11 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class org_page_edit extends AppCompatActivity {
 
@@ -27,13 +33,9 @@ public class org_page_edit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_org_page_edit);
 
+        Intent serviceOrgIntent = getIntent();
+        serviceOrg = (ServiceOrganization)serviceOrgIntent.getSerializableExtra("ServiceOrg");
 
-        Bundle bundle = getIntent().getExtras();
-        String ID = bundle.getString("ID");
-
-        final Database db = new Database();
-        db.init();
-        serviceOrg = db.getOrganization(ID, this);
 
         //Get a reference to all the text fields in edit page
         final TextInputEditText txtOrgName = (TextInputEditText) findViewById(R.id.orgNameText);
@@ -110,8 +112,14 @@ public class org_page_edit extends AppCompatActivity {
                     serviceOrg.setOrgPassword(orgPassword);
                     serviceOrg.setOrgDescription(orgDesc);
 
+                    final Database db = new Database();
+                    db.init();
+                    db.addOrganization(serviceOrg);
+
                     Intent nextScreen = new Intent(v.getContext(), org_page.class);
-                    nextScreen.putExtra("ID", serviceOrg.getOrgEmail());
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("ServiceOrg", serviceOrg);
+                    nextScreen.putExtras(bundle);
                     startActivityForResult(nextScreen, 0);
                 }
                 else{
@@ -121,6 +129,7 @@ public class org_page_edit extends AppCompatActivity {
         });
 
     }
+
     //Code from https://androidclarified.com/pick-image-gallery-camera-android/
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -129,19 +138,56 @@ public class org_page_edit extends AppCompatActivity {
             switch (requestCode) {
                 case LOGO_REQUEST_CODE:
                     //data.getData returns the content URI for the selected Image
-                    Uri logoImage = data.getData();
-                    File logoFile = new File(logoImage.getPath());
+                    Uri selectLogo = data.getData();
+                    ImageView imgOrgLogo = findViewById(R.id.orgLogo);
+                    imgOrgLogo.setImageURI(selectLogo);
+                    File logoDir = this.getDir("images", Context.MODE_PRIVATE); //Creating an internal dir;
+                    final File logoFile = new File(logoDir, serviceOrg.getOrgEmail() + "logo.jpg");
+
+                    try {
+                        InputStream in = getContentResolver().openInputStream(selectLogo);
+                        OutputStream out = new FileOutputStream(new File(logoDir, serviceOrg.getOrgEmail() + "logo.jpg"));
+                        byte[] buf = new byte[1024];
+                        int len;
+                        while ((len = in.read(buf)) > 0) {
+                            out.write(buf, 0, len);
+                        }
+                        out.close();
+                        in.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
                     serviceOrg.setOrgLogo(logoFile);
-                    ImageView imageView = findViewById(R.id.orgLogo);
-                    imageView.setImageURI(logoImage);
                     break;
                 case HEADER_REQUEST_CODE:
-                    Uri headerImage = data.getData();
-                    File headerFile = new File(headerImage.getPath());
+                    Uri selectHeader = data.getData();
+                    ImageView imgOrgHeader = findViewById(R.id.imgOpHeader);
+                    imgOrgHeader.setImageURI(selectHeader);
+                    File headerDir = this.getDir("images", Context.MODE_PRIVATE); //Creating an internal dir;
+                    final File headerFile = new File(headerDir, serviceOrg.getOrgEmail() + "header.jpg");
+
+                    try {
+                        InputStream in = getContentResolver().openInputStream(selectHeader);
+                        OutputStream out = new FileOutputStream(new File(headerDir, serviceOrg.getOrgEmail() + "header.jpg"));
+                        byte[] buf = new byte[1024];
+                        int len;
+                        while ((len = in.read(buf)) > 0) {
+                            out.write(buf, 0, len);
+                        }
+                        out.close();
+                        in.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
                     serviceOrg.setOrgHeader(headerFile);
-                    ImageView imageview = findViewById(R.id.imgOpHeader);
-                    imageview.setImageURI(headerImage);
                     break;
             }
     }
+
 }

@@ -47,7 +47,7 @@ public class Database {
         org.put("orgWebsite", newOrg.getOrgWebsite());
         org.put("orgDescription", newOrg.getOrgDescription());
 
-        ArrayList<ServiceOpportunity> opportunityList = newOrg.getOrgServiceOpsList();
+       HashMap<String, ServiceOpportunity> opportunityList = newOrg.getOrgServiceOpsList();
         ArrayList<String> opportunityIDs = new ArrayList<>();
         for (int i = 0; i < opportunityList.size(); i++) {
             ServiceOpportunity currentOp = opportunityList.get(i);

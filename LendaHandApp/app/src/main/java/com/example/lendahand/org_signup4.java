@@ -49,7 +49,9 @@ public class org_signup4 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent nextScreen = new Intent(v.getContext(),  createServiceOpGenInfo.class);
-                nextScreen.putExtra("ID", newOrg.getOrgEmail());
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("ServiceOrg", newOrg);
+                nextScreen.putExtras(bundle);
                 startActivityForResult(nextScreen, 0);
             }
         });
@@ -58,7 +60,9 @@ public class org_signup4 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent nextScreen = new Intent(v.getContext(),  org_page.class);
-                nextScreen.putExtra("ID", newOrg.getOrgEmail());
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("ServiceOrg", newOrg);
+                nextScreen.putExtras(bundle);
                 startActivityForResult(nextScreen, 0);
             }
         });
