@@ -1,10 +1,14 @@
 package com.example.lendahand;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -34,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     Database database;
 
     RecyclerView featuredServiceOpsRecyclerView;
+    RecyclerView servesWeLoveRecyclerView;
+    RecyclerView helpCommunityRecylerView;
     String titles_featured[];
     String subtitles_featured[];
     int images_featured[] = {R.drawable.build_day_image, R.drawable.pancake_image, R.drawable.kids_image};
@@ -52,10 +58,26 @@ public class MainActivity extends AppCompatActivity {
         titles_featured = getResources().getStringArray(R.array.featured_service_ops_titles);
         subtitles_featured = getResources().getStringArray(R.array.featured_service_ops_subtitles);
 
-        FeaturedServeOpsAdaptor myAdaptor = new FeaturedServeOpsAdaptor(this, titles_featured, subtitles_featured, images_featured);
-        featuredServiceOpsRecyclerView.setAdapter(myAdaptor);
+        FeaturedServeOpsAdaptor featuredAdaptor = new FeaturedServeOpsAdaptor(this, titles_featured, subtitles_featured, images_featured);
+        featuredServiceOpsRecyclerView.setAdapter(featuredAdaptor);
         featuredServiceOpsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Home");
+
+        //Serves We Love Recycler View
+        servesWeLoveRecyclerView = findViewById(R.id.serves_we_love_recycler_view);
+        ServesWeLoveAdaptor servesWeLoveAdaptor = new ServesWeLoveAdaptor(this);
+        servesWeLoveRecyclerView.setAdapter(servesWeLoveAdaptor);
+        servesWeLoveRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        //Help Your Community Recycler View
+        helpCommunityRecylerView = findViewById(R.id.help_your_community_recycler_view);
+        ServesWeLoveAdaptor helpYourCommunityAdaptor = new ServesWeLoveAdaptor(this);
+        helpCommunityRecylerView.setAdapter(helpYourCommunityAdaptor);
+        helpCommunityRecylerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
 
 
@@ -144,4 +166,27 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,"U Didnt signed in",Toast.LENGTH_LONG).show();
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.lh_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.profileIcon:
+                Intent LoginScreen = new Intent(MainActivity.this, Login.class);
+                startActivity(LoginScreen);
+                return true;
+
+            default:
+                return this.onOptionsItemSelected(item);
+
+        }
+    }
+
 }

@@ -8,18 +8,9 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/app_bar"
-            style="@style/LendaHand_Top_Bar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="@string/app_name" />
-
-    </com.google.android.material.appbar.AppBarLayout>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/lh_toolbar"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,49 +24,79 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/featured_Service_Ops"
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
-
-            </androidx.recyclerview.widget.RecyclerView>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                />
 
             <View
                 android:id="@+id/divider_featured"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:background="@android:color/darker_gray"/>
 
             <TextView
                 android:id="@+id/servesWeLove"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="13dp"
                 android:text="Serves We Love Right Now"
+                android:layout_marginLeft="30dp"
+                android:fontFamily="@font/lato_bold"
                 android:textSize="18sp"
                 android:textAppearance="@font/work_sans_bold"
                 android:textColor="@color/black_color" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/serves_we_love_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                />
 
             <View
                 android:id="@+id/divider_servesWeLove"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:background="@android:color/darker_gray"/>
 
             <TextView
                 android:id="@+id/helpYourCommunity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginLeft="30dp"
                 android:text="Help Your Community"
+                android:fontFamily="@font/lato_bold"
                 android:textSize="18sp"
                 android:textAppearance="@font/work_sans_bold"
                 android:textColor="@color/black_color" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/help_your_community_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                />
+
 
             <View
                 android:id="@+id/divider_helpYourCommunity"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:background="@android:color/darker_gray"/>
 
             <com.google.android.material.button.MaterialButton

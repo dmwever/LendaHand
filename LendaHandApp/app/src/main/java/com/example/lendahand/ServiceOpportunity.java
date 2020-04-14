@@ -21,7 +21,7 @@ public class ServiceOpportunity implements Serializable {
     private String opAgeReq;
     private String opAdditionalReq;
     private File opHeaderPhoto;
-    private String opEventPhoto;
+    private File opEventPhoto;
     private String opServiceOrg;
     private Hashtable<String, String> opVolunteerIDs;
 
@@ -48,7 +48,7 @@ public class ServiceOpportunity implements Serializable {
             String ageReq,
             String additionalReq,
             File headerPhoto,
-            String eventPhoto,
+            File eventPhoto,
             String serviceOrgEmail,
             String id)
     {
@@ -156,9 +156,9 @@ public class ServiceOpportunity implements Serializable {
     public File getOpHeaderPhoto () {return opHeaderPhoto;}
 
 
-    public void setOpEventPhoto (String eventPhoto) {opEventPhoto = eventPhoto;}
+    public void setOpEventPhoto (File eventPhoto) {opEventPhoto = eventPhoto;}
 
-    public String getOpEventPhoto () {return opEventPhoto;}
+    public File getOpEventPhoto () {return opEventPhoto;}
 
 
     //public void setOpServiceOrg (ServiceOrganization serviceOrg) {opServiceOrg = serviceOrg;}

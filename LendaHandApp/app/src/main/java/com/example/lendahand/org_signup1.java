@@ -50,7 +50,7 @@ public class org_signup1 extends AppCompatActivity {
                 error += inputChecker.isPasswordValid(orgPassword);
 
                 if(StringUtils.isBlank(error)) {
-                    ServiceOrganization newOrg = new ServiceOrganization(orgName, orgEmail, orgPhone, orgWebsite, orgPassword, "", null, "");
+                    ServiceOrganization newOrg = new ServiceOrganization(orgName, orgEmail, orgPhone, orgWebsite, orgPassword, "", null, null);
                     newOrg.displayServiceOrg();
 
                     Intent nextScreen = new Intent(v.getContext(), org_signup2.class);
@@ -60,7 +60,7 @@ public class org_signup1 extends AppCompatActivity {
                     startActivityForResult(nextScreen, 0);
                 }
                 else{
-                    Toast.makeText(v.getContext(), error, 10).show();
+                    Toast.makeText(v.getContext(), error, Toast.LENGTH_LONG).show();
                 }
 
             }

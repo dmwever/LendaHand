@@ -14,11 +14,11 @@ public class ServiceOrganization implements Serializable {
     private String orgPassword;
     private String orgDescription;
     private File orgLogo;
-    private String orgHeader;
+    private File orgHeader;
     private ArrayList<ServiceOpportunity> orgServiceOps;
 
 
-    public ServiceOrganization(String name, String email, String phone, String website, String password, String description, File logo, String header){
+    public ServiceOrganization(String name, String email, String phone, String website, String password, String description, File logo, File header){
         orgName = name;
         orgEmail = email;
         orgPhone = phone;
@@ -97,13 +97,13 @@ public class ServiceOrganization implements Serializable {
     }
 
 
-    public void setOrgHeader(String header){
+    public void setOrgHeader(File header){
         orgHeader = header;
     }
 
-    public String getOrgHeader(){ return orgHeader; }
+    public File getOrgHeader(){ return orgHeader; }
 
-    public void editServiceOrg(String name, String phone, String email, String website, String password, String description, File logo, String header){
+    public void editServiceOrg(String name, String phone, String email, String website, String password, String description, File logo, File header){
         this.setOrgName(name);
         this.setOrgPhone(phone);
         this.setOrgEmail(email);

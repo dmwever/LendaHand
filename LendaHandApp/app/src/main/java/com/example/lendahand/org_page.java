@@ -2,6 +2,7 @@ package com.example.lendahand;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,14 +28,14 @@ public class org_page extends AppCompatActivity {
 
         final Database db = new Database();
         db.init();
-        serviceOrg = db.getOrganization(ID);
+        serviceOrg = db.getOrganization(ID, this);
 
         if(serviceOrg.getOrgServiceOpsList() == null){
             System.out.println("IS NULL");
         }
 
 
-        ServiceOpportunity s1 = new ServiceOpportunity("one", "one", "one", "one", "one", "one", false, "01/01/01", "0100", "01/01/01", "0100", "oneoneone", "1", "", null, "", "one@one.com" ,"org1");
+        ServiceOpportunity s1 = new ServiceOpportunity("one", "one", "one", "one", "one", "one", false, "01/01/01", "0100", "01/01/01", "0100", "oneoneone", "1", "", null, null, "one@one.com" ,"org1");
         serviceOrg.addOrgServiceOp(s1);
         s1.setOpServiceOrg(serviceOrg.getOrgEmail());
         ServiceOpportunity s2 = new ServiceOpportunity("two", "two", "two", "two", "two", "two", false, "02/02/02", "0200", "02/02/02", "0200", "twotwotwo", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgHeader(), "two@two.com", "org2");
@@ -63,9 +64,8 @@ public class org_page extends AppCompatActivity {
         txtOrgPhone.setText(serviceOrg.getOrgPhone());
         txtOrgWebsite.setText(serviceOrg.getOrgWebsite());
         txtOrgDesc.setText(serviceOrg.getOrgDescription());
-        //FIXME
-        //imgOrgLogo.setImageURI(Uri.parse(serviceOrg.getOrgLogo()));
-        //imgOrgHeader.setImageURI(Uri.parse(serviceOrg.getOrgHeader()))
+        imgOrgLogo.setImageURI(Uri.fromFile(serviceOrg.getOrgLogo()));
+        imgOrgHeader.setImageURI(Uri.fromFile(serviceOrg.getOrgHeader()));
         ArrayList <ServiceOpportunity> serviceOps = serviceOrg.getOrgServiceOpsList();
         LayoutInflater inflater = LayoutInflater.from(this);
         for(int i = 0; i < 2; i++){
@@ -78,7 +78,7 @@ public class org_page extends AppCompatActivity {
                 ImageView imgOrgServiceOp = (ImageView) serviceOpView.findViewById(R.id.orgServiceOp);
                 txtOrgServiceOpName.setText(serviceOp.getOpName());
                 txtOrgServiceOpSubtitle.setText(serviceOp.getOpSubtitle());
-                //imgOrgServiceOp.setImageURI(Uri.parse(serviceOp.getOpEventPhoto()));
+                //imgOrgServiceOp.setImageURI(Uri.fromFile(serviceOp.getOpEventPhoto()));
                 btnOrgEditServiceOp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

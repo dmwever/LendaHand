@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +20,11 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class org_signup3 extends AppCompatActivity {
 
@@ -87,34 +93,53 @@ public class org_signup3 extends AppCompatActivity {
                 case LOGO_REQUEST_CODE:
                     //data.getData returns the content URI for the selected Image
                     Uri selectLogo = data.getData();
-                    File logoPhoto = new File(selectLogo.getPath());
-                    newOrg.setOrgLogo(logoPhoto);
                     ImageView imgOrgLogo = findViewById(R.id.orgLogo);
                     imgOrgLogo.setImageURI(selectLogo);
-                    StorageReference riversRef = storageRef.child("images/" + newOrg.getOrgEmail());
+                    File logoDir = this.getDir("images", Context.MODE_PRIVATE); //Creating an internal dir;
+                    final File logoFile = new File(logoDir, newOrg.getOrgEmail() + "logo.jpg");
 
-                    riversRef.putFile(selectLogo)
-                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    // Get a URL to the uploaded content
-                                    Log.i("photo", "Added photo to Storage!");
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception exception) {
-                                    // Handle unsuccessful uploads
-                                    // ...
-                                    Log.e("photo", "Photo added unsuccessfully");
-                                }
-                            });
+                    try {
+                        InputStream in = getContentResolver().openInputStream(selectLogo);
+                        OutputStream out = new FileOutputStream(new File(logoDir, newOrg.getOrgEmail() + "logo.jpg"));
+                        byte[] buf = new byte[1024];
+                        int len;
+                        while ((len = in.read(buf)) > 0) {
+                            out.write(buf, 0, len);
+                        }
+                        out.close();
+                        in.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    newOrg.setOrgLogo(logoFile);
                     break;
                 case HEADER_REQUEST_CODE:
                     Uri selectHeader = data.getData();
-                    newOrg.setOrgHeader(selectHeader.toString());
                     ImageView imgOrgHeader = findViewById(R.id.imgOpHeader);
                     imgOrgHeader.setImageURI(selectHeader);
+                    File headerDir = this.getDir("images", Context.MODE_PRIVATE); //Creating an internal dir;
+                    final File headerFile = new File(headerDir, newOrg.getOrgEmail() + "header.jpg");
+
+                    try {
+                        InputStream in = getContentResolver().openInputStream(selectHeader);
+                        OutputStream out = new FileOutputStream(new File(headerDir, newOrg.getOrgEmail() + "header.jpg"));
+                        byte[] buf = new byte[1024];
+                        int len;
+                        while ((len = in.read(buf)) > 0) {
+                            out.write(buf, 0, len);
+                        }
+                        out.close();
+                        in.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    newOrg.setOrgHeader(headerFile);
                     break;
             }
     }

@@ -69,7 +69,7 @@ public class createServiceOpGenInfo extends AppCompatActivity {
                                     "",
                                     "",
                                     null,
-                                    "",
+                                    null,
                                     "",
                                     ""
                             );
