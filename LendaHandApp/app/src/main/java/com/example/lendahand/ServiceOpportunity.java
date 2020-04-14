@@ -2,7 +2,7 @@ package com.example.lendahand;
 
 import java.io.File;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class ServiceOpportunity implements Serializable {
 
@@ -23,13 +23,13 @@ public class ServiceOpportunity implements Serializable {
     private File opHeaderPhoto;
     private String opEventPhoto;
     private String opServiceOrg;
-    private ArrayList<String> opVolunteerIDs;
+    private Hashtable<String, String> opVolunteerIDs;
 
     private String id;
 
     public ServiceOpportunity(String id) {
         this.id = id;
-        opVolunteerIDs = new ArrayList<>();
+        opVolunteerIDs = new Hashtable<>();
     }
 
     public ServiceOpportunity(
@@ -70,15 +70,15 @@ public class ServiceOpportunity implements Serializable {
             opEventPhoto = eventPhoto;
             opServiceOrg = serviceOrgEmail;
             this.id = id;
-            opVolunteerIDs = new ArrayList<String>();
+            opVolunteerIDs = new Hashtable<>();
     }
 
-    public ArrayList<String> getOpVolunteers() {
+    public Hashtable<String, String> getOpVolunteers() {
         return opVolunteerIDs;
     }
 
-    public void addOpVolunteer(String opVolunteers) {
-        this.opVolunteerIDs.add(opVolunteers);
+    public void addOpVolunteer(String opVolunteers, String VolunteerID) {
+        this.opVolunteerIDs.put(VolunteerID, opVolunteers);
     }
 
     public void setOpName (String name) {opName = name;}

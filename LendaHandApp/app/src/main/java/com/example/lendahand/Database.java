@@ -155,6 +155,7 @@ public class Database extends AppCompatActivity {
 
         final String ID = newService.getId();
         Map<String, Object> service = new HashMap<>();
+        service.put("opID", newService.getId());
         service.put("opName", newService.getOpName());
         service.put("opSub", newService.getOpSubtitle());
         service.put("opDesc", newService.getOpDescription());
@@ -169,7 +170,7 @@ public class Database extends AppCompatActivity {
         service.put("opLoc", newService.getOpLocation());
         service.put("opAge", newService.getOpAgeReq());
         service.put("opReq", newService.getOpAdditionalReq());
-        //FIXME service.put("orgName", newService.getOpServiceOrgName());
+        service.put("orgID", newService.getOpServiceOrg());
 
         CollectionReference serviceRef = db.collection("serviceOpportunities");
         serviceRef.document(ID)
