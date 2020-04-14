@@ -53,14 +53,14 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
             }
         });
 
-        /*
+
         final Database db = new Database();
         db.init();
-        serviceOp = db.getService(ID);
+        serviceOp = db.getService(ID, this);
         if(serviceOp == null){
             System.out.println("FAILURE");
         }
-        */
+
         final TextView txtServiceOpName = (TextView) findViewById(R.id.txtDispServOpName);
         final TextView txtServiceOpSub = (TextView) findViewById(R.id.txtDispServOpSub);
         final TextView txtServiceOpDate = (TextView) findViewById(R.id.txtDispServOpDate);

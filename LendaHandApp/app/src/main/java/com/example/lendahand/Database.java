@@ -17,6 +17,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -26,6 +27,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Database {
@@ -121,7 +123,7 @@ public class Database {
             newOrg.setOrgPhone(document.getString("orgPhone"));
             ArrayList<String> ServiceOpsList = (ArrayList<String>) document.get("orgServiceOps");
             for (int i = 0; i < ServiceOpsList.size(); i++) {
-                ServiceOpportunity findService = getService(ServiceOpsList.get(i));
+                ServiceOpportunity findService = getService(ServiceOpsList.get(i), appContext);
                 newOrg.addOrgServiceOp(findService);
             }
             //Download header and logo
@@ -177,11 +179,42 @@ public class Database {
                         Log.w("init", "Error adding document", e);
                     }
                 });
-
+        //Upload event photo
+        StorageReference eventRef = storage.child("images/" + newService.getId() + "event");
+        Uri logo = Uri.fromFile(newService.getOpEventPhoto());
+        eventRef.putFile(logo)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Log.i("addEvent", "Event photo added for: " + newService.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i("addEvent","Event Photo not added for: " + newService.getId());
+                    }
+                });
+        //Upload header photo
+        StorageReference headerRef = storage.child("images/" + newService.getId() + "header");
+        Uri header = Uri.fromFile(newService.getOpHeaderPhoto());
+        headerRef.putFile(header)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Log.i("addHeader", "Header added for: " + newService.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i("addHeader","Header not added for: " + newService.getId());
+                    }
+                });
 
     }
 
-    public ServiceOpportunity getService (String ID) {
+    public ServiceOpportunity getService (String ID, Context appContext) {
 
         ServiceOpportunity newService = new ServiceOpportunity(ID);
         DocumentReference service = db.collection("serviceOpportunities").document(ID);
@@ -204,6 +237,17 @@ public class Database {
             newService.setOpName(document.getString("opName"));
             newService.setOpRepeat(document.getBoolean("opRepeat"));
             newService.setOpSubtitle(document.getString("opSub"));
+            //Download header and event pics
+            StorageReference logoRef = storage.child("images/" + newService.getId() + "logo");
+            StorageReference headerRef = storage.child("images/" + newService.getId() + "header");
+            File mydir = appContext.getDir("images", Context.MODE_PRIVATE); //Creating an internal dir;
+            final File logoFile = new File(mydir, newService.getId() + "event.jpg");
+            Task<FileDownloadTask.TaskSnapshot> logoGetter = logoRef.getFile(logoFile);
+            final File headerFile = new File(mydir, newService.getId() + "header.png");
+            Task<FileDownloadTask.TaskSnapshot> headerGetter = headerRef.getFile(headerFile);
+            while (!logoGetter.isComplete() && !headerGetter.isComplete()) { }
+            newService.setOpEventPhoto(logoFile);
+            newService.setOpHeaderPhoto(headerFile);
         } else {
             Log.d("getService", "No such document");
         }
@@ -239,30 +283,25 @@ public class Database {
                         Log.w("init", "Error adding document", e);
                     }
                 });
-
-        /*get user photo
-        ClassLoader classLoader = new Database().getClass().getClassLoader();
-        Uri photo = Uri.fromFile(new File(classLoader.getResource("drawable/default_user.jpg").getFile()));
-        //TODO remove next line
-        newVolunteer.displayVolunteer();
-        StorageReference photoRef = storage.child("images/"  + ID + "photo.jpg");
-        photoRef.putFile(photo)
+        //Upload profile Picture
+        StorageReference profileRef = storage.child("images/" + newVolunteer.getEmail() + "profile");
+        Uri header = Uri.fromFile(newVolunteer.getPhoto());
+        profileRef.putFile(header)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Log.d("photo", "Photo added for ID:" + ID);
+                        Log.i("addProfile", "Profile pic added for: " + newVolunteer.getEmail());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.v("photo", "Did not successfully add photo");
+                        Log.i("addProfile","Profile pic not added for: " + newVolunteer.getEmail());
                     }
                 });
-         */
     }
 
-    public Volunteer getVolunteer (String ID) {
+    public Volunteer getVolunteer (String ID, Context appContext) {
         Volunteer newVol = new Volunteer(ID);
         DocumentReference service = db.collection("serviceOpportunities").document(ID);
         Task<DocumentSnapshot> task = service.get();
@@ -275,9 +314,18 @@ public class Database {
             newVol.setDateOfBirth(document.getString("DoB"));
             ArrayList<String> tags = (ArrayList<String>) document.get("tags");
             newVol.setTags(tags);
+            //Download profile pic
+            StorageReference profileRef = storage.child("images/" + newVol.getEmail() + "profile");
+            File mydir = appContext.getDir("images", Context.MODE_PRIVATE); //Creating an internal dir;
+            final File profileFile = new File(mydir, newVol.getEmail() + "profile.jpg");
+            Task<FileDownloadTask.TaskSnapshot> profileGetter = profileRef.getFile(profileFile);
+            while (!profileGetter.isComplete()) { }
+            newVol.setPhoto(profileFile);
         } else {
             Log.d("getService", "No such document");
         }
         return newVol;
     }
 }
+
+
