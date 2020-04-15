@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -17,6 +18,9 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -32,6 +36,7 @@ public class Database {
 
     private FirebaseFirestore db;
     private StorageReference storage;
+    private static final String TAG = "DocSnippets";
 
     public void init() {
         db = FirebaseFirestore.getInstance();
@@ -162,6 +167,7 @@ public class Database {
         service.put("opAge", newService.getOpAgeReq());
         service.put("opReq", newService.getOpAdditionalReq());
         service.put("orgID", newService.getOpServiceOrg());
+        service.put("opVolunteerList", newService.getOpVolunteers());
 
         CollectionReference serviceRef = db.collection("serviceOpportunities");
         serviceRef.document(ID)
@@ -209,6 +215,44 @@ public class Database {
             Log.d("getService", "No such document");
         }
         return newService;
+    }
+
+    public void getServiceByName (String name) {
+
+        db.collection("serviceOpportunities")
+                .whereEqualTo("opName", name)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Log.d(TAG, document.getId() + " => " + document.getData());
+                    }
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+            }
+        });
+
+
+
+        DocumentReference docRef = db.collection("serviceOpportunities").document("SF");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
     }
 
     public void addVolunteer (final Volunteer newVolunteer) {

@@ -31,6 +31,7 @@
     <string name="lh_volunteer_tags_description">Talior your discover feed to  your interests and help us match you with Service Organizaions. Tap categories you are interetested in serving.</string>
     <string name="skip">Skip</string>
     <string name="edit_volunteer">Edit Volunteer</string>
+    <string name="lh_search_service_opportunity">Search</string>
 
     <string-array name="featured_service_ops_titles">
         <item>Build Day</item>

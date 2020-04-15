@@ -127,6 +127,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Adding button to Search for Service Organization
+        MaterialButton searchServiceOp = (MaterialButton) findViewById(R.id.search_service_opportunity);
+
+        searchServiceOp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent searchServiceOpScreen = new Intent(v.getContext(), SearchServiceOpByName.class);
+                startActivity(searchServiceOpScreen);
+
+            }
+        });
+
         //Adding button to Login
         MaterialButton Login = (MaterialButton) findViewById(R.id.login);
 

@@ -10,10 +10,29 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class DisplayServiceOpportunity extends AppCompatActivity {
     ServiceOpportunity serviceOp;
 
+    private FirebaseAuth mAuth;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+    }
+
+    public void  updateUI(FirebaseUser account){
+        if(account != null){
+            Toast.makeText(this,"U Signed In successfully",Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(this,"U Didnt signed in",Toast.LENGTH_LONG).show();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +42,25 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String ID = bundle.getString("ID");
 
+
         Intent intent = getIntent();
         final ServiceOpportunity CurrentServiceOp = (ServiceOpportunity) intent.getSerializableExtra("CurrentServiceOp");
+
+        final Database db = new Database();
+        db.init();
+        serviceOp = db.getService(ID);
+        if(serviceOp == null){
+            System.out.println("FAILURE");
+        }
 
         Button btnServiceOpSignUp = findViewById(R.id.btnServiceOpSignUP);
         btnServiceOpSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //db.addService(newServiceOp);
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                updateUI(currentUser);
+                CurrentServiceOp.addOpVolunteer(currentUser.getEmail(), currentUser.getDisplayName());
+                db.addService(CurrentServiceOp);
                 //STEP 3: Create Intent for your class
                 Intent createServiceOpScreen = new Intent(v.getContext(), MainActivity.class);
                 //STEP 4: Start your Activity
@@ -53,14 +83,9 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
             }
         });
 
-        /*
-        final Database db = new Database();
-        db.init();
-        serviceOp = db.getService(ID);
-        if(serviceOp == null){
-            System.out.println("FAILURE");
-        }
-        */
+
+
+
         final TextView txtServiceOpName = (TextView) findViewById(R.id.txtDispServOpName);
         final TextView txtServiceOpSub = (TextView) findViewById(R.id.txtDispServOpSub);
         final TextView txtServiceOpDate = (TextView) findViewById(R.id.txtDispServOpDate);

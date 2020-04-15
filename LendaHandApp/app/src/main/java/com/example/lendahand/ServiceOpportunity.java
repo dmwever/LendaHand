@@ -77,7 +77,7 @@ public class ServiceOpportunity implements Serializable {
         return opVolunteerIDs;
     }
 
-    public void addOpVolunteer(String opVolunteers, String VolunteerID) {
+    public void addOpVolunteer(String VolunteerID, String opVolunteers) {
         this.opVolunteerIDs.put(VolunteerID, opVolunteers);
     }
 
