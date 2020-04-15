@@ -1,6 +1,8 @@
 package com.example.lendahand;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -35,13 +37,13 @@ public class org_page extends AppCompatActivity {
 //        serviceOrg = db.getOrganization(ID, this);
 
 
-        ServiceOpportunity s1 = new ServiceOpportunity("one", "one", "one", "one", "one", "one", false, "01/01/01", "0100", "01/01/01", "0100", "oneoneone", "1", "", null, null, "one@one.com" ,"org1");
+        ServiceOpportunity s1 = new ServiceOpportunity("one", "one", "one", "one", "one", "one", false, "01/01/01", "0100", "01/01/01", "0100", "oneoneone", "1", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgLogo(), "one@one.com" ,"org1");
         serviceOrg.addOrgServiceOp(s1);
         s1.setOpServiceOrg(serviceOrg.getOrgEmail());
-        ServiceOpportunity s2 = new ServiceOpportunity("two", "two", "two", "two", "two", "two", false, "02/02/02", "0200", "02/02/02", "0200", "twotwotwo", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgHeader(), "two@two.com", "org2");
+        ServiceOpportunity s2 = new ServiceOpportunity("two", "two", "two", "two", "two", "two", false, "02/02/02", "0200", "02/02/02", "0200", "twotwotwo", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgLogo(), "two@two.com", "org2");
         s2.setOpServiceOrg(serviceOrg.getOrgEmail());
         serviceOrg.addOrgServiceOp(s2);
-        ServiceOpportunity s3 = new ServiceOpportunity("three", "three", "two", "three", "three", "three", false, "03/03/03", "0300", "03/03/03", "0300", "threethreethree", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgHeader(), "three@three.com","org3");
+        ServiceOpportunity s3 = new ServiceOpportunity("three", "three", "two", "three", "three", "three", false, "03/03/03", "0300", "03/03/03", "0300", "threethreethree", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgLogo(), "three@three.com","org3");
         s3.setOpServiceOrg(serviceOrg.getOrgEmail());
         serviceOrg.addOrgServiceOp(s3);
 
@@ -82,10 +84,22 @@ public class org_page extends AppCompatActivity {
                 txtOrgServiceOpName.setText(serviceOp.getOpName());
                 txtOrgServiceOpSubtitle.setText(serviceOp.getOpSubtitle());
                 //imgOrgServiceOp.setImageURI(Uri.fromFile(serviceOp.getOpEventPhoto()));
+
                 btnOrgEditServiceOp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent nextScreen = new Intent(v.getContext(),  ManageServiceOp.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("CurrentServiceOp", serviceOp);
+                        nextScreen.putExtras(bundle);
+                        startActivityForResult(nextScreen, 0);
+                    }
+                });
+
+                serviceOpView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent nextScreen = new Intent(v.getContext(),  DisplayServiceOpportunity.class);
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("CurrentServiceOp", serviceOp);
                         nextScreen.putExtras(bundle);

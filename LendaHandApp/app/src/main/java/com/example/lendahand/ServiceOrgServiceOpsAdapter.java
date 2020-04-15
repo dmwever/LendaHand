@@ -1,21 +1,21 @@
 package com.example.lendahand;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
+        import android.content.Context;
+        import android.content.Intent;
+        import android.net.Uri;
+        import android.os.Bundle;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.ImageButton;
+        import android.widget.ImageView;
+        import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
+        import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
+        import java.lang.reflect.Array;
+        import java.util.ArrayList;
+        import java.util.HashMap;
 
 //https://www.sanktips.com/2017/11/15/android-recyclerview-with-custom-adapter-example/
 public class ServiceOrgServiceOpsAdapter extends RecyclerView.Adapter<ServiceOrgServiceOpsAdapter.ViewHolder> {
@@ -46,6 +46,16 @@ public class ServiceOrgServiceOpsAdapter extends RecyclerView.Adapter<ServiceOrg
         holder.txtOrgServiceOpSubtitle.setText(serviceOp.getOpSubtitle());
         //FIXME
         //holder.imgOrgServiceOp.setImageURI(Uri.parse(serviceOp.getOpEventPhoto()));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent nextScreen = new Intent(v.getContext(),  DisplayServiceOpportunity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("CurrentServiceOp", serviceOp);
+                nextScreen.putExtras(bundle);
+                context.startActivity(nextScreen);
+            }
+        });
         holder.btnOrgEditServiceOp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
