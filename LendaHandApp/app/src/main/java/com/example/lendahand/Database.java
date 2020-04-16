@@ -217,42 +217,52 @@ public class Database {
         return newService;
     }
 
-    public void getServiceByName (String name) {
-
-        db.collection("serviceOpportunities")
+    public ArrayList<ServiceOpportunity> getServiceByName (final String name) {
+        final ArrayList<ServiceOpportunity> serveOps = new ArrayList<>();
+        Task<QuerySnapshot> gettingThing = db.collection("serviceOpportunities")
                 .whereEqualTo("opName", name)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                .get();
+
+                gettingThing.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         Log.d(TAG, document.getId() + " => " + document.getData());
+                        String opID = document.getId();
+                        ServiceOpportunity newServOp = new ServiceOpportunity(
+                                document.getString("opName"),
+                                document.getString("opSub"),
+                                document.getString("opDesc"),
+                                document.getString("opContName"),
+                                document.getString("opContEmail"),
+                                document.getString("opContNum"),
+                                document.getBoolean("opRepeat"),
+                                document.getString("opDate"),
+                                document.getString("opTime"),
+                                document.getString("opCutoffDate"),
+                                document.getString("opCutoffTime"),
+                                document.getString("opLoc"),
+                                document.getString("opAge"),
+                                document.getString("opReq"),
+                                null,
+                                null,
+                                document.getString("orgID"),
+                                document.getId()
+                        );
+                        serveOps.add(newServOp);
                     }
-                } else {
+
+                }
+
+                else {
                     Log.d(TAG, "Error getting documents: ", task.getException());
                 }
+
             }
         });
-
-
-
-        DocumentReference docRef = db.collection("serviceOpportunities").document("SF");
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });
+        while(!gettingThing.isComplete()){}
+        return serveOps;
     }
 
     public void addVolunteer (final Volunteer newVolunteer) {
