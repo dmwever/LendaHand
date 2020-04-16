@@ -20,12 +20,31 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_service_opportunity);
 
-        Bundle bundle = getIntent().getExtras();
-        String ID = bundle.getString("ID");
+        //We should create a consutructor that doesn't require an id
+        serviceOp = new ServiceOpportunity("1");
 
-        Intent intent = getIntent();
-        final ServiceOpportunity CurrentServiceOp = (ServiceOpportunity) intent.getSerializableExtra("CurrentServiceOp");
+        if (true) {
+            Bundle bundle = getIntent().getExtras();
+            String ID = bundle.getString("ID");
 
+            final Database db = new Database();
+            db.init();
+            
+            
+            serviceOp = db.getService(ID, this);
+            if(serviceOp == null){
+                System.out.println("FAILURE");
+            }
+
+
+        } else {
+            Intent intent = getIntent();
+            serviceOp = (ServiceOpportunity) intent.getSerializableExtra("CurrentServiceOp");
+        }
+
+
+
+        //Enable Button Click Functionality
         Button btnServiceOpSignUp = findViewById(R.id.btnServiceOpSignUP);
         btnServiceOpSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,21 +65,14 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
                 //STEP 3: Create Intent for your class
                 Intent createServiceOpScreen = new Intent(v.getContext(), ManageServiceOp.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("CurrentServiceOp", CurrentServiceOp);
+                bundle.putSerializable("CurrentServiceOp", serviceOp);
                 createServiceOpScreen.putExtras(bundle);
                 //STEP 4: Start your Activity
                 startActivityForResult(createServiceOpScreen, 0);
             }
         });
 
-
-        final Database db = new Database();
-        db.init();
-        serviceOp = db.getService(ID, this);
-        if(serviceOp == null){
-            System.out.println("FAILURE");
-        }
-
+        //Setup View
         final TextView txtServiceOpName = (TextView) findViewById(R.id.txtDispServOpName);
         final TextView txtServiceOpSub = (TextView) findViewById(R.id.txtDispServOpSub);
         final TextView txtServiceOpDate = (TextView) findViewById(R.id.txtDispServOpDate);
@@ -77,24 +89,24 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
         final ImageView imgHeader = (ImageView) findViewById(R.id.imgOpHeader);
         final ImageView imgEvent = (ImageView) findViewById(R.id.imgOpEvent);
 
-        txtServiceOpName.setText(CurrentServiceOp.getOpName());
-        txtServiceOpSub.setText(CurrentServiceOp.getOpSubtitle());
-        txtServiceOpDate.setText(CurrentServiceOp.getOpDate());
-        txtServiceOpTime.setText(CurrentServiceOp.getOpTime());
-        txtServiceOpDesc.setText(CurrentServiceOp.getOpDescription());
-        txtServiceOpDate2.setText(CurrentServiceOp.getOpDate());
-        txtServiceOpTime2.setText(CurrentServiceOp.getOpTime());
-        txtServiceOpSignupCutoff.setText(CurrentServiceOp.getOpCutoffDate() + System.lineSeparator() + CurrentServiceOp.getOpCutoffTime());
-        txtServiceOpLocation.setText(CurrentServiceOp.getOpLocation());
-        txtServiceOpContName.setText(CurrentServiceOp.getOpContactName());
-        txtServiceOpContPhone.setText(CurrentServiceOp.getOpContactPhone() + System.lineSeparator() + CurrentServiceOp.getOpContactEmail());
-        txtServiceOpAgeReq.setText(CurrentServiceOp.getOpAgeReq());
-        txtServiceOpAddReq.setText(CurrentServiceOp.getOpAdditionalReq());
-
-        Uri headerImage = Uri.fromFile( CurrentServiceOp.getOpHeaderPhoto());
-        Uri eventImage = Uri.fromFile( CurrentServiceOp.getOpEventPhoto());
-
-        imgHeader.setImageURI(headerImage);
-        imgEvent.setImageURI(eventImage);
+        txtServiceOpName.setText(serviceOp.getOpName());
+        txtServiceOpSub.setText(serviceOp.getOpSubtitle());
+        txtServiceOpDate.setText(serviceOp.getOpDate());
+        txtServiceOpTime.setText(serviceOp.getOpTime());
+        txtServiceOpDesc.setText(serviceOp.getOpDescription());
+        txtServiceOpDate2.setText(serviceOp.getOpDate());
+        txtServiceOpTime2.setText(serviceOp.getOpTime());
+        txtServiceOpSignupCutoff.setText(serviceOp.getOpCutoffDate() + System.lineSeparator() + serviceOp.getOpCutoffTime());
+        txtServiceOpLocation.setText(serviceOp.getOpLocation());
+        txtServiceOpContName.setText(serviceOp.getOpContactName());
+        txtServiceOpContPhone.setText(serviceOp.getOpContactPhone() + System.lineSeparator() + serviceOp.getOpContactEmail());
+        txtServiceOpAgeReq.setText(serviceOp.getOpAgeReq());
+        txtServiceOpAddReq.setText(serviceOp.getOpAdditionalReq());
+//
+//        Uri headerImage = Uri.fromFile( CurrentServiceOp.getOpHeaderPhoto());
+//        Uri eventImage = Uri.fromFile( CurrentServiceOp.getOpEventPhoto());
+//
+//        imgHeader.setImageURI(headerImage);
+//        imgEvent.setImageURI(eventImage);
     }
 }
