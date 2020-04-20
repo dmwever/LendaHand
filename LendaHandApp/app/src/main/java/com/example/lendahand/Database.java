@@ -230,26 +230,7 @@ public class Database {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         Log.d(TAG, document.getId() + " => " + document.getData());
                         String opID = document.getId();
-                        ServiceOpportunity newServOp = new ServiceOpportunity(
-                                document.getString("opName"),
-                                document.getString("opSub"),
-                                document.getString("opDesc"),
-                                document.getString("opContName"),
-                                document.getString("opContEmail"),
-                                document.getString("opContNum"),
-                                document.getBoolean("opRepeat"),
-                                document.getString("opDate"),
-                                document.getString("opTime"),
-                                document.getString("opCutoffDate"),
-                                document.getString("opCutoffTime"),
-                                document.getString("opLoc"),
-                                document.getString("opAge"),
-                                document.getString("opReq"),
-                                null,
-                                null,
-                                document.getString("orgID"),
-                                document.getId()
-                        );
+                        ServiceOpportunity newServOp = getService(opID);
                         serveOps.add(newServOp);
                     }
 

@@ -33,7 +33,7 @@ public class SearchServiceOpByName extends AppCompatActivity {
                 String opSearchName = txtServiceOpName.getText().toString().trim();
 
                 ArrayList<ServiceOpportunity> ops = database.getServiceByName(opSearchName);
-                
+
                 Log.d(TAG, "Ops size: " + ops.size());
                 if(ops.size() > 0) {
                     Log.d(TAG, "reached inner if ");
