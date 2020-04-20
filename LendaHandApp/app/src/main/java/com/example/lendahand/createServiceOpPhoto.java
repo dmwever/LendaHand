@@ -40,6 +40,12 @@ public class createServiceOpPhoto extends AppCompatActivity {
         final Database db = new Database();
         db.init();
         Random rand = new Random();
+        String newID = newServiceOp.getOpServiceOrg() + (rand.nextInt(999999));
+        /*
+        while(db.checkIfServiceOpExists(newID)){
+            newID = newServiceOp.getOpServiceOrg() + (rand.nextInt(999999));
+        }
+        */
         newServiceOp.setId(newServiceOp.getOpServiceOrg() + (rand.nextInt(999999)));
         //STEP 1: Add reference to button using R.id
         MaterialButton createServiceOpPhoto = findViewById(R.id.btnServiceOpPhotoNext);

@@ -189,8 +189,8 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 updateUI(currentUser);
-                CurrentServiceOp.addOpVolunteer(currentUser.getEmail(), currentUser.getDisplayName());
-                db.addService(CurrentServiceOp);
+               // CurrentServiceOp.addOpVolunteer(currentUser.getEmail(), currentUser.getDisplayName());
+               // db.addService(CurrentServiceOp);
                 //STEP 3: Create Intent for your class
                 Intent createServiceOpScreen = new Intent(v.getContext(), MainActivity.class);
                 //STEP 4: Start your Activity

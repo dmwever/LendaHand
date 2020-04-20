@@ -220,6 +220,15 @@ public class Database {
 
     }
 
+    public boolean checkIfServiceOpExists(String ID){
+        DocumentReference service = db.collection("serviceOpportunities").document(ID);
+        Task<DocumentSnapshot> task = service.get();
+        while (!task.isComplete()) { }
+        DocumentSnapshot document = task.getResult();
+        if (document.exists()) { return true;}
+        else return false;
+    }
+
     public ServiceOpportunity getService (String ID, Context appContext) {
 
         ServiceOpportunity newService = new ServiceOpportunity(ID);
@@ -260,8 +269,8 @@ public class Database {
         return newService;
     }
 
-    public ArrayList<ServiceOpportunity> getServiceByName (final String name) {
-        final ArrayList<ServiceOpportunity> serveOps = new ArrayList<>();
+    public ArrayList<String> getServiceByName (final String name) {
+        final ArrayList<String> serveOpsIDs = new ArrayList<>();
         Task<QuerySnapshot> gettingThing = db.collection("serviceOpportunities")
                 .whereEqualTo("opName", name)
                 .get();
@@ -272,9 +281,7 @@ public class Database {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         Log.d(TAG, document.getId() + " => " + document.getData());
-                        String opID = document.getId();
-                        ServiceOpportunity newServOp = getService(opID, );
-                        serveOps.add(newServOp);
+                         serveOpsIDs.add(document.getId());
                     }
 
                 }
@@ -286,7 +293,7 @@ public class Database {
             }
         });
         while(!gettingThing.isComplete()){}
-        return serveOps;
+        return serveOpsIDs;
     }
 
     public void addVolunteer (final Volunteer newVolunteer) {

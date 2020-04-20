@@ -11,7 +11,7 @@
         android:layout_width="259dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="36dp"
         android:inputType="text"
         android:maxLines="1"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,4 +26,15 @@
         app:layout_constraintEnd_toEndOf="@+id/txtSearchServiceOp"
         app:layout_constraintStart_toStartOf="@+id/txtSearchServiceOp"
         app:layout_constraintTop_toBottomOf="@+id/txtSearchServiceOp" />
+
+    <ListView
+        android:id="@+id/viewServiceOpSearchView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnServiceOpSearchName" />
 </androidx.constraintlayout.widget.ConstraintLayout>
