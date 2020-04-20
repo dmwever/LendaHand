@@ -3,6 +3,7 @@ package com.example.lendahand;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,10 +24,15 @@ import com.amazonaws.mobileconnectors.appsync.fetcher.AppSyncResponseFetchers;
 import com.apollographql.apollo.GraphQLCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import javax.annotation.Nonnull;
 
@@ -52,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         database = new Database();
         database.init();
+        final Database db = new Database();
+        db.init();
+
 
         //Featured Service Op Banners
         featuredServiceOpsRecyclerView = findViewById(R.id.featured_Service_Ops);
@@ -72,6 +81,27 @@ public class MainActivity extends AppCompatActivity {
         ServesWeLoveAdaptor servesWeLoveAdaptor = new ServesWeLoveAdaptor(this);
         servesWeLoveRecyclerView.setAdapter(servesWeLoveAdaptor);
         servesWeLoveRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        servesWeLoveRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, servesWeLoveRecyclerView, new RecyclerItemClickListener
+                .OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                //handle click events here
+                Intent serviceOpScreen = new Intent(view.getContext(), DisplayServiceOpportunity.class);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("ID", "142568");
+                serviceOpScreen.putExtras(bundle);
+
+                //STEP 4: Start your Activity
+                startActivity(serviceOpScreen);
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+                //handle longClick if any
+            }
+        }));
 
         //Help Your Community Recycler View
         helpCommunityRecylerView = findViewById(R.id.help_your_community_recycler_view);

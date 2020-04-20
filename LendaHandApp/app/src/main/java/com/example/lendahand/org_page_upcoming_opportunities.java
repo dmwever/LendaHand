@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class org_page_upcoming_opportunities extends AppCompatActivity {
 
@@ -19,14 +20,10 @@ public class org_page_upcoming_opportunities extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_org_page_upcoming_opportunities);
 
-        Bundle bundle = getIntent().getExtras();
-        String ID = bundle.getString("ID");
+        Intent intent = getIntent();
+        final ServiceOrganization serviceOrg = (ServiceOrganization)intent.getSerializableExtra("ServiceOrg");
 
-        final Database db = new Database();
-        db.init();
-        serviceOrg = db.getOrganization(ID,this);
-
-        ArrayList<ServiceOpportunity> serviceOps = serviceOrg.getOrgServiceOpsList();
+        HashMap<String, ServiceOpportunity> serviceOps = serviceOrg.getOrgServiceOpsList();
         RecyclerView recyclerViewOrgServiceOpsList = (RecyclerView) findViewById(R.id.orgServiceOpsList);
         recyclerViewOrgServiceOpsList.setHasFixedSize(true);
         LinearLayoutManager layout = new LinearLayoutManager(this);

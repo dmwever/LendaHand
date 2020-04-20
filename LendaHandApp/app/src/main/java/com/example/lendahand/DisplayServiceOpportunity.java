@@ -1,10 +1,12 @@
 package com.example.lendahand;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -15,8 +17,16 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class DisplayServiceOpportunity extends AppCompatActivity {
+    //Define an object that will hold the currently displayed service opp
     ServiceOpportunity serviceOp;
+
 
     private FirebaseAuth mAuth;
 
@@ -33,26 +43,146 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
             Toast.makeText(this,"U Didnt signed in",Toast.LENGTH_LONG).show();
         }
     }
+    //Define each view that will show the details of the currently displayed service op
+    TextView txtServiceOpName;
+    TextView txtServiceOpSub;
+    TextView txtServiceOpDate;
+    TextView txtServiceOpTime;
+    TextView txtServiceOpDesc;
+    TextView txtServiceOpDate2;
+    TextView txtServiceOpTime2;
+    TextView txtServiceOpSignupCutoff;
+    TextView txtServiceOpLocation;
+    TextView txtServiceOpContName;
+    TextView txtServiceOpContPhone;
+    TextView txtServiceOpAgeReq;
+    TextView txtServiceOpAddReq;
+    ImageView imgHeader;
+    ImageView imgEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Associate each view with its XML component
         setContentView(R.layout.activity_display_service_opportunity);
+        txtServiceOpName = (TextView) findViewById(R.id.txtDispServOpName);
+        txtServiceOpSub = (TextView) findViewById(R.id.txtDispServOpSub);
+        txtServiceOpDate = (TextView) findViewById(R.id.txtDispServOpDate);
+        txtServiceOpTime = (TextView) findViewById(R.id.txtDispServOpTime);
+        txtServiceOpDesc = (TextView) findViewById(R.id.txtDispServOpDesc);
+        txtServiceOpDate2 = (TextView) findViewById(R.id.txtDispServOpDate2);
+        txtServiceOpTime2 = (TextView) findViewById(R.id.txtDispServOpTime2);
+        txtServiceOpSignupCutoff = (TextView) findViewById(R.id.txtDispServOpSignupCutoff);
+        txtServiceOpLocation = (TextView) findViewById(R.id.txtDispServOpLocation);
+        txtServiceOpContName = (TextView) findViewById(R.id.txtDispServOpContName);
+        txtServiceOpContPhone = (TextView) findViewById(R.id.txtDispServOpContactPhone);
+        txtServiceOpAgeReq = (TextView) findViewById(R.id.txtDispServOpAgeReq);
+        txtServiceOpAddReq = (TextView) findViewById(R.id.txtDispServOpAddReq);
+        imgHeader = (ImageView) findViewById(R.id.imgOpHeader);
+	imgEvent = (ImageView) findViewById(R.id.imgOpEvent);
 
-        Bundle bundle = getIntent().getExtras();
-        String ID = bundle.getString("ID");
 
+        //If an ID is in the bundle, do this...
+        if (getIntent().hasExtra("ID")) {
 
-        Intent intent = getIntent();
-        final ServiceOpportunity CurrentServiceOp = (ServiceOpportunity) intent.getSerializableExtra("CurrentServiceOp");
+            //Get the ID from the bundle
+            Bundle bundle = getIntent().getExtras();
+            String ID = bundle.getString("ID");
 
-        final Database db = new Database();
-        db.init();
-        serviceOp = db.getService(ID);
-        if(serviceOp == null){
-            System.out.println("FAILURE");
+            //Initalize the service op object with this ID
+            serviceOp = new ServiceOpportunity(ID);
+
+            //then query the database.
+            //This function will call the updateUI method to display the
+            //serviceOp Details
+            queryDatabaseForServiceOp(ID);
+
+            Log.d("getService", "If 1");
+        //If a currentServiceOp is already in the bundle, do this...
+        } else if (getIntent().hasExtra("CurrentServiceOp")) {
+
+            //Get the Service op from the bundle
+            Intent intent = getIntent();
+            serviceOp = (ServiceOpportunity) intent.getSerializableExtra("CurrentServiceOp");
+            Log.d("getService", "If 2");
+            updateUI();
+
+        //If neither are in the bundle we have a problem
+        } else {
+            Log.d("getService", "If 3");
+            return;
         }
 
+        //FM: Conditionally allow these options based on the logged in user
+        //Only Volunteers can sign up
+        //Only Organizations can edit a service op
+        allowUserToSignUpForServiceOp();
+        allowUserToEditServiceOp();
+
+
+
+    }
+
+    //Functions created to clean up the code
+    private void queryDatabaseForServiceOp(String ID) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference service = db.collection("serviceOpportunities").document(ID);
+        Task<DocumentSnapshot> task = service.get();
+
+        task.addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    Log.d("getService", "DocumentSnapshot data: " + document.getData());
+                    serviceOp.setOpName(document.getString("opName"));
+                    serviceOp.setOpSubtitle(document.getString("opSub"));
+                    serviceOp.setOpDate(document.getString("opDate"));
+                    serviceOp.setOpTime(document.getString("opTime"));
+                    serviceOp.setOpDescription(document.getString("opDesc"));
+                    serviceOp.setOpAdditionalReq(document.getString("opReq"));
+                    serviceOp.setOpAgeReq(document.getString("opAge"));
+                    serviceOp.setOpContactEmail(document.getString("opContEmail"));
+                    serviceOp.setOpContactName(document.getString("opContName"));
+                    serviceOp.setOpContactPhone(document.getString("opContNum"));
+                    serviceOp.setOpCutoffDate(document.getString("opCutoffDate"));
+                    serviceOp.setOpCutoffTime(document.getString("opCutoffTime"));
+                    serviceOp.setOpLocation(document.getString("opLoc"));
+                    serviceOp.setOpRepeat(document.getBoolean("opRepeat"));
+
+                    updateUI();
+                }
+            }
+        });
+    }
+    private void updateUI() {
+
+        //Set all the text fields once the service op object is created
+        txtServiceOpName.setText(serviceOp.getOpName());
+        txtServiceOpSub.setText(serviceOp.getOpSubtitle());
+        txtServiceOpDate.setText(serviceOp.getOpDate());
+        txtServiceOpTime.setText(serviceOp.getOpTime());
+        txtServiceOpDesc.setText(serviceOp.getOpDescription());
+        txtServiceOpDate2.setText(serviceOp.getOpDate());
+        txtServiceOpTime2.setText(serviceOp.getOpTime());
+        txtServiceOpSignupCutoff.setText(serviceOp.getOpCutoffDate() + System.lineSeparator() + serviceOp.getOpCutoffTime());
+        txtServiceOpLocation.setText(serviceOp.getOpLocation());
+        txtServiceOpContName.setText(serviceOp.getOpContactName());
+        txtServiceOpContPhone.setText(serviceOp.getOpContactPhone() + System.lineSeparator() + serviceOp.getOpContactEmail());
+        txtServiceOpAgeReq.setText(serviceOp.getOpAgeReq());
+        txtServiceOpAddReq.setText(serviceOp.getOpAdditionalReq());
+
+
+//        Uncomment this code when Image retrieval works
+//        Uri headerImage = Uri.fromFile( CurrentServiceOp.getOpHeaderPhoto());
+//        Uri eventImage = Uri.fromFile( CurrentServiceOp.getOpEventPhoto());
+//
+//        imgHeader.setImageURI(headerImage);
+//        imgEvent.setImageURI(eventImage);
+    }
+    private void allowUserToSignUpForServiceOp() {
+        //Enable Button Click Functionality
         Button btnServiceOpSignUp = findViewById(R.id.btnServiceOpSignUP);
         btnServiceOpSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +197,8 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
                 startActivityForResult(createServiceOpScreen, 0);
             }
         });
-
+    }
+    private void allowUserToEditServiceOp() {
         ImageButton btnDispServiceOpEdit = findViewById(R.id.btnDispServiceOpEdit);
         btnDispServiceOpEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,50 +207,12 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
                 //STEP 3: Create Intent for your class
                 Intent createServiceOpScreen = new Intent(v.getContext(), ManageServiceOp.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("CurrentServiceOp", CurrentServiceOp);
+                bundle.putSerializable("CurrentServiceOp", serviceOp);
                 createServiceOpScreen.putExtras(bundle);
                 //STEP 4: Start your Activity
                 startActivityForResult(createServiceOpScreen, 0);
             }
         });
-
-
-
-
-        final TextView txtServiceOpName = (TextView) findViewById(R.id.txtDispServOpName);
-        final TextView txtServiceOpSub = (TextView) findViewById(R.id.txtDispServOpSub);
-        final TextView txtServiceOpDate = (TextView) findViewById(R.id.txtDispServOpDate);
-        final TextView txtServiceOpTime = (TextView) findViewById(R.id.txtDispServOpTime);
-        final TextView txtServiceOpDesc = (TextView) findViewById(R.id.txtDispServOpDesc);
-        final TextView txtServiceOpDate2 = (TextView) findViewById(R.id.txtDispServOpDate2);
-        final TextView txtServiceOpTime2 = (TextView) findViewById(R.id.txtDispServOpTime2);
-        final TextView txtServiceOpSignupCutoff = (TextView) findViewById(R.id.txtDispServOpSignupCutoff);
-        final TextView txtServiceOpLocation = (TextView) findViewById(R.id.txtDispServOpLocation);
-        final TextView txtServiceOpContName = (TextView) findViewById(R.id.txtDispServOpContName);
-        final TextView txtServiceOpContPhone = (TextView) findViewById(R.id.txtDispServOpContactPhone);
-        final TextView txtServiceOpAgeReq = (TextView) findViewById(R.id.txtDispServOpAgeReq);
-        final TextView txtServiceOpAddReq = (TextView) findViewById(R.id.txtDispServOpAddReq);
-        final ImageView imgHeader = (ImageView) findViewById(R.id.imgOpHeader);
-        final ImageView imgEvent = (ImageView) findViewById(R.id.imgOpEvent);
-
-        txtServiceOpName.setText(CurrentServiceOp.getOpName());
-        txtServiceOpSub.setText(CurrentServiceOp.getOpSubtitle());
-        txtServiceOpDate.setText(CurrentServiceOp.getOpDate());
-        txtServiceOpTime.setText(CurrentServiceOp.getOpTime());
-        txtServiceOpDesc.setText(CurrentServiceOp.getOpDescription());
-        txtServiceOpDate2.setText(CurrentServiceOp.getOpDate());
-        txtServiceOpTime2.setText(CurrentServiceOp.getOpTime());
-        txtServiceOpSignupCutoff.setText(CurrentServiceOp.getOpCutoffDate() + System.lineSeparator() + CurrentServiceOp.getOpCutoffTime());
-        txtServiceOpLocation.setText(CurrentServiceOp.getOpLocation());
-        txtServiceOpContName.setText(CurrentServiceOp.getOpContactName());
-        txtServiceOpContPhone.setText(CurrentServiceOp.getOpContactPhone() + System.lineSeparator() + CurrentServiceOp.getOpContactEmail());
-        txtServiceOpAgeReq.setText(CurrentServiceOp.getOpAgeReq());
-        txtServiceOpAddReq.setText(CurrentServiceOp.getOpAdditionalReq());
-
-        Uri headerImage = Uri.fromFile( CurrentServiceOp.getOpHeaderPhoto());
-        Uri eventImage = Uri.fromFile( CurrentServiceOp.getOpEventPhoto());
-
-        imgHeader.setImageURI(headerImage);
-        imgEvent.setImageURI(eventImage);
     }
+
 }

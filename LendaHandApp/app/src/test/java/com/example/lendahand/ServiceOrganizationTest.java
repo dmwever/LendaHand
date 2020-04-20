@@ -16,7 +16,7 @@ public class ServiceOrganizationTest {
     private static String serviceOrgPassword = "S3rv!ce123";
     private static String serviceOrgDescription = "Test Description";
     private static File serviceOrgLogo = null;
-    private static String serviceOrgHeader = "";
+    private static File serviceOrgHeader = null;
     private static ServiceOrganization serviceOrganization;
 
     @BeforeClass

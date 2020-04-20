@@ -1,26 +1,28 @@
 package com.example.lendahand;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
+        import android.content.Context;
+        import android.content.Intent;
+        import android.net.Uri;
+        import android.os.Bundle;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.ImageButton;
+        import android.widget.ImageView;
+        import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
+        import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+        import java.lang.reflect.Array;
+        import java.util.ArrayList;
+        import java.util.HashMap;
 
 //https://www.sanktips.com/2017/11/15/android-recyclerview-with-custom-adapter-example/
 public class ServiceOrgServiceOpsAdapter extends RecyclerView.Adapter<ServiceOrgServiceOpsAdapter.ViewHolder> {
     private Context context;
-    private ArrayList<ServiceOpportunity> serviceOps;
+    private HashMap<String, ServiceOpportunity> serviceOps;
 
-    public ServiceOrgServiceOpsAdapter(Context context, ArrayList<ServiceOpportunity> serviceOps){
+    public ServiceOrgServiceOpsAdapter(Context context, HashMap<String, ServiceOpportunity> serviceOps){
         this.context = context;
         this.serviceOps = serviceOps;
     }
@@ -37,12 +39,23 @@ public class ServiceOrgServiceOpsAdapter extends RecyclerView.Adapter<ServiceOrg
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.itemView.setTag(serviceOps.get(position));
-        final ServiceOpportunity serviceOp = serviceOps.get(position);
+        ArrayList<ServiceOpportunity> serviceOpsList = new ArrayList<ServiceOpportunity>(serviceOps.values());
+        holder.itemView.setTag(serviceOpsList.get(position));
+        final ServiceOpportunity serviceOp = serviceOpsList.get(position);
         holder.txtOrgServiceOpName.setText(serviceOp.getOpName());
         holder.txtOrgServiceOpSubtitle.setText(serviceOp.getOpSubtitle());
         //FIXME
         //holder.imgOrgServiceOp.setImageURI(Uri.parse(serviceOp.getOpEventPhoto()));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent nextScreen = new Intent(v.getContext(),  DisplayServiceOpportunity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("CurrentServiceOp", serviceOp);
+                nextScreen.putExtras(bundle);
+                context.startActivity(nextScreen);
+            }
+        });
         holder.btnOrgEditServiceOp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

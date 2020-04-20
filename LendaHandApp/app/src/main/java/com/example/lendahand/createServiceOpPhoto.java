@@ -3,6 +3,7 @@ package com.example.lendahand;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +15,11 @@ import com.amazonaws.services.s3.model.HeadBucketRequest;
 import com.google.android.material.button.MaterialButton;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Random;
 
 public class createServiceOpPhoto extends AppCompatActivity {
@@ -41,7 +47,7 @@ public class createServiceOpPhoto extends AppCompatActivity {
         createServiceOpPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db.addService(newServiceOp);
+//                db.addService(newServiceOp);
                 //STEP 3: Create Intent for your class
                 Intent createServiceOpScreen = new Intent(v.getContext(), ManageServiceOp.class);
                     Bundle bundle = new Bundle();
@@ -58,12 +64,12 @@ public class createServiceOpPhoto extends AppCompatActivity {
         createServiceOpFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db.addService(newServiceOp);
+//                db.addService(newServiceOp);
                 //STEP 3: Create Intent for your class
                 Intent createServiceOpScreen = new Intent(v.getContext(), DisplayServiceOpportunity.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("CurrentServiceOp", newServiceOp);
-                    bundle.putString("ID", newServiceOp.getId());
+//                    bundle.putString("ID", newServiceOp.getId());
                 createServiceOpScreen.putExtras(bundle);
                 //STEP 4: Start your Activity
                 startActivityForResult(createServiceOpScreen, 0);
@@ -111,19 +117,55 @@ public class createServiceOpPhoto extends AppCompatActivity {
             switch (requestCode){
                 case HEADER_REQUEST_CODE:
                     //data.getData returns the content URI for the selected Image
-                    Uri selectedImage = data.getData();
-                    File headerPhoto = new File(selectedImage.getPath());
-                    newServiceOp.setOpHeaderPhoto(headerPhoto);
-                    ImageView imageView = findViewById(R.id.btnServiceOpAddHeadPhoto);
-                    imageView.setImageURI(selectedImage);
+                    Uri selectHeader = data.getData();
+                    ImageView imgOrgHeader = findViewById(R.id.btnServiceOpAddHeadPhoto);
+                    imgOrgHeader.setImageURI(selectHeader);
+                    File headerDir = this.getDir("images", Context.MODE_PRIVATE); //Creating an internal dir;
+                    final File headerFile = new File(headerDir, newServiceOp.getId() + "header.jpg");
+
+                    try {
+                        InputStream in = getContentResolver().openInputStream(selectHeader);
+                        OutputStream out = new FileOutputStream(new File(headerDir, newServiceOp.getId() + "header.jpg"));
+                        byte[] buf = new byte[1024];
+                        int len;
+                        while ((len = in.read(buf)) > 0) {
+                            out.write(buf, 0, len);
+                        }
+                        out.close();
+                        in.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    newServiceOp.setOpHeaderPhoto(headerFile);
                     break;
                 case EVENT_REQUEST_CODE:
                     //data.getData returns the content URI for the selected Image
-                    Uri selectedEventImage = data.getData();
-                    File eventPhoto = new File(selectedEventImage.getPath());
-                    newServiceOp.setOpEventPhoto(eventPhoto);
-                    ImageView imageEventView = findViewById(R.id.btnServiceOpAddEventPhoto);
-                    imageEventView.setImageURI(selectedEventImage);
+                    Uri selectEvent = data.getData();
+                    ImageView imgOrgEvent = findViewById(R.id.btnServiceOpAddEventPhoto);
+                    imgOrgEvent.setImageURI(selectEvent);
+                    File eventDir = this.getDir("images", Context.MODE_PRIVATE); //Creating an internal dir;
+                    final File eventFile = new File(eventDir, newServiceOp.getId() + "event.jpg");
+
+                    try {
+                        InputStream in = getContentResolver().openInputStream(selectEvent);
+                        OutputStream out = new FileOutputStream(new File(eventDir, newServiceOp.getId() + "event.jpg"));
+                        byte[] buf = new byte[1024];
+                        int len;
+                        while ((len = in.read(buf)) > 0) {
+                            out.write(buf, 0, len);
+                        }
+                        out.close();
+                        in.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    newServiceOp.setOpEventPhoto(eventFile);
                     break;
             }
     }

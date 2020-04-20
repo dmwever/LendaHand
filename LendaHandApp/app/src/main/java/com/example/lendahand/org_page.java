@@ -1,6 +1,8 @@
 package com.example.lendahand;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class org_page extends AppCompatActivity {
     ServiceOrganization serviceOrg;
@@ -26,26 +29,25 @@ public class org_page extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String ID = bundle.getString("ID");
 
-        final Database db = new Database();
-        db.init();
-        serviceOrg = db.getOrganization(ID, this);
+        Intent serviceOrgIntent = getIntent();
+        serviceOrg = (ServiceOrganization)serviceOrgIntent.getSerializableExtra("ServiceOrg");
 
-        if(serviceOrg.getOrgServiceOpsList() == null){
-            System.out.println("IS NULL");
-        }
+//        final Database db = new Database();
+//        db.init();
+//        serviceOrg = db.getOrganization(ID, this);
 
 
-        ServiceOpportunity s1 = new ServiceOpportunity("one", "one", "one", "one", "one", "one", false, "01/01/01", "0100", "01/01/01", "0100", "oneoneone", "1", "", null, null, "one@one.com" ,"org1");
+        ServiceOpportunity s1 = new ServiceOpportunity("one", "one", "one", "one", "one", "one", false, "01/01/01", "0100", "01/01/01", "0100", "oneoneone", "1", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgLogo(), "one@one.com" ,"org1");
         serviceOrg.addOrgServiceOp(s1);
         s1.setOpServiceOrg(serviceOrg.getOrgEmail());
-        ServiceOpportunity s2 = new ServiceOpportunity("two", "two", "two", "two", "two", "two", false, "02/02/02", "0200", "02/02/02", "0200", "twotwotwo", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgHeader(), "two@two.com", "org2");
+        ServiceOpportunity s2 = new ServiceOpportunity("two", "two", "two", "two", "two", "two", false, "02/02/02", "0200", "02/02/02", "0200", "twotwotwo", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgLogo(), "two@two.com", "org2");
         s2.setOpServiceOrg(serviceOrg.getOrgEmail());
         serviceOrg.addOrgServiceOp(s2);
-        ServiceOpportunity s3 = new ServiceOpportunity("three", "three", "two", "three", "three", "three", false, "03/03/03", "0300", "03/03/03", "0300", "threethreethree", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgHeader(), "three@three.com","org3");
+        ServiceOpportunity s3 = new ServiceOpportunity("three", "three", "two", "three", "three", "three", false, "03/03/03", "0300", "03/03/03", "0300", "threethreethree", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgLogo(), "three@three.com","org3");
         s3.setOpServiceOrg(serviceOrg.getOrgEmail());
         serviceOrg.addOrgServiceOp(s3);
 
-        db.addOrganization(serviceOrg);
+//        db.addOrganization(serviceOrg);
 
 
         final TextView txtOrgName = (TextView) findViewById(R.id.orgNameText);
@@ -66,10 +68,13 @@ public class org_page extends AppCompatActivity {
         txtOrgDesc.setText(serviceOrg.getOrgDescription());
         imgOrgLogo.setImageURI(Uri.fromFile(serviceOrg.getOrgLogo()));
         imgOrgHeader.setImageURI(Uri.fromFile(serviceOrg.getOrgHeader()));
-        ArrayList <ServiceOpportunity> serviceOps = serviceOrg.getOrgServiceOpsList();
+       HashMap<String, ServiceOpportunity> serviceOps = serviceOrg.getOrgServiceOpsList();
         LayoutInflater inflater = LayoutInflater.from(this);
-        for(int i = 0; i < 2; i++){
-            final ServiceOpportunity serviceOp = serviceOps.get(i);
+        int count = 0;
+        for(final ServiceOpportunity serviceOp: serviceOps.values()){
+            if(count == 2){
+                break;
+            }
             if(serviceOp != null){
                 View serviceOpView = inflater.inflate(R.layout.activity_org_page_service_op, listOrgServiceOps, false);
                 TextView txtOrgServiceOpName = (TextView) serviceOpView.findViewById(R.id.orgServiceOpNameText);
@@ -79,6 +84,7 @@ public class org_page extends AppCompatActivity {
                 txtOrgServiceOpName.setText(serviceOp.getOpName());
                 txtOrgServiceOpSubtitle.setText(serviceOp.getOpSubtitle());
                 //imgOrgServiceOp.setImageURI(Uri.fromFile(serviceOp.getOpEventPhoto()));
+
                 btnOrgEditServiceOp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -89,7 +95,19 @@ public class org_page extends AppCompatActivity {
                         startActivityForResult(nextScreen, 0);
                     }
                 });
+
+                serviceOpView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent nextScreen = new Intent(v.getContext(),  DisplayServiceOpportunity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("CurrentServiceOp", serviceOp);
+                        nextScreen.putExtras(bundle);
+                        startActivityForResult(nextScreen, 0);
+                    }
+                });
                 listOrgServiceOps.addView(serviceOpView);
+                count++;
             }
         }
         if(serviceOps.size() > 2){
@@ -98,7 +116,9 @@ public class org_page extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent nextScreen = new Intent(v.getContext(),  org_page_upcoming_opportunities.class);
-                    nextScreen.putExtra("ID", serviceOrg.getOrgEmail());
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("ServiceOrg", serviceOrg);
+                    nextScreen.putExtras(bundle);
                     startActivityForResult(nextScreen, 0);
                 }
             });
@@ -111,7 +131,9 @@ public class org_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent nextScreen = new Intent(v.getContext(),  org_page_edit.class);
-                nextScreen.putExtra("ID", serviceOrg.getOrgEmail());
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("ServiceOrg", serviceOrg);
+                nextScreen.putExtras(bundle);
                 startActivityForResult(nextScreen, 0);
             }
         });

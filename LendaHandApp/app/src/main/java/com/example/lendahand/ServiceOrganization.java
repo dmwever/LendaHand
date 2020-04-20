@@ -5,6 +5,7 @@ import android.net.Uri;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ServiceOrganization implements Serializable {
     private String orgName;
@@ -15,7 +16,7 @@ public class ServiceOrganization implements Serializable {
     private String orgDescription;
     private File orgLogo;
     private File orgHeader;
-    private ArrayList<ServiceOpportunity> orgServiceOps;
+    private HashMap<String, ServiceOpportunity> orgServiceOps;
 
 
     public ServiceOrganization(String name, String email, String phone, String website, String password, String description, File logo, File header){
@@ -27,7 +28,7 @@ public class ServiceOrganization implements Serializable {
         orgDescription = description;
         orgLogo = logo;
         orgHeader = header;
-        orgServiceOps = new ArrayList<ServiceOpportunity>();
+        orgServiceOps = new HashMap<>();
     }
 
     public ServiceOrganization(String ID) {
@@ -115,25 +116,29 @@ public class ServiceOrganization implements Serializable {
 
     }
 
-    public void setOrgServiceOpsList(ArrayList<ServiceOpportunity> serviceOp) {this.orgServiceOps = serviceOp;}
+    public void setOrgServiceOpsList(HashMap<String, ServiceOpportunity> serviceOp) {this.orgServiceOps = serviceOp;}
 
     public void addOrgServiceOp(ServiceOpportunity serviceop) {
         if(orgServiceOps == null){
-            orgServiceOps = new ArrayList<ServiceOpportunity>();
+            orgServiceOps = new HashMap<>();
         }
-        orgServiceOps.add(serviceop);
+        orgServiceOps.put(serviceop.getId(), serviceop);
     }
 
-    public ArrayList<ServiceOpportunity> getOrgServiceOpsList() { return orgServiceOps; }
+    public HashMap<String, ServiceOpportunity> getOrgServiceOpsList() { return orgServiceOps; }
 
-    public ServiceOpportunity getOrgServiceOp(String opName){
-
-        for (ServiceOpportunity serviceOp : orgServiceOps){
-            if(serviceOp.getOpName().equals(opName)){
-                return serviceOp;
+    public ServiceOpportunity getOrgServiceOp(String id){
+        if(orgServiceOps != null){
+            if(orgServiceOps.size() >= 1){
+                return orgServiceOps.get(id);
+            }
+            else {
+                return null;
             }
         }
-        return null;
+        else{
+            return null;
+        }
     }
 
 
