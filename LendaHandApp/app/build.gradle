@@ -53,5 +53,4 @@ dependencies {
     implementation('com.amazonaws:aws-android-sdk-auth-userpools:2.15.+@aar') { transitive = true }
 
 
-
 }
