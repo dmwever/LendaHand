@@ -3,7 +3,6 @@ package com.example.lendahand;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,13 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.amazonaws.mobile.config.AWSConfiguration;
-import com.amazonaws.mobileconnectors.appsync.AWSAppSyncClient;
-import com.amazonaws.mobileconnectors.appsync.AppSyncSubscriptionCall;
-import com.amazonaws.mobileconnectors.appsync.fetcher.AppSyncResponseFetchers;
-import com.apollographql.apollo.GraphQLCall;
-import com.apollographql.apollo.api.Response;
-import com.apollographql.apollo.exception.ApolloException;
+import com.amazonaws.services.cognitoidentityprovider.model.StringAttributeConstraintsType;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
@@ -33,9 +26,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
-import javax.annotation.Nonnull;
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -49,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
     String titles_featured[];
     String subtitles_featured[];
     int images_featured[] = {R.drawable.build_day_image, R.drawable.pancake_image, R.drawable.kids_image};
+    private ArrayList<String> ids_servesWelove = new ArrayList<>();
+    private ArrayList<String> names_servesWelove = new ArrayList<>();
+    private ArrayList<String> subtitles_servesWelove = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,38 +77,16 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Home");
 
-        //Serves We Love Recycler View
-        servesWeLoveRecyclerView = findViewById(R.id.serves_we_love_recycler_view);
-        ServesWeLoveAdaptor servesWeLoveAdaptor = new ServesWeLoveAdaptor(this);
-        servesWeLoveRecyclerView.setAdapter(servesWeLoveAdaptor);
-        servesWeLoveRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        servesWeLoveRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, servesWeLoveRecyclerView, new RecyclerItemClickListener
-                .OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                //handle click events here
-                Intent serviceOpScreen = new Intent(view.getContext(), DisplayServiceOpportunity.class);
 
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("ID", "142568");
-                serviceOpScreen.putExtras(bundle);
+        getServesWeLoveFromDatabase();
 
-                //STEP 4: Start your Activity
-                startActivity(serviceOpScreen);
-            }
-
-            @Override
-            public void onItemLongClick(View view, int position) {
-                //handle longClick if any
-            }
-        }));
 
         //Help Your Community Recycler View
-        helpCommunityRecylerView = findViewById(R.id.help_your_community_recycler_view);
-        ServesWeLoveAdaptor helpYourCommunityAdaptor = new ServesWeLoveAdaptor(this);
-        helpCommunityRecylerView.setAdapter(helpYourCommunityAdaptor);
-        helpCommunityRecylerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+//        helpCommunityRecylerView = findViewById(R.id.help_your_community_recycler_view);
+//        HomescreenCardAdaptor helpYourCommunityAdaptor = new HomescreenCardAdaptor(this);
+//        helpCommunityRecylerView.setAdapter(helpYourCommunityAdaptor);
+//        helpCommunityRecylerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
 
 
@@ -217,6 +196,40 @@ public class MainActivity extends AppCompatActivity {
                 return this.onOptionsItemSelected(item);
 
         }
+    }
+
+    private void getServesWeLoveFromDatabase() {
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("servesWeLove")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("Regular", document.getId() + " => " + document.getData());
+
+
+                                ids_servesWelove.add(document.getString("id"));
+                                names_servesWelove.add(document.getString("name"));
+                                subtitles_servesWelove.add(document.getString("subtitles"));
+
+                            }
+                            initServesWeLoveRecylcerView();
+                        }
+                    }
+                });
+
+
+    }
+
+    private void initServesWeLoveRecylcerView() {
+        servesWeLoveRecyclerView = findViewById(R.id.serves_we_love_recycler_view);
+        HomescreenCardAdaptor servesWeLoveAdaptor = new HomescreenCardAdaptor(this, ids_servesWelove, names_servesWelove, subtitles_servesWelove);
+        servesWeLoveRecyclerView.setAdapter(servesWeLoveAdaptor);
+        servesWeLoveRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     }
 
 }
