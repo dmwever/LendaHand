@@ -24,6 +24,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Hashtable;
+
 public class DisplayServiceOpportunity extends AppCompatActivity {
     //Define an object that will hold the currently displayed service opp
     ServiceOpportunity serviceOp;
@@ -163,7 +166,7 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
                     serviceOp.setOpCutoffTime(document.getString("opCutoffTime"));
                     serviceOp.setOpLocation(document.getString("opLoc"));
                     serviceOp.setOpRepeat(document.getBoolean("opRepeat"));
-
+                    serviceOp.setOpVolunteerList((HashMap<String, String>) document.get("opVolunteerList"));
                     updateUI();
                 }
             }
@@ -264,7 +267,7 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
 
     public boolean checkIfVolSignedUp() {
         if (currentUser != null) {
-            return serviceOp.getOpVolunteers().contains(currentUser.getEmail());
+            return serviceOp.getOpVolunteers().containsKey(currentUser.getEmail());
         }
 
         else
