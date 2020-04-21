@@ -1,34 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-
-    <ImageView
-        android:id="@+id/imgSearchOp"
+    <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:contentDescription="@string/image_for_the_service_op"
-        app:srcCompat="@drawable/volunteer_photo" />
+        android:layout_gravity="center"
+        app:cardCornerRadius="@dimen/cardview_compat_inset_shadow"
+        >
 
-    <TextView
-        android:id="@+id/txtSearchOpName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-    <TextView
-        android:id="@+id/txtSearchOpSub"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-    <TextView
-        android:id="@+id/txtSearchOpDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/imgSearchOp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/image_for_the_service_op"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_website" />
 
+            <TextView
+                android:id="@+id/txtSearchOpName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:layout_constraintEnd_toEndOf="@+id/imgSearchOp"
+                app:layout_constraintStart_toStartOf="@+id/imgSearchOp"
+                app:layout_constraintTop_toBottomOf="@+id/imgSearchOp" />
+
+            <TextView
+                android:id="@+id/txtSearchOpSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:layout_constraintEnd_toEndOf="@+id/imgSearchOp"
+                app:layout_constraintStart_toStartOf="@+id/imgSearchOp"
+                app:layout_constraintTop_toBottomOf="@+id/txtSearchOpName" />
+
+            <TextView
+                android:id="@+id/txtSearchOpDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:layout_constraintEnd_toEndOf="@+id/txtSearchOpSub"
+                app:layout_constraintStart_toStartOf="@+id/txtSearchOpSub"
+                app:layout_constraintTop_toBottomOf="@+id/txtSearchOpSub" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

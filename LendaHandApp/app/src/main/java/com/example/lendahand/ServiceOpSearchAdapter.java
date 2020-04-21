@@ -23,10 +23,14 @@ class ServiceOpSearchAdapter extends RecyclerView.Adapter<ServiceOpSearchAdapter
     // you provide access to all the views for a data item in a view holder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView textView;
+        public TextView txtServOpName;
+        public TextView txtServOpSub;
+        public TextView txtServOpDesc;
         public MyViewHolder(View v) {
             super(v);
-            textView = v.findViewById(R.id.txtSearchOpName);
+            txtServOpName = v.findViewById(R.id.txtSearchOpName);
+            txtServOpSub = v.findViewById(R.id.txtSearchOpSub);
+            txtServOpDesc = v.findViewById(R.id.txtSearchOpDesc);
         }
     }
 
@@ -60,13 +64,15 @@ class ServiceOpSearchAdapter extends RecyclerView.Adapter<ServiceOpSearchAdapter
     public void onBindViewHolder(@NonNull ServiceOpSearchAdapter.MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.textView.setText(opList.get(position));
+        holder.txtServOpName.setText(docList.get(position).getString("opName"));
+        holder.txtServOpSub.setText(docList.get(position).getString("opSub"));
+        holder.txtServOpDesc.setText(docList.get(position).getString("opDesc"));
     }
 
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return opList.size();
+        return docList.size();
     }
 }

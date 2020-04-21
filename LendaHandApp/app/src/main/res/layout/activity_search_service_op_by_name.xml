@@ -5,23 +5,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    tools:context=".SearchServiceOpByName">
+    tools:context=".SearchServiceOpByName"
+    android:padding="16dp">
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".SearchServiceOpByName">
-
+    tools:context=".SearchServiceOpByName"
+    >
 
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/txtSearchServiceOp"
         android:layout_width="259dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
         android:layout_marginTop="36dp"
         android:inputType="text"
         android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,8 +38,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/viewServiceOpSearchView"
-        android:layout_width="409dp"
-        android:layout_height="563dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="1dp"

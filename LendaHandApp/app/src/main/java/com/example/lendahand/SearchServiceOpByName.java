@@ -32,7 +32,7 @@ import java.util.ArrayList;
 public class SearchServiceOpByName extends AppCompatActivity {
 
     private static final String TAG = "DocSnippets";
-    private ListView dataListView;
+    private ArrayList<QueryDocumentSnapshot> serveOps;
     //private Database database = new Database();
     private TextInputEditText txtServiceOpName;
     private Button btnSearchServiceOp;
@@ -57,15 +57,32 @@ public class SearchServiceOpByName extends AppCompatActivity {
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
-       // recyclerView.setHasFixedSize(true);
+
 
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if(!serveOps.isEmpty()){
+                    Intent dispServOpScreen = new Intent(view.getContext(), DisplayServiceOpportunity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("ID", serveOps.get(position).getId());
+                    dispServOpScreen.putExtras(bundle);
+                    startActivity(dispServOpScreen);
+
+                }
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+
+            }
+        }));
         // specify an adapter (see also next example)
-        //mAdapter = new ServiceOpSearchAdapter(null);
-        //recyclerView.setAdapter(mAdapter);
+
 
 
         btnSearchServiceOp.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +97,7 @@ public class SearchServiceOpByName extends AppCompatActivity {
     }
 
     public void getServiceByName(String opSearchName, FirebaseFirestore db) {
-        final ArrayList<QueryDocumentSnapshot> serveOps = new ArrayList<>();
+        serveOps = new ArrayList<>();
         db.collection("serviceOpportunities")
                 .whereEqualTo("opName", opSearchName)
                 .get()
