@@ -88,8 +88,10 @@ public class SearchServiceOpByName extends AppCompatActivity {
         btnSearchServiceOp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                serveOps = new ArrayList<>();
                 String opSearchName = txtServiceOpName.getText().toString().trim();
                 getServiceByName(opSearchName, db);
+                getServiceByOrg(opSearchName, db);
 
             }
         });
@@ -97,7 +99,6 @@ public class SearchServiceOpByName extends AppCompatActivity {
     }
 
     public void getServiceByName(String opSearchName, FirebaseFirestore db) {
-        serveOps = new ArrayList<>();
         db.collection("serviceOpportunities")
                 .whereEqualTo("opName", opSearchName)
                 .get()
@@ -117,17 +118,45 @@ public class SearchServiceOpByName extends AppCompatActivity {
                 });
     }
 
+    public void getServiceByOrg(final String opSearchNameOrg, final FirebaseFirestore db) {
+        db.collection("serviceOrganizations")
+                .whereEqualTo("orgName", opSearchNameOrg)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                db.collection("serviceOpportunities")
+                                        .whereEqualTo("orgID", document.getId())
+                                        .get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    for (QueryDocumentSnapshot document2 : task.getResult()) {
+                                                        Log.d(TAG, document2.getId() + " => " + document2.getData());
+                                                        serveOps.add(document2);
+                                                    }
+                                                    updateStuff(serveOps);
+                                                }
+                            }});}
+
+
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+
     public void updateStuff(ArrayList<QueryDocumentSnapshot> opIDs){
         Log.d(TAG, "Ops size: " + opIDs.size());
         if(opIDs.size() > 0) {
             Log.d(TAG, "reached inner if ");
             mAdapter = new ServiceOpSearchAdapter(opIDs);
             recyclerView.setAdapter(mAdapter);
-            /*Intent createServiceOpScreen = new Intent(v.getContext(), DisplayServiceOpportunity.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("CurrentServiceOp", opIDs.get(0));
-            createServiceOpScreen.putExtras(bundle);
-            startActivity(createServiceOpScreen);*/
-        }
+            }
     }
 }
