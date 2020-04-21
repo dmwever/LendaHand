@@ -17,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SearchServiceOpByName"></activity>
+        <activity android:name=".VolunteerManageOps"></activity>
         <activity android:name=".DisplayServiceOpportunity" />
         <activity android:name=".org_page_upcoming_opportunities" />
         <activity android:name=".Login" />
