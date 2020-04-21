@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -26,13 +27,26 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class DisplayServiceOpportunity extends AppCompatActivity {
     //Define an object that will hold the currently displayed service opp
     ServiceOpportunity serviceOp;
-
+    Database dataBase ;
 
     private FirebaseAuth mAuth;
+    private boolean boolVolLoggedIn;
+    private FirebaseFirestore dataB;
+    private FirebaseUser currentUser;
+    private DocumentReference service;
+    private static final String TAG = "DocSnippets";
 
     @Override
     public void onStart() {
         super.onStart();
+        dataBase = new Database();
+        dataBase.init();
+        dataB = FirebaseFirestore.getInstance();
+        boolVolLoggedIn = false;
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        checkIfVolLoggedIn();
+
         // Check if user is signed in (non-null) and update UI accordingly.
     }
 
@@ -97,7 +111,6 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
             //This function will call the updateUI method to display the
             //serviceOp Details
             queryDatabaseForServiceOp(ID);
-
             Log.d("getService", "If 1");
         //If a currentServiceOp is already in the bundle, do this...
         } else if (getIntent().hasExtra("CurrentServiceOp")) {
@@ -127,7 +140,7 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
     //Functions created to clean up the code
     private void queryDatabaseForServiceOp(String ID) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference service = db.collection("serviceOpportunities").document(ID);
+        service = db.collection("serviceOpportunities").document(ID);
         Task<DocumentSnapshot> task = service.get();
 
         task.addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -187,14 +200,35 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
         btnServiceOpSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseUser currentUser = mAuth.getCurrentUser();
-                updateUI(currentUser);
-               // CurrentServiceOp.addOpVolunteer(currentUser.getEmail(), currentUser.getDisplayName());
-               // db.addService(CurrentServiceOp);
+                final FirebaseUser currentUser = mAuth.getCurrentUser();
+                //updateUI(currentUser);
+                if(boolVolLoggedIn && !checkIfVolSignedUp()) {
+                    serviceOp.addOpVolunteer(currentUser.getEmail(), currentUser.getDisplayName());
+                    service.update("opVolunteerList", serviceOp.getOpVolunteers()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "DocumentSnapshot successfully updated!" + currentUser.getEmail());
+                        }
+                    })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Error updating document", e);
+                                }
+                            });
+
+
+                    //dataBase.addService(serviceOp);
+                    Toast.makeText(v.getContext(), "Signed up success", Toast.LENGTH_LONG).show();
+
+                }
+                else Toast.makeText(v.getContext(), "Signed up Failure", Toast.LENGTH_LONG).show();
+
+
                 //STEP 3: Create Intent for your class
-                Intent createServiceOpScreen = new Intent(v.getContext(), MainActivity.class);
+                //Intent createServiceOpScreen = new Intent(v.getContext(), MainActivity.class);
                 //STEP 4: Start your Activity
-                startActivityForResult(createServiceOpScreen, 0);
+                //startActivityForResult(createServiceOpScreen, 0);
             }
         });
     }
@@ -215,4 +249,25 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
         });
     }
 
+    public void checkIfVolLoggedIn() {
+        if (currentUser != null) {
+            dataB.collection("volunteers").document(currentUser.getEmail()).get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot queryDocumentSnapshots) {
+                            boolVolLoggedIn = true;
+                        }
+                    });
+         }
+
+    }
+
+    public boolean checkIfVolSignedUp() {
+        if (currentUser != null) {
+            return serviceOp.getOpVolunteers().contains(currentUser.getEmail());
+        }
+
+        else
+            return true;
+    }
 }
