@@ -1,6 +1,9 @@
 package com.example.lendahand;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,109 +14,103 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+
 
 public class SearchServiceOpByName extends AppCompatActivity {
 
     private static final String TAG = "DocSnippets";
     private ListView dataListView;
-    private final Database database = new Database();
-    private final TextInputEditText txtServiceOpName = findViewById(R.id.txtSearchServiceOp);
+    //private Database database = new Database();
+    private TextInputEditText txtServiceOpName;
     private Button btnSearchServiceOp;
 
-    ArrayList<String> listItems = new ArrayList<String>();
-    ArrayList<String> listKeys = new ArrayList<String>();
-    ArrayAdapter<String> adapter;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_service_op_by_name);
-        database.init();
-        dataListView = findViewById(R.id.viewServiceOpSearchView);
+        //database.init();
+        recyclerView = findViewById(R.id.viewServiceOpSearchView);
         btnSearchServiceOp = findViewById(R.id.btnServiceOpSearchName);
+        txtServiceOpName = findViewById(R.id.txtSearchServiceOp);
 
-        adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_single_choice,
-                listItems);
-        dataListView.setAdapter(adapter);
-        dataListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-        dataListView.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                    public void onItemClick(AdapterView<?> parent,
-                                            View view, int position, long id) {
-                    }
-                });
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-       // addChildEventListener();
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+       // recyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // specify an adapter (see also next example)
+        //mAdapter = new ServiceOpSearchAdapter(null);
+        //recyclerView.setAdapter(mAdapter);
 
 
         btnSearchServiceOp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String opSearchName = txtServiceOpName.getText().toString().trim();
-                ArrayList<String> opIDs = database.getServiceByName(opSearchName);
-                Log.d(TAG, "Ops size: " + opIDs.size());
-                if(opIDs.size() > 0) {
-                    Log.d(TAG, "reached inner if ");
-                    Intent createServiceOpScreen = new Intent(v.getContext(), DisplayServiceOpportunity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("CurrentServiceOp", opIDs.get(0));
-                    createServiceOpScreen.putExtras(bundle);
-                    startActivity(createServiceOpScreen);
-                }
+                getServiceByName(opSearchName, db);
+
             }
         });
 
     }
-/*
-    private void addChildEventListener() {
-        ChildEventListener childListener = new ChildEventListener() {
 
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                adapter.add(
-                        (String) (
-                            dataSnapshot.child("opName").getValue()
-
-
-                        ));
-
-                listKeys.add(dataSnapshot.getKey());
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                String key = dataSnapshot.getKey();
-                int index = listKeys.indexOf(key);
-
-                if (index != -1) {
-                    listItems.remove(index);
-                    listKeys.remove(index);
-                    adapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        };
-        dbRef.addChildEventListener(childListener);
+    public void getServiceByName(String opSearchName, FirebaseFirestore db) {
+        final ArrayList<QueryDocumentSnapshot> serveOps = new ArrayList<>();
+        db.collection("serviceOpportunities")
+                .whereEqualTo("opName", opSearchName)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                serveOps.add(document);
+                            }
+                            updateStuff(serveOps);
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
-*/
+
+    public void updateStuff(ArrayList<QueryDocumentSnapshot> opIDs){
+        Log.d(TAG, "Ops size: " + opIDs.size());
+        if(opIDs.size() > 0) {
+            Log.d(TAG, "reached inner if ");
+            mAdapter = new ServiceOpSearchAdapter(opIDs);
+            recyclerView.setAdapter(mAdapter);
+            /*Intent createServiceOpScreen = new Intent(v.getContext(), DisplayServiceOpportunity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("CurrentServiceOp", opIDs.get(0));
+            createServiceOpScreen.putExtras(bundle);
+            startActivity(createServiceOpScreen);*/
+        }
+    }
 }

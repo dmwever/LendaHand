@@ -269,11 +269,13 @@ public class Database {
         return newService;
     }
 
+/*
     public ArrayList<String> getServiceByName (final String name) {
         final ArrayList<String> serveOpsIDs = new ArrayList<>();
-        Task<QuerySnapshot> gettingThing = db.collection("serviceOpportunities")
-                .whereEqualTo("opName", name)
-                .get();
+        Query gettingThing = db.collection("serviceOpportunities")
+                .whereEqualTo("opName", name);
+
+                gettingThing.get();
 
                 gettingThing.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -295,6 +297,7 @@ public class Database {
         while(!gettingThing.isComplete()){}
         return serveOpsIDs;
     }
+    */
 
     public void addVolunteer (final Volunteer newVolunteer) {
 
