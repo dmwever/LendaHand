@@ -40,6 +40,7 @@
                 android:layout_marginRight="30dp"
                 android:background="@android:color/darker_gray"/>
 
+<!--            Serves We Love-->
             <TextView
                 android:id="@+id/servesWeLove"
                 android:layout_width="match_parent"
@@ -48,9 +49,21 @@
                 android:text="Serves We Love Right Now"
                 android:layout_marginLeft="30dp"
                 android:fontFamily="@font/lato_bold"
-                android:textSize="18sp"
+                android:textSize="22sp"
                 android:textAppearance="@font/work_sans_bold"
                 android:textColor="@color/black_color" />
+
+            <TextView
+                android:id="@+id/servesWeLove_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Service opportunities that we can't stop talking about"
+                android:layout_marginLeft="30dp"
+                android:fontFamily="@font/lato"
+                android:textSize="14sp"
+                android:textAppearance="@font/work_sans_bold"
+                android:textColor="@color/faded_primary" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/serves_we_love_recycler_view"
@@ -74,6 +87,7 @@
                 android:layout_marginRight="30dp"
                 android:background="@android:color/darker_gray"/>
 
+<!--            Help Your Community-->
             <TextView
                 android:id="@+id/helpYourCommunity"
                 android:layout_width="match_parent"
@@ -82,22 +96,120 @@
                 android:layout_marginLeft="30dp"
                 android:text="Help Your Community"
                 android:fontFamily="@font/lato_bold"
-                android:textSize="18sp"
+                android:textSize="22sp"
                 android:textAppearance="@font/work_sans_bold"
                 android:textColor="@color/black_color" />
+
+            <TextView
+                android:id="@+id/helpYourCommunity_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Lend a hand in your area"
+                android:layout_marginLeft="30dp"
+                android:fontFamily="@font/lato"
+                android:textSize="14sp"
+                android:textAppearance="@font/work_sans_bold"
+                android:textColor="@color/faded_primary" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/help_your_community_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 />
 
-
             <View
                 android:id="@+id/divider_helpYourCommunity"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@android:color/darker_gray"/>
+
+<!--            Active Organizations-->
+            <TextView
+                android:id="@+id/ActiveOrganizations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:layout_marginLeft="30dp"
+                android:text="Active Organizations"
+                android:fontFamily="@font/lato_bold"
+                android:textSize="22sp"
+                android:textAppearance="@font/work_sans_bold"
+                android:textColor="@color/black_color" />
+
+            <TextView
+                android:id="@+id/ActiveOrganizations_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="The most active service organizations in your area"
+                android:layout_marginLeft="30dp"
+                android:fontFamily="@font/lato"
+                android:textSize="14sp"
+                android:textAppearance="@font/work_sans_bold"
+                android:textColor="@color/faded_primary" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ActiveOrganizations_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                />
+
+            <View
+                android:id="@+id/divider_ActiveOrganizations"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@android:color/darker_gray"/>
+
+<!--            New To Lendahand-->
+
+            <TextView
+                android:id="@+id/NewToLendahand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:layout_marginLeft="30dp"
+                android:text="New to LendaHand?"
+                android:fontFamily="@font/lato_bold"
+                android:textSize="22sp"
+                android:textAppearance="@font/work_sans_bold"
+                android:textColor="@color/black_color" />
+
+            <TextView
+                android:id="@+id/NewToLendahand_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="See essential service opportunities for new comers"
+                android:layout_marginLeft="30dp"
+                android:fontFamily="@font/lato"
+                android:textSize="14sp"
+                android:textAppearance="@font/work_sans_bold"
+                android:textColor="@color/faded_primary" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/NewToLendahand_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                />
+
+            <View
+                android:id="@+id/divider_NewToLendahand"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="16dp"

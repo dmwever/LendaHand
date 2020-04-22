@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
 //        helpCommunityRecylerView = findViewById(R.id.help_your_community_recycler_view);
 //        HomescreenCardAdaptor helpYourCommunityAdaptor = new HomescreenCardAdaptor(this);
 //        helpCommunityRecylerView.setAdapter(helpYourCommunityAdaptor);
-//        helpCommunityRecylerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
 
 
