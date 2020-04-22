@@ -13,28 +13,19 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.amazonaws.services.cognitoidentityprovider.model.StringAttributeConstraintsType;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -91,8 +82,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView activeOrganizations = findViewById(R.id.ActiveOrganizations_recycler_view);
         ArrayList<String> ids_activeOrganizations = new ArrayList<>();
         ArrayList<String> names_activeOrganizations = new ArrayList<>();
-        ArrayList<String> subtitles_activeOrganizations = new ArrayList<>();
-        getServesFromDatabase("servesWeLove", activeOrganizations, ids_activeOrganizations, names_activeOrganizations, subtitles_activeOrganizations);
+        getOrgsFromDatabase("activeOrgs", activeOrganizations, ids_activeOrganizations, names_activeOrganizations);
 
         //New to Lendahand
         RecyclerView newToLendahand = findViewById(R.id.NewToLendahand_recycler_view);
@@ -221,6 +211,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void getOrgsFromDatabase(String path, final RecyclerView recyclerView, final ArrayList<String> ids, final ArrayList<String> names) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection(path)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("Regular", document.getId() + " => " + document.getData());
+
+
+                                ids.add(document.getString("id"));
+                                names.add(document.getString("name"));
+
+                            }
+                            initOrgRecyclerView(recyclerView, ids, names);
+                        }
+                    }
+                });
+    }
+
     private void getServesFromDatabase(String path, final RecyclerView recyclerView, final ArrayList<String> ids, final ArrayList<String> names, final ArrayList<String> subtitles ) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -239,13 +252,19 @@ public class MainActivity extends AppCompatActivity {
                                 subtitles.add(document.getString("subtitles"));
 
                             }
-                            initRecyclerView(recyclerView, ids, names, subtitles);
+                            initServeRecyclerView(recyclerView, ids, names, subtitles);
                         }
                     }
                 });
     }
-    private void initRecyclerView(RecyclerView recyclerView, ArrayList<String> ids, ArrayList<String> names, ArrayList<String> subtitles) {
-        HomescreenCardAdaptor adaptor = new HomescreenCardAdaptor(this, ids, names, subtitles);
+
+    private void initOrgRecyclerView(RecyclerView recyclerView, ArrayList<String> ids, ArrayList<String> names) {
+        HomescreenServiceOrgAdaptor adaptor = new HomescreenServiceOrgAdaptor(this, ids, names);
+        recyclerView.setAdapter(adaptor);
+    }
+
+    private void initServeRecyclerView(RecyclerView recyclerView, ArrayList<String> ids, ArrayList<String> names, ArrayList<String> subtitles) {
+        HomescreenServiceOpAdaptor adaptor = new HomescreenServiceOpAdaptor(this, ids, names, subtitles);
         recyclerView.setAdapter(adaptor);
     }
 }

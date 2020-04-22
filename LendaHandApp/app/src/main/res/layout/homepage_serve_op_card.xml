@@ -8,7 +8,7 @@
     android:layout_marginRight="0dp"
     android:layout_marginLeft="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/layout_homescreenCard">
+    android:id="@+id/layout_ServeHomescreenCard">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

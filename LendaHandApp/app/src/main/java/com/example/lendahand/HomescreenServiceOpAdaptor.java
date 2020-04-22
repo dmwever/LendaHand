@@ -11,22 +11,18 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-public class HomescreenCardAdaptor extends RecyclerView.Adapter<HomescreenCardAdaptor.HomescreenCardViewHolder> {
+public class HomescreenServiceOpAdaptor extends RecyclerView.Adapter<HomescreenServiceOpAdaptor.HomescreenCardViewHolder> {
 
     Context context;
     private ArrayList<String> serveIDs;
     private ArrayList<String> serveNames;
     private ArrayList<String> serveSubtitles;
 
-    public HomescreenCardAdaptor(Context context, ArrayList<String> serveIDs, ArrayList<String> serveNames, ArrayList<String> serveSubtitles) {
+    public HomescreenServiceOpAdaptor(Context context, ArrayList<String> serveIDs, ArrayList<String> serveNames, ArrayList<String> serveSubtitles) {
         this.context = context;
         this.serveIDs = serveIDs;
         this.serveNames = serveNames;
@@ -84,7 +80,7 @@ public class HomescreenCardAdaptor extends RecyclerView.Adapter<HomescreenCardAd
             logo = itemView.findViewById(R.id.logo_homescreenCard);
             serveOpName = itemView.findViewById(R.id.serveName_homescreenCard);
             serveOpSubtitle = itemView.findViewById(R.id.subtitle_homescreenCard);
-            parentLayout = itemView.findViewById(R.id.layout_homescreenCard);
+            parentLayout = itemView.findViewById(R.id.layout_ServeHomescreenCard);
 
         }
     }
