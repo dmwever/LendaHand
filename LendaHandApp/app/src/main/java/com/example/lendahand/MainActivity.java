@@ -43,14 +43,10 @@ public class MainActivity extends AppCompatActivity {
     Database database;
 
     RecyclerView featuredServiceOpsRecyclerView;
-    RecyclerView servesWeLoveRecyclerView;
-    RecyclerView helpCommunityRecylerView;
     String titles_featured[];
     String subtitles_featured[];
     int images_featured[] = {R.drawable.build_day_image, R.drawable.pancake_image, R.drawable.kids_image};
-    private ArrayList<String> ids_servesWelove = new ArrayList<>();
-    private ArrayList<String> names_servesWelove = new ArrayList<>();
-    private ArrayList<String> subtitles_servesWelove = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,21 +68,38 @@ public class MainActivity extends AppCompatActivity {
         FeaturedServeOpsAdaptor featuredAdaptor = new FeaturedServeOpsAdaptor(this, titles_featured, subtitles_featured, images_featured);
         featuredServiceOpsRecyclerView.setAdapter(featuredAdaptor);
 
+        //Top Bar with Logo
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Home");
 
+        //Serves We Love
+        RecyclerView servesWeLove = findViewById(R.id.serves_we_love_recycler_view);
+        ArrayList<String> ids_servesWelove = new ArrayList<>();
+        ArrayList<String> names_servesWelove = new ArrayList<>();
+        ArrayList<String> subtitles_servesWelove = new ArrayList<>();
+        getServesFromDatabase("servesWeLove", servesWeLove, ids_servesWelove, names_servesWelove, subtitles_servesWelove);
 
+        //Help Your Community
+        RecyclerView helpYourCommunity = findViewById(R.id.help_your_community_recycler_view);
+        ArrayList<String> ids_helpYourCommunity = new ArrayList<>();
+        ArrayList<String> names_helpYourCommunity = new ArrayList<>();
+        ArrayList<String> subtitles_helpYourCommunity = new ArrayList<>();
+        getServesFromDatabase("servesWeLove", helpYourCommunity, ids_helpYourCommunity, names_helpYourCommunity, subtitles_helpYourCommunity);
 
-        getServesWeLoveFromDatabase();
+        //Active Organizations
+        RecyclerView activeOrganizations = findViewById(R.id.ActiveOrganizations_recycler_view);
+        ArrayList<String> ids_activeOrganizations = new ArrayList<>();
+        ArrayList<String> names_activeOrganizations = new ArrayList<>();
+        ArrayList<String> subtitles_activeOrganizations = new ArrayList<>();
+        getServesFromDatabase("servesWeLove", activeOrganizations, ids_activeOrganizations, names_activeOrganizations, subtitles_activeOrganizations);
 
-
-        //Help Your Community Recycler View
-//        helpCommunityRecylerView = findViewById(R.id.help_your_community_recycler_view);
-//        HomescreenCardAdaptor helpYourCommunityAdaptor = new HomescreenCardAdaptor(this);
-//        helpCommunityRecylerView.setAdapter(helpYourCommunityAdaptor);
-
-
+        //New to Lendahand
+        RecyclerView newToLendahand = findViewById(R.id.NewToLendahand_recycler_view);
+        ArrayList<String> ids_newToLendahand = new ArrayList<>();
+        ArrayList<String> names_newToLendahand = new ArrayList<>();
+        ArrayList<String> subtitles_newToLendahand = new ArrayList<>();
+        getServesFromDatabase("servesWeLove", newToLendahand, ids_newToLendahand, names_newToLendahand, subtitles_newToLendahand);
 
         addTemporaryButtons();
     }
@@ -208,11 +221,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void getServesWeLoveFromDatabase() {
-
+    private void getServesFromDatabase(String path, final RecyclerView recyclerView, final ArrayList<String> ids, final ArrayList<String> names, final ArrayList<String> subtitles ) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection("servesWeLove")
+        db.collection(path)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -222,25 +234,18 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d("Regular", document.getId() + " => " + document.getData());
 
 
-                                ids_servesWelove.add(document.getString("id"));
-                                names_servesWelove.add(document.getString("name"));
-                                subtitles_servesWelove.add(document.getString("subtitles"));
+                                ids.add(document.getString("id"));
+                                names.add(document.getString("name"));
+                                subtitles.add(document.getString("subtitles"));
 
                             }
-                            initServesWeLoveRecylcerView();
+                            initRecyclerView(recyclerView, ids, names, subtitles);
                         }
                     }
                 });
-
-
     }
-
-    private void initServesWeLoveRecylcerView() {
-        servesWeLoveRecyclerView = findViewById(R.id.serves_we_love_recycler_view);
-        HomescreenCardAdaptor servesWeLoveAdaptor = new HomescreenCardAdaptor(this, ids_servesWelove, names_servesWelove, subtitles_servesWelove);
-        servesWeLoveRecyclerView.setAdapter(servesWeLoveAdaptor);
-        RecyclerView.ItemDecoration itemDecoration = new LinearSpacesItemDecoration(50);
-
+    private void initRecyclerView(RecyclerView recyclerView, ArrayList<String> ids, ArrayList<String> names, ArrayList<String> subtitles) {
+        HomescreenCardAdaptor adaptor = new HomescreenCardAdaptor(this, ids, names, subtitles);
+        recyclerView.setAdapter(adaptor);
     }
-
 }

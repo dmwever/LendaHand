@@ -46,11 +46,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
-                android:text="Serves We Love Right Now"
                 android:layout_marginLeft="30dp"
+                android:text="Serves We Love Right Now"
                 android:fontFamily="@font/lato_bold"
                 android:textSize="22sp"
-                android:textAppearance="@font/work_sans_bold"
                 android:textColor="@color/black_color" />
 
             <TextView
@@ -62,7 +61,6 @@
                 android:layout_marginLeft="30dp"
                 android:fontFamily="@font/lato"
                 android:textSize="14sp"
-                android:textAppearance="@font/work_sans_bold"
                 android:textColor="@color/faded_primary" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -97,7 +95,6 @@
                 android:text="Help Your Community"
                 android:fontFamily="@font/lato_bold"
                 android:textSize="22sp"
-                android:textAppearance="@font/work_sans_bold"
                 android:textColor="@color/black_color" />
 
             <TextView
@@ -109,7 +106,6 @@
                 android:layout_marginLeft="30dp"
                 android:fontFamily="@font/lato"
                 android:textSize="14sp"
-                android:textAppearance="@font/work_sans_bold"
                 android:textColor="@color/faded_primary" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -117,8 +113,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                android:orientation="horizontal"
+                app:spanCount="2"
                 />
 
             <View
@@ -140,7 +140,6 @@
                 android:text="Active Organizations"
                 android:fontFamily="@font/lato_bold"
                 android:textSize="22sp"
-                android:textAppearance="@font/work_sans_bold"
                 android:textColor="@color/black_color" />
 
             <TextView
@@ -152,7 +151,6 @@
                 android:layout_marginLeft="30dp"
                 android:fontFamily="@font/lato"
                 android:textSize="14sp"
-                android:textAppearance="@font/work_sans_bold"
                 android:textColor="@color/faded_primary" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -160,8 +158,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
                 />
 
             <View
@@ -184,7 +185,6 @@
                 android:text="New to LendaHand?"
                 android:fontFamily="@font/lato_bold"
                 android:textSize="22sp"
-                android:textAppearance="@font/work_sans_bold"
                 android:textColor="@color/black_color" />
 
             <TextView
@@ -196,7 +196,6 @@
                 android:layout_marginLeft="30dp"
                 android:fontFamily="@font/lato"
                 android:textSize="14sp"
-                android:textAppearance="@font/work_sans_bold"
                 android:textColor="@color/faded_primary" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -204,8 +203,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                android:orientation="horizontal"
+                app:spanCount="2"
                 />
 
             <View
