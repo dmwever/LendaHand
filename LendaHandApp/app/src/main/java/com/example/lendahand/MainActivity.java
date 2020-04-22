@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -70,8 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
         FeaturedServeOpsAdaptor featuredAdaptor = new FeaturedServeOpsAdaptor(this, titles_featured, subtitles_featured, images_featured);
         featuredServiceOpsRecyclerView.setAdapter(featuredAdaptor);
-        featuredServiceOpsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -241,7 +240,8 @@ public class MainActivity extends AppCompatActivity {
         servesWeLoveRecyclerView = findViewById(R.id.serves_we_love_recycler_view);
         HomescreenCardAdaptor servesWeLoveAdaptor = new HomescreenCardAdaptor(this, ids_servesWelove, names_servesWelove, subtitles_servesWelove);
         servesWeLoveRecyclerView.setAdapter(servesWeLoveAdaptor);
-        servesWeLoveRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        RecyclerView.ItemDecoration itemDecoration = new LinearSpacesItemDecoration(50);
+
     }
 
 }
