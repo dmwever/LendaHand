@@ -1,4 +1,4 @@
-[Features](features.md) | [About Us](about.md)
+[About Us](about.md) | [Features](features.md) | [Deliverables](deliverables.md)
 ---
 
 ## Welcome to LendaHand
