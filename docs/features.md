@@ -1,20 +1,20 @@
-[Home](index.md) | [About Us](about.md)
+[Home](index.md) | [About Us](about.md) | [Deliverables](deliverables.md)
 ---
 
 # Features
 
 ### For Volunteers
-* Find Service Opportunities through the Discover Feed 
-* Filter Service Opportunites by Category, Service Organization, Community Service Hours, Keyword Search, Date, Duration, Distance
-* Sign up for Service Opportunities using 1-click sign up feature or group sign up feature
-* Manage Service Opportunities
-* Print out volunteer hours 
-* Calendar to view scheduled Service Opportunities
+* Volunteers can view Service Opportunities and Service Organizations on Home Page without signing up
+* Search for and filter Service Opportunites by Service Organization and Name
+* Sign up for Service Opportunities using a 1-click sign up feature once signed in
+* View Service Opportunities that volunteer signed up for on Volunteer Page and manage those Service Opportunities
 
 ### For Service Organizations
-* Add Service Opportunity
+* Add Service Opportunities
+* View their Service Opportunities on the Service Organization Page
+* Allows Service Organizations to seamlessly promote their cause through photos and description on their page
 * Recruit Volunteers
-* Manage Volunteers
-* Contact Volunteers
-* Calendar to view scheduled Service Opportunities
-* Online Dashboard
+
+### For Service Opportunities
+* Add concise information and details about Service Opportunity for volunteers
+* Allows Service Organizatons to promote their Service Opportunity through photos and description
