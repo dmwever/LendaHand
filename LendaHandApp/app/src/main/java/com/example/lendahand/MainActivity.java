@@ -182,7 +182,17 @@ public class MainActivity extends AppCompatActivity {
 
                 if (currentUser != null) {
                     Intent volunteerPage = new Intent(MainActivity.this, VolunteerPage.class);
+
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("ID", currentUser.getEmail());
+
+                    Log.d("main", "User email: " + currentUser.getEmail());
+
+                    volunteerPage.putExtras(bundle);
+
                     startActivity(volunteerPage);
+
+
                 } else {
                     Intent LoginScreen = new Intent(MainActivity.this, Login.class);
                     startActivity(LoginScreen);
