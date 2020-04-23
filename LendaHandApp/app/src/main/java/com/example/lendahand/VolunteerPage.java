@@ -77,7 +77,6 @@ public class VolunteerPage extends AppCompatActivity {
                 imgOrgServiceOp.setImageURI(Uri.fromFile(serviceOp.getOpEventPhoto()));
                 btnOrgEditServiceOp.setVisibility(View.GONE);
                 btnOrgRemoveService.setVisibility(View.GONE);
-
                 serviceOpView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) { ;
@@ -91,7 +90,10 @@ public class VolunteerPage extends AppCompatActivity {
                 listOrgServiceOps.addView(serviceOpView);
             }
         }
-        if(serviceOps.size() > 2){
+        if(serviceOps.size() == 0){
+            btnVolunteerSeeMoreOps.setVisibility(View.GONE);
+        }
+        else{
             btnVolunteerSeeMoreOps.setVisibility(View.VISIBLE);
             btnVolunteerSeeMoreOps.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -103,9 +105,6 @@ public class VolunteerPage extends AppCompatActivity {
                     startActivityForResult(nextScreen, 0);
                 }
             });
-        }
-        else{
-            btnVolunteerSeeMoreOps.setVisibility(View.GONE);
         }
 
         //Allow button to be clicked to edit volunteer information

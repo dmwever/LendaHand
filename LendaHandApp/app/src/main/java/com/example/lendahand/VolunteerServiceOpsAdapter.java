@@ -96,6 +96,7 @@ public class VolunteerServiceOpsAdapter extends RecyclerView.Adapter<VolunteerSe
             txtOrgServiceOpSubtitle = (TextView) itemView.findViewById(R.id.orgServiceOpSubtitleText);
             imgOrgServiceOp = (ImageView) itemView.findViewById(R.id.orgServiceOp);
             btnRemoveServiceOp = (ImageButton) itemView.findViewById(R.id.RemoveServiceOp);
+            btnRemoveServiceOp.setVisibility(View.VISIBLE);
         }
     }
 
