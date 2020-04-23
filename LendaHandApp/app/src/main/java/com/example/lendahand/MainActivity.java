@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> ids_helpYourCommunity = new ArrayList<>();
         ArrayList<String> names_helpYourCommunity = new ArrayList<>();
         ArrayList<String> subtitles_helpYourCommunity = new ArrayList<>();
-        getServesFromDatabase("servesWeLove", helpYourCommunity, ids_helpYourCommunity, names_helpYourCommunity, subtitles_helpYourCommunity);
+        getServesFromDatabase("helpCommunity", helpYourCommunity, ids_helpYourCommunity, names_helpYourCommunity, subtitles_helpYourCommunity);
 
         //Active Organizations
         RecyclerView activeOrganizations = findViewById(R.id.ActiveOrganizations_recycler_view);
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> ids_newToLendahand = new ArrayList<>();
         ArrayList<String> names_newToLendahand = new ArrayList<>();
         ArrayList<String> subtitles_newToLendahand = new ArrayList<>();
-        getServesFromDatabase("servesWeLove", newToLendahand, ids_newToLendahand, names_newToLendahand, subtitles_newToLendahand);
+        getServesFromDatabase("newToLendahand", newToLendahand, ids_newToLendahand, names_newToLendahand, subtitles_newToLendahand);
 
         addTemporaryButtons();
     }
