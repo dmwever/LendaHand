@@ -271,36 +271,6 @@ public class Database {
         return newService;
     }
 
-/*
-    public ArrayList<String> getServiceByName (final String name) {
-        final ArrayList<String> serveOpsIDs = new ArrayList<>();
-        Query gettingThing = db.collection("serviceOpportunities")
-                .whereEqualTo("opName", name);
-
-                gettingThing.get();
-
-                gettingThing.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Log.d(TAG, document.getId() + " => " + document.getData());
-                         serveOpsIDs.add(document.getId());
-                    }
-
-                }
-
-                else {
-                    Log.d(TAG, "Error getting documents: ", task.getException());
-                }
-
-            }
-        });
-        while(!gettingThing.isComplete()){}
-        return serveOpsIDs;
-    }
-    */
-
     public void addVolunteer (final Volunteer newVolunteer) {
 
         // Create a new user with a first and last name
@@ -373,7 +343,6 @@ public class Database {
         }
         return newVol;
     }
-
 
 }
 
