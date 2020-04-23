@@ -273,7 +273,7 @@ public class Database {
 
         // Create a new user with a first and last name
 
-        final String ID = newVolunteer.getEmail();
+        final String ID = newVolunteer.getEmail().toLowerCase();
         Map<String, Object> user = new HashMap<>();
         user.put("fName", newVolunteer.getFirstName());
         user.put("lName", newVolunteer.getLastName());

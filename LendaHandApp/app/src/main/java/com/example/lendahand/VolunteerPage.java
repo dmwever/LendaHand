@@ -1,5 +1,6 @@
 package com.example.lendahand;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -15,9 +16,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +34,10 @@ public class VolunteerPage extends AppCompatActivity {
 
     Volunteer currentVolunteer;
     private FirebaseAuth mAuth;
+    private DocumentReference Vol;
+    private boolean boolVolLoggedIn;
+    private FirebaseFirestore dataB;
+    private FirebaseUser currentUser;
 
     TextView volunteerFullName;
     TextView volunteerDescription;
@@ -39,6 +51,18 @@ public class VolunteerPage extends AppCompatActivity {
     LinearLayout listOrgServiceOps;
 
     @Override
+    public void onStart() {
+        super.onStart();
+        dataB = FirebaseFirestore.getInstance();
+        boolVolLoggedIn = false;
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        checkIfVolLoggedIn();
+
+        // Check if user is signed in (non-null) and update UI accordingly.
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volunteer_page);
@@ -49,14 +73,15 @@ public class VolunteerPage extends AppCompatActivity {
 //        Intent intent = getIntent();
 //        final Volunteer currentVolunteer = (Volunteer) intent.getSerializableExtra("CurrentVolunteer");
 //
-////        Get a reference to all the text fields on the volunteer page
-//        volunteerFullName = findViewById(R.id.volunteerFullName_volunteerScreen);
-//        volunteerDescription = findViewById(R.id.volunteerDescription_VolunteerScreen);
-//        volunteerEmail = findViewById(R.id.volunteerEmail_volunteerscreen);
-//        volunteerPhone = findViewById(R.id.volunteerPhone_volunteerscreen);
-//        volunteerDateOfBirth = findViewById(R.id.volunteerBirthday_volunteerScreen);
-//        volunteerPassword = findViewById(R.id.volunteerPassword_volunterScreen);
-//        editButton = findViewById(R.id.editButton_VolunteerScreen);
+//         Get a reference to all the text fields on the volunteer page
+          volunteerFullName = findViewById(R.id.volunteerFullName_volunteerScreen);
+ //       volunteerDescription = findViewById(R.id.volunteerDescription_VolunteerScreen);
+        volunteerEmail = findViewById(R.id.volunteerEmail_volunteerscreen);
+        volunteerPhone = findViewById(R.id.volunteerPhone_volunteerscreen);
+        volunteerDateOfBirth = findViewById(R.id.volunteerBirthday_volunteerScreen);
+        volunteerPassword = findViewById(R.id.volunteerPassword_volunterScreen);
+        editButton = findViewById(R.id.editButton_VolunteerScreen);
+        if(boolVolLoggedIn){queryDatabaseForVolunteer(currentUser.getEmail());}
 //        cardView = findViewById(R.id.cardView);
 //        btnVolunteerSeeMoreOps = findViewById(R.id.volunteerSeeMoreOps);
 //        listOrgServiceOps = (LinearLayout) findViewById(R.id.volunteerServiceOpsList);
@@ -154,5 +179,51 @@ public class VolunteerPage extends AppCompatActivity {
                 startActivity(editScreen);
             }
         });
+    }
+
+    private void queryDatabaseForVolunteer(String ID) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Vol = db.collection("volunteers").document(ID);
+        Task<DocumentSnapshot> task = Vol.get();
+
+        task.addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    Log.d("getService", "DocumentSnapshot data: " + document.getData());
+                    currentVolunteer.setFirstName(document.getString("fName"));
+                    currentVolunteer.setLastName(document.getString("lName"));
+                    currentVolunteer.setEmail(document.getString("opDate"));
+                    currentVolunteer.setPhone(document.getString("pNum"));
+                    currentVolunteer.setDateOfBirth(document.getString("DoB"));
+                    updateUI();
+
+
+                }
+            }
+        });
+    }
+
+    private void updateUI() {
+
+        //Set all the text fields once the service op object is created
+        volunteerFullName.setText(currentVolunteer.getFirstName() + " " + currentVolunteer.getLastName());
+        volunteerEmail.setText(currentVolunteer.getEmail());
+        volunteerPhone.setText(currentVolunteer.getPhone());
+        volunteerDateOfBirth.setText(currentVolunteer.getDateOfBirth());
+    }
+
+    public void checkIfVolLoggedIn() {
+        if (currentUser != null) {
+            dataB.collection("volunteers").document(currentUser.getEmail()).get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot queryDocumentSnapshots) {
+                            boolVolLoggedIn = true;
+                        }
+                    });
+        }
+
     }
 }
