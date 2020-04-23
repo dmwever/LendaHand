@@ -4,8 +4,8 @@
 # Deliverables
 
 ### Presentations
-* [Sprint 1 Presentation](https://drive.google.com/open?id=11kwuXwEavOloFZEW7A7DTa00CRIEmjCL8aM6dCPyKak)
-* [Sprint 2 Presentation](https://drive.google.com/open?id=1hqU7mZskiuPKPzqCCicssQ-osE41C-BkoO5WvchYAiI)
+* [Sprint 1 Presentation](https://drive.google.com/open?id=1twOqhcuk9Y5pQEj4YZLrKzYUkKrAk5yfGdgkbmRNiv0)
+* [Sprint 2 Presentation](https://drive.google.com/open?id=1r9S9nkaqKoZIrvfsItstupeNIH8hvUAruHF8heqF5-Y)
 * [Sprint 3 Presentation](https://drive.google.com/open?id=1aJ2sg-tOaDxmUYSzT5BX904PpORFriQPbGE8qoj5ZpQ)
 
 ### Documents
