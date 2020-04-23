@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +24,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -37,6 +40,8 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
     private FirebaseFirestore dataB;
     private FirebaseUser currentUser;
     private DocumentReference service;
+    private ImageView imgHeader;
+    private ImageView imgEvent;
     private static final String TAG = "DocSnippets";
 
     @Override
@@ -74,8 +79,6 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
     TextView txtServiceOpContPhone;
     TextView txtServiceOpAgeReq;
     TextView txtServiceOpAddReq;
-    ImageView imgHeader;
-    ImageView imgEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,12 +169,32 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
                     serviceOp.setOpCutoffTime(document.getString("opCutoffTime"));
                     serviceOp.setOpLocation(document.getString("opLoc"));
                     serviceOp.setOpRepeat(document.getBoolean("opRepeat"));
+                    serviceOp.setOpServiceOrg(document.getString("orgID"));
                     serviceOp.setOpVolunteerList((HashMap<String, String>) document.get("opVolunteerList"));
+                    getOpPhotos();
                     updateUI();
                 }
             }
         });
     }
+
+    private void getOpPhotos() {
+        StorageReference storage = FirebaseStorage.getInstance().getReference();
+        StorageReference logoRef = storage.child("images/" + serviceOp.getOpServiceOrg() + "logo");
+        StorageReference headerRef = storage.child("images/" + serviceOp.getId() + "header");
+
+        Log.d(TAG, "Finding " + "images/" + serviceOp.getOpServiceOrg() + "logo");
+        Log.d(TAG, "Finding " + "images/" + serviceOp.getId() + "header");
+        // Download directly from StorageReference using Glide
+        // (See MyAppGlideModule for Loader registration)
+        GlideApp.with(this /* context */)
+                .load(logoRef)
+                .into(imgEvent);
+        GlideApp.with(this /* context */)
+                .load(headerRef)
+                .into(imgHeader);
+    }
+
     private void updateUI() {
 
         //Set all the text fields once the service op object is created

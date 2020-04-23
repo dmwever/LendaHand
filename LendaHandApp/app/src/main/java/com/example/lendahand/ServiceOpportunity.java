@@ -28,6 +28,10 @@ public class ServiceOpportunity implements Serializable {
 
     private String id;
 
+    public ServiceOpportunity() {
+        opVolunteerIDs = new HashMap<>();
+    }
+
     public ServiceOpportunity(String id) {
         this.id = id;
         opVolunteerIDs = new HashMap<>();
