@@ -171,8 +171,9 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
                     serviceOp.setOpRepeat(document.getBoolean("opRepeat"));
                     serviceOp.setOpServiceOrg(document.getString("orgID"));
                     serviceOp.setOpVolunteerList((HashMap<String, String>) document.get("opVolunteerList"));
-                    getOpPhotos();
                     updateUI();
+                    getOpPhotos();
+
                 }
             }
         });
