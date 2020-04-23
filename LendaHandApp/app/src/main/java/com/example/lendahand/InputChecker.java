@@ -70,7 +70,7 @@ public class InputChecker {
         }
     }
 
-    public boolean isValidDate(String dateStr) {
+    private boolean isValidDate(String dateStr) {
         DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
         sdf.setLenient(false);
         try {
@@ -81,7 +81,7 @@ public class InputChecker {
         return true;
     }
 
-    public boolean isValidTime(String dateStr) {
+    private boolean isValidTime(String dateStr) {
         DateFormat sdf = new SimpleDateFormat("HH:mm", Locale.US);
         sdf.setLenient(false);
         try {
