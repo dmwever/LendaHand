@@ -163,10 +163,10 @@ public class VolunteerPage extends AppCompatActivity {
         volunteerDateOfBirth.setText(currentVolunteer.getDateOfBirth());
         editButton.isClickable();
 
-        if (currentVolunteer.getVolunteerServiceOpsList().equals(null)) {
-            return;
-        }
-            Log.d("volPage", "Went in this if");
+//        if (currentVolunteer.getVolunteerServiceOpsList().equals(null)) {
+//            return;
+//        }
+//            Log.d("volPage", "Went in this if");
 //
 //            HashMap<String, ServiceOpportunity> serviceOps = currentVolunteer.getVolunteerServiceOpsList();
 //            ArrayList<ServiceOpportunity> serviceOpsList = new ArrayList<ServiceOpportunity>(serviceOps.values());

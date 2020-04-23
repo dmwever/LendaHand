@@ -3,6 +3,7 @@ package com.example.lendahand;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -43,6 +47,20 @@ public class HomescreenServiceOpAdaptor extends RecyclerView.Adapter<HomescreenS
         holder.serveOpName.setText(serveNames.get(position));
         holder.serveOpSubtitle.setText(serveSubtitles.get(position));
 
+        StorageReference storage = FirebaseStorage.getInstance().getReference();
+        String emailOnly = serveIDs.get(position).replaceAll("[0-9]", "");
+
+
+        StorageReference logoRef = storage.child("images/" + emailOnly + "logo.png");
+
+        Log.d("roof",  "images/" + emailOnly + "logo.png");
+
+
+        GlideApp.with(context)
+                .load(logoRef)
+                .into(holder.logo);
+
+
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +74,9 @@ public class HomescreenServiceOpAdaptor extends RecyclerView.Adapter<HomescreenS
                 context.startActivity(serviceOpScreen);
             }
         });
+
     }
+
 
     @Override
     public int getItemCount() {
