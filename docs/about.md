@@ -1,4 +1,4 @@
-[Home](index.md) | [Features](features.md) 
+[Home](index.md) | [Features](features.md) | [Deliverables](deliverables.md) 
 ---
 
 # About Us
@@ -15,4 +15,4 @@ I'm an undergrad at the University of Alabama majoring in Computer Science. I ha
 Seth Klumph is a senior computer science student at The University of Alabama. His interests include Game Development, Testing, and Design, as well as Software Engineering and Mobile Development. He is in the honors college and enjoys spending his free time playing video games and developing game concepts.
 
 ### Victoria Basilio
-I am a Senior at the University of Alabama majoring in Computer Science and Mathematics with a minor in Cyber Criminology. In my free time, I enjoy traveling, shopping, watching movies, and playing with dogs.
+I am a Senior at the University of Alabama majoring in Computer Science and Mathematics with a minor in Cyber Criminology. My interests range from Cyber Security, Cyber Law and Policy, Modeling and Simulation, and Mobile Application Development. In my free time, I enjoy traveling, shopping, watching movies, and playing with dogs.
