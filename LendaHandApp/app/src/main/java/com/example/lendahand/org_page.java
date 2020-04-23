@@ -20,6 +20,8 @@ import com.google.android.material.button.MaterialButton;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -105,6 +107,25 @@ public class org_page extends AppCompatActivity {
         txtOrgPhone.setText(serviceOrg.getOrgPhone());
         txtOrgWebsite.setText(serviceOrg.getOrgWebsite());
         txtOrgDesc.setText(serviceOrg.getOrgDescription());
+
+        Bundle bundle = getIntent().getExtras();
+        String ID = bundle.getString("ID");
+
+        StorageReference storage = FirebaseStorage.getInstance().getReference();
+        StorageReference logoRef = storage.child("images/" + ID + "logo.png");
+        StorageReference headerRef = storage.child("images/" + ID  + "header.jpg");
+        Log.d("Marcus", "Finding " + "images/" + ID  + "logo.png");
+
+
+        GlideApp.with(this)
+                .load(logoRef)
+                .into(imgOrgLogo);
+
+        GlideApp.with(this)
+                .load(headerRef)
+                .into(imgOrgHeader);
+
+
 //        imgOrgLogo.setImageURI(Uri.fromFile(serviceOrg.getOrgLogo()));
 //        imgOrgHeader.setImageURI(Uri.fromFile(serviceOrg.getOrgHeader()));
 

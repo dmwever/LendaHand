@@ -53,7 +53,7 @@ public class HomescreenServiceOpAdaptor extends RecyclerView.Adapter<HomescreenS
 
         StorageReference logoRef = storage.child("images/" + emailOnly + "logo.png");
 
-        Log.d("roof",  "images/" + emailOnly + "logo.png");
+
 
 
         GlideApp.with(context)
@@ -69,6 +69,8 @@ public class HomescreenServiceOpAdaptor extends RecyclerView.Adapter<HomescreenS
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("ID", serveIDs.get(position));
                 serviceOpScreen.putExtras(bundle);
+
+                Log.d("roof",  serveIDs.get(position));
 
                 //STEP 4: Start your Activity
                 context.startActivity(serviceOpScreen);
