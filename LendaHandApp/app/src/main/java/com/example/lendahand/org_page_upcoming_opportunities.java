@@ -13,8 +13,6 @@ import java.util.HashMap;
 
 public class org_page_upcoming_opportunities extends AppCompatActivity {
 
-    ServiceOrganization serviceOrg;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +26,7 @@ public class org_page_upcoming_opportunities extends AppCompatActivity {
         recyclerViewOrgServiceOpsList.setHasFixedSize(true);
         LinearLayoutManager layout = new LinearLayoutManager(this);
         recyclerViewOrgServiceOpsList.setLayoutManager(layout);
-        ServiceOrgServiceOpsAdapter adapter = new ServiceOrgServiceOpsAdapter(this, serviceOps);
+        ServiceOrgServiceOpsAdapter adapter = new ServiceOrgServiceOpsAdapter(this, serviceOrg);
         recyclerViewOrgServiceOpsList.setAdapter(adapter);
     }
 

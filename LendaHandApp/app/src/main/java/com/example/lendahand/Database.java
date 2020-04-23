@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Database {
 
@@ -56,11 +57,8 @@ public class Database {
         org.put("orgDescription", newOrg.getOrgDescription());
 
        HashMap<String, ServiceOpportunity> opportunityList = newOrg.getOrgServiceOpsList();
-        ArrayList<String> opportunityIDs = new ArrayList<>();
-        for (int i = 0; i < opportunityList.size(); i++) {
-            ServiceOpportunity currentOp = opportunityList.get(i);
-            opportunityIDs.add(currentOp.getId());
-        }
+        Set<String> opportunityIDsSet = opportunityList.keySet();
+        ArrayList<String> opportunityIDs = new ArrayList<String>(opportunityIDsSet);
         org.put("orgServiceOps", opportunityIDs);
 
         CollectionReference orgRef = db.collection("serviceOrganizations");
@@ -283,6 +281,10 @@ public class Database {
         user.put("DoB", newVolunteer.getDateOfBirth());
         user.put("tags", newVolunteer.getTags());
         user.put("photo", "images/" + ID + "photo.jpg");
+        HashMap<String, ServiceOpportunity> opportunityList = newVolunteer.getVolunteerServiceOpsList();
+        Set<String> opportunityIDsSet = opportunityList.keySet();
+        ArrayList<String> opportunityIDs = new ArrayList<String>(opportunityIDsSet);
+        user.put("volunteerServiceOps", opportunityIDs);
 
         //add info to database
         CollectionReference volunteersRef = db.collection("volunteers");
@@ -320,7 +322,7 @@ public class Database {
 
     public Volunteer getVolunteer (String ID, Context appContext) {
         Volunteer newVol = new Volunteer(ID);
-        DocumentReference service = db.collection("serviceOpportunities").document(ID);
+        DocumentReference service = db.collection("volunteers").document(ID);
         Task<DocumentSnapshot> task = service.get();
         while (!task.isComplete()) { }
         DocumentSnapshot document = task.getResult();
@@ -331,6 +333,13 @@ public class Database {
             newVol.setDateOfBirth(document.getString("DoB"));
             ArrayList<String> tags = (ArrayList<String>) document.get("tags");
             newVol.setTags(tags);
+
+            ArrayList<String> ServiceOpsList = (ArrayList<String>) document.get("volunteerServiceOps");
+            for (int i = 0; i < ServiceOpsList.size(); i++) {
+                ServiceOpportunity findService = getService(ServiceOpsList.get(i), appContext);
+                newVol.addVolunteerServiceOp(findService);
+            }
+
             //Download profile pic
             StorageReference profileRef = storage.child("images/" + newVol.getEmail() + "profile");
             File mydir = appContext.getDir("images", Context.MODE_PRIVATE); //Creating an internal dir;
