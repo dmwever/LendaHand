@@ -3,6 +3,7 @@ package com.example.lendahand;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -39,6 +43,20 @@ public class HomescreenServiceOrgAdaptor extends RecyclerView.Adapter<Homescreen
     @Override
     public void onBindViewHolder(@NonNull HomescreenOrgCardViewHolder holder, final int position) {
         holder.orgName.setText(orgNames.get(position));
+
+        StorageReference storage = FirebaseStorage.getInstance().getReference();
+        StorageReference logoRef = storage.child("images/" + orgIDs.get(position) + "logo.png");
+        StorageReference headerRef = storage.child("images/" + orgIDs.get(position) + "header.jpg");
+        Log.d("Adaptor", "Finding " + "images/" + orgIDs.get(position) + "logo.png");
+
+
+        GlideApp.with(context)
+                .load(logoRef)
+                .into(holder.logo);
+
+        GlideApp.with(context)
+                .load(headerRef)
+                .into(holder.mainImage);
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +93,7 @@ public class HomescreenServiceOrgAdaptor extends RecyclerView.Adapter<Homescreen
 
             context = itemView.getContext();
             mainImage = itemView.findViewById(R.id.mainImage_OrgHomescreenCard);
-            logo = itemView.findViewById(R.id.logo_homescreenCard);
+            logo = itemView.findViewById(R.id.logoImage_OrgHomescreenCard);
             orgName = itemView.findViewById(R.id.orgName_OrgHomescreenCard);
             parentLayout = itemView.findViewById(R.id.layout_OrgHomeScreencard);
 
