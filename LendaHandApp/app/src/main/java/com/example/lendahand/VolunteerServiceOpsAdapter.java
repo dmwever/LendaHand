@@ -1,40 +1,38 @@
 package com.example.lendahand;
 
-        import android.content.Context;
-        import android.content.Intent;
-        import android.net.Uri;
-        import android.os.Bundle;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.Button;
-        import android.widget.ImageButton;
-        import android.widget.ImageView;
-        import android.widget.TextView;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-        import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
-        import java.util.ArrayList;
-        import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-//https://www.sanktips.com/2017/11/15/android-recyclerview-with-custom-adapter-example/
-public class ServiceOrgServiceOpsAdapter extends RecyclerView.Adapter<ServiceOrgServiceOpsAdapter.ViewHolder> {
+public class VolunteerServiceOpsAdapter extends RecyclerView.Adapter<VolunteerServiceOpsAdapter.ViewHolder> {
     private Context context;
     private ArrayList<ServiceOpportunity> serviceOps;
-    HashMap<String, ServiceOpportunity> serviceOpsMap;
-    private ServiceOrganization serviceOrg;
+    private HashMap<String, ServiceOpportunity> serviceOpsMap;
+    private Volunteer volunteer;
 
-    public ServiceOrgServiceOpsAdapter(Context context, ServiceOrganization org){
+    public VolunteerServiceOpsAdapter(Context context,Volunteer vol){
         this.context = context;
-        this.serviceOrg = org;
-        this.serviceOpsMap = org.getOrgServiceOpsList();
+        this.volunteer = vol;
+        this.serviceOpsMap = vol.getVolunteerServiceOpsList();
         ArrayList<ServiceOpportunity> serviceOpsList = new ArrayList<ServiceOpportunity>(serviceOpsMap.values());
         this.serviceOps = serviceOpsList;
     }
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+    public VolunteerServiceOpsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_service_op, parent,false);
-        ViewHolder viewHolder = new ViewHolder (v);
+        VolunteerServiceOpsAdapter.ViewHolder viewHolder = new VolunteerServiceOpsAdapter.ViewHolder(v);
         return viewHolder;
     }
     @Override
@@ -43,7 +41,7 @@ public class ServiceOrgServiceOpsAdapter extends RecyclerView.Adapter<ServiceOrg
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
+    public void onBindViewHolder(final VolunteerServiceOpsAdapter.ViewHolder holder, final int position) {
 
         holder.itemView.setTag(serviceOps.get(position));
         final ServiceOpportunity serviceOp = serviceOps.get(position);
@@ -60,17 +58,6 @@ public class ServiceOrgServiceOpsAdapter extends RecyclerView.Adapter<ServiceOrg
                 context.startActivity(nextScreen);
             }
         });
-        holder.btnOrgEditServiceOp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent nextScreen = new Intent(v.getContext(),  ManageServiceOp.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("CurrentServiceOp", serviceOp);
-                nextScreen.putExtras(bundle);
-                context.startActivity(nextScreen);
-            }
-        });
-        /*
         holder.btnRemoveServiceOp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,18 +65,21 @@ public class ServiceOrgServiceOpsAdapter extends RecyclerView.Adapter<ServiceOrg
                 notifyItemRemoved(holder.getAdapterPosition());
                 notifyItemRangeChanged(holder.getAdapterPosition(), serviceOps.size());
                 serviceOpsMap.remove(serviceOp.getId());
-                serviceOrg.setOrgServiceOpsList(serviceOpsMap);
+                volunteer.setVolunteerServiceOpsList(serviceOpsMap);
+                HashMap<String, String> volunteerMap = serviceOp.getOpVolunteers();
+                volunteerMap.remove(volunteer.getEmail());
+                serviceOp.setOpVolunteerList(volunteerMap);
                 Database db = new Database();
                 db.init();
-                db.addOrganization(serviceOrg);
+                db.addVolunteer(volunteer);
+                db.addService(serviceOp);
                 Intent nextScreen = new Intent(v.getContext(),  org_page.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("ServiceOrg", serviceOrg);
+                bundle.putSerializable("CurrentVolunteer", volunteer);
                 nextScreen.putExtras(bundle);
                 context.startActivity(nextScreen);
             }
         });
-         */
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -97,8 +87,7 @@ public class ServiceOrgServiceOpsAdapter extends RecyclerView.Adapter<ServiceOrg
         private TextView txtOrgServiceOpName;
         private TextView txtOrgServiceOpSubtitle;
         private ImageView imgOrgServiceOp;
-        private ImageButton btnOrgEditServiceOp;
-        /*private ImageButton btnRemoveServiceOp;*/
+        private ImageButton btnRemoveServiceOp;
 
         private ViewHolder(View itemView) {
             super(itemView);
@@ -106,8 +95,8 @@ public class ServiceOrgServiceOpsAdapter extends RecyclerView.Adapter<ServiceOrg
             txtOrgServiceOpName = (TextView) itemView.findViewById(R.id.orgServiceOpNameText);
             txtOrgServiceOpSubtitle = (TextView) itemView.findViewById(R.id.orgServiceOpSubtitleText);
             imgOrgServiceOp = (ImageView) itemView.findViewById(R.id.orgServiceOp);
-            btnOrgEditServiceOp = (ImageButton) itemView.findViewById(R.id.orgEditServiceOp);
-            /*btnRemoveServiceOp = (ImageButton) itemView.findViewById(R.id.RemoveServiceOp);*/
+            btnRemoveServiceOp = (ImageButton) itemView.findViewById(R.id.RemoveServiceOp);
         }
     }
+
 }

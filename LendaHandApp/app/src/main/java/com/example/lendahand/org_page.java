@@ -29,21 +29,6 @@ public class org_page extends AppCompatActivity {
         Intent serviceOrgIntent = getIntent();
         serviceOrg = (ServiceOrganization)serviceOrgIntent.getSerializableExtra("ServiceOrg");
 
-        Random rand = new Random();
-        ServiceOpportunity s1 = new ServiceOpportunity("one", "one", "one", "one", "one", "one", false, "01/01/01", "0100", "01/01/01", "0100", "oneoneone", "1", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgLogo(), "one@one.com" ,"org1");
-        serviceOrg.addOrgServiceOp(s1);
-        s1.setOpServiceOrg(serviceOrg.getOrgEmail());
-        s1.setId(s1.getOpServiceOrg() + (rand.nextInt(999999)));
-        ServiceOpportunity s2 = new ServiceOpportunity("two", "two", "two", "two", "two", "two", false, "02/02/02", "0200", "02/02/02", "0200", "twotwotwo", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgLogo(), "two@two.com", "org2");
-        s2.setOpServiceOrg(serviceOrg.getOrgEmail());
-        serviceOrg.addOrgServiceOp(s2);
-        s2.setId(s2.getOpServiceOrg() + (rand.nextInt(999999)));
-        ServiceOpportunity s3 = new ServiceOpportunity("three", "three", "two", "three", "three", "three", false, "03/03/03", "0300", "03/03/03", "0300", "threethreethree", "2", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgLogo(), "three@three.com","org3");
-        s3.setOpServiceOrg(serviceOrg.getOrgEmail());
-        serviceOrg.addOrgServiceOp(s3);
-        s3.setId(s3.getOpServiceOrg() + (rand.nextInt(999999)));
-
-
         final TextView txtOrgName = (TextView) findViewById(R.id.orgNameText);
         final TextView txtOrgEmail = (TextView) findViewById(R.id.orgEmailText);
         final TextView txtOrgPhone = (TextView) findViewById(R.id.orgPhoneText);
@@ -69,14 +54,16 @@ public class org_page extends AppCompatActivity {
         for(int i = 0; i < 2; i++){
             final ServiceOpportunity serviceOp = serviceOpsList.get(i);
             if(serviceOp != null){
-                View serviceOpView = inflater.inflate(R.layout.activity_org_page_service_op, listOrgServiceOps, false);
+                View serviceOpView = inflater.inflate(R.layout.cardview_service_op, listOrgServiceOps, false);
                 TextView txtOrgServiceOpName = (TextView) serviceOpView.findViewById(R.id.orgServiceOpNameText);
                 TextView txtOrgServiceOpSubtitle = (TextView) serviceOpView.findViewById(R.id.orgServiceOpSubtitleText);
                 ImageButton btnOrgEditServiceOp = (ImageButton) serviceOpView.findViewById(R.id.orgEditServiceOp);
+                ImageButton btnOrgRemoveService = (ImageButton) serviceOpView.findViewById(R.id.RemoveServiceOp);
                 ImageView imgOrgServiceOp = (ImageView) serviceOpView.findViewById(R.id.orgServiceOp);
                 txtOrgServiceOpName.setText(serviceOp.getOpName());
                 txtOrgServiceOpSubtitle.setText(serviceOp.getOpSubtitle());
                 imgOrgServiceOp.setImageURI(Uri.fromFile(serviceOp.getOpEventPhoto()));
+                btnOrgRemoveService.setVisibility(View.GONE);
 
                 btnOrgEditServiceOp.setOnClickListener(new View.OnClickListener() {
                     @Override

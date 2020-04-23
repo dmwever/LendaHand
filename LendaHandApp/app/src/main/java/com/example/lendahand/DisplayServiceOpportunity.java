@@ -230,6 +230,9 @@ public class DisplayServiceOpportunity extends AppCompatActivity {
                 //updateUI(currentUser);
                 if(boolVolLoggedIn && !checkIfVolSignedUp()) {
                     serviceOp.addOpVolunteer(currentUser.getEmail(), currentUser.getDisplayName());
+                    Volunteer currentVolunteer = dataBase.getVolunteer(currentUser.getEmail(), getApplicationContext());
+                    currentVolunteer.addVolunteerServiceOp(serviceOp);
+                    dataBase.addVolunteer(currentVolunteer);
                     service.update("opVolunteerList", serviceOp.getOpVolunteers()).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
