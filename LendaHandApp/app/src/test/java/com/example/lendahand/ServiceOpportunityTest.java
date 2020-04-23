@@ -26,7 +26,7 @@ public class ServiceOpportunityTest {
     private static String serviceOpAgeReq = "AgeTest";
     private static String serviceOpAdditionalReq = "ReqTest";
     private static File serviceOpHeaderPhoto = null;
-    private static String serviceOpEventPhoto = "PhotoTest2";
+    private static File serviceOpEventPhoto = null;
     private static String serviceOpOrgEmail = "ABCD@Hab.com";
     private static String serviceOpId = "TestId";
     public ServiceOpportunity newOp;

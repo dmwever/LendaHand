@@ -48,10 +48,10 @@ public class createServiceOpDateTime extends AppCompatActivity {
                 InputChecker inputChecker = new InputChecker();
                 String error = "";
 
-                error += inputChecker.isBlank(opDate, "Service Opportunity Date");
-                error += inputChecker.isBlank(opTime, "Service Opportunity Time");
-                error += inputChecker.isBlank(opCutoffDate, "Service Opportunity Cutoff Date");
-                error += inputChecker.isBlank(opCutoffTime, "Service Opportunity Cutoff Time");
+                error += inputChecker.isDateValid(opDate);
+                error += inputChecker.isTimeValid(opTime);
+                error += inputChecker.isDateValid(opCutoffDate);
+                error += inputChecker.isTimeValid(opCutoffTime);
                 error += inputChecker.isBlank(opLocation, "Service Opportunity Location");
 
                 if(StringUtils.isBlank(error)){
