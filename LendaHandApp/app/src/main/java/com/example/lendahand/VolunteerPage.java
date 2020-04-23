@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +25,18 @@ import java.util.HashMap;
 public class VolunteerPage extends AppCompatActivity {
 
     Volunteer currentVolunteer;
+    private FirebaseAuth mAuth;
+
+    TextView volunteerFullName;
+    TextView volunteerDescription;
+    TextView volunteerEmail;
+    TextView volunteerPhone;
+    TextView volunteerDateOfBirth;
+    TextView volunteerPassword;
+    CardView editButton;
+    CardView cardView;
+    Button btnVolunteerSeeMoreOps;
+    LinearLayout listOrgServiceOps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,82 +44,104 @@ public class VolunteerPage extends AppCompatActivity {
         setContentView(R.layout.activity_volunteer_page);
 
 
-        Intent intent = getIntent();
-        final Volunteer currentVolunteer = (Volunteer) intent.getSerializableExtra("CurrentVolunteer");
+        enableSignOutButton();
 
-        //Get a reference to all the text fields on the volunteer page
-        final TextView volunteerFullName = findViewById(R.id.volunteerFullName_volunteerScreen);
-        final TextView volunteerDescription = findViewById(R.id.volunteerDescription_VolunteerScreen);
-        final TextView volunteerEmail = findViewById(R.id.volunteerEmail_volunteerscreen);
-        final TextView volunteerPhone = findViewById(R.id.volunteerPhone_volunteerscreen);
-        final TextView volunteerDateOfBirth = findViewById(R.id.volunteerBirthday_volunteerScreen);
-        final TextView volunteerPassword = findViewById(R.id.volunteerPassword_volunterScreen);
-        final CardView editButton = findViewById(R.id.editButton_VolunteerScreen);
-        final CardView cardView = findViewById(R.id.cardView);
-        final Button btnVolunteerSeeMoreOps = findViewById(R.id.volunteerSeeMoreOps);
-        final LinearLayout listOrgServiceOps = (LinearLayout) findViewById(R.id.volunteerServiceOpsList);
+//        Intent intent = getIntent();
+//        final Volunteer currentVolunteer = (Volunteer) intent.getSerializableExtra("CurrentVolunteer");
+//
+////        Get a reference to all the text fields on the volunteer page
+//        volunteerFullName = findViewById(R.id.volunteerFullName_volunteerScreen);
+//        volunteerDescription = findViewById(R.id.volunteerDescription_VolunteerScreen);
+//        volunteerEmail = findViewById(R.id.volunteerEmail_volunteerscreen);
+//        volunteerPhone = findViewById(R.id.volunteerPhone_volunteerscreen);
+//        volunteerDateOfBirth = findViewById(R.id.volunteerBirthday_volunteerScreen);
+//        volunteerPassword = findViewById(R.id.volunteerPassword_volunterScreen);
+//        editButton = findViewById(R.id.editButton_VolunteerScreen);
+//        cardView = findViewById(R.id.cardView);
+//        btnVolunteerSeeMoreOps = findViewById(R.id.volunteerSeeMoreOps);
+//        listOrgServiceOps = (LinearLayout) findViewById(R.id.volunteerServiceOpsList);
+//
+//        //This makes the edges round. The XML method does not work.
+//        cardView.setClipToOutline(true);
+//        editButton.setClipToOutline(true);
+//
+//
+//        //Set each text field with the appropriate text
+//        String fullname = currentVolunteer.getFirstName() + currentVolunteer.getLastName();
+//        volunteerFullName.setText(fullname);
+//        volunteerEmail.setText(currentVolunteer.getEmail());
+//        volunteerPhone.setText(currentVolunteer.getPhone());
+//        volunteerDateOfBirth.setText(currentVolunteer.getDateOfBirth());
+//        volunteerPassword.setText(currentVolunteer.getPassword());
+//        editButton.isClickable();
+//
+//        HashMap<String, ServiceOpportunity> serviceOps = currentVolunteer.getVolunteerServiceOpsList();
+//        ArrayList<ServiceOpportunity> serviceOpsList = new ArrayList<ServiceOpportunity>(serviceOps.values());
+//        LayoutInflater inflater = LayoutInflater.from(this);
+//        for(int i = 0; i < 2; i++){
+//            final ServiceOpportunity serviceOp = serviceOpsList.get(i);
+//            if(serviceOp != null){
+//                View serviceOpView = inflater.inflate(R.layout.cardview_service_op, listOrgServiceOps, false);
+//                TextView txtOrgServiceOpName = (TextView) serviceOpView.findViewById(R.id.orgServiceOpNameText);
+//                TextView txtOrgServiceOpSubtitle = (TextView) serviceOpView.findViewById(R.id.orgServiceOpSubtitleText);
+//                ImageButton btnOrgEditServiceOp = (ImageButton) serviceOpView.findViewById(R.id.orgEditServiceOp);
+//                ImageButton btnOrgRemoveService = (ImageButton) serviceOpView.findViewById(R.id.RemoveServiceOp);
+//                ImageView imgOrgServiceOp = (ImageView) serviceOpView.findViewById(R.id.orgServiceOp);
+//                txtOrgServiceOpName.setText(serviceOp.getOpName());
+//                txtOrgServiceOpSubtitle.setText(serviceOp.getOpSubtitle());
+////                imgOrgServiceOp.setImageURI(Uri.fromFile(serviceOp.getOpEventPhoto()));
+//                btnOrgEditServiceOp.setVisibility(View.GONE);
+//                btnOrgRemoveService.setVisibility(View.GONE);
+//                serviceOpView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) { ;
+//                        Intent nextScreen = new Intent(v.getContext(),  DisplayServiceOpportunity.class);
+//                        Bundle bundle = new Bundle();
+//                        bundle.putSerializable("CurrentServiceOp", serviceOp);
+//                        nextScreen.putExtras(bundle);
+//                        startActivityForResult(nextScreen, 0);
+//                    }
+//                });
+//                listOrgServiceOps.addView(serviceOpView);
+//            }
+//        }
+//        if(serviceOps.size() == 0){
+//            btnVolunteerSeeMoreOps.setVisibility(View.GONE);
+//        }
+//        else{
+//            btnVolunteerSeeMoreOps.setVisibility(View.VISIBLE);
+//            btnVolunteerSeeMoreOps.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent nextScreen = new Intent(v.getContext(),  VolunteerManageOps.class);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putSerializable("CurrentVolunteer", currentVolunteer);
+//                    nextScreen.putExtras(bundle);
+//                    startActivityForResult(nextScreen, 0);
+//                }
+//            });
+//        }
+//
+//
+//        allowUserToEditProfile();
 
-        //This makes the edges round. The XML method does not work.
-        cardView.setClipToOutline(true);
-        editButton.setClipToOutline(true);
+    }
 
+    private void enableSignOutButton() {
+        MaterialButton SignOut = (MaterialButton) findViewById(R.id.signOut);
 
-        //Set each text field with the appropriate text
-        String fullname = currentVolunteer.getFirstName() + currentVolunteer.getLastName();
-        volunteerFullName.setText(fullname);
-        volunteerEmail.setText(currentVolunteer.getEmail());
-        volunteerPhone.setText(currentVolunteer.getPhone());
-        volunteerDateOfBirth.setText(currentVolunteer.getDateOfBirth());
-        volunteerPassword.setText(currentVolunteer.getPassword());
-        editButton.isClickable();
-
-        HashMap<String, ServiceOpportunity> serviceOps = currentVolunteer.getVolunteerServiceOpsList();
-        ArrayList<ServiceOpportunity> serviceOpsList = new ArrayList<ServiceOpportunity>(serviceOps.values());
-        LayoutInflater inflater = LayoutInflater.from(this);
-        for(int i = 0; i < 2; i++){
-            final ServiceOpportunity serviceOp = serviceOpsList.get(i);
-            if(serviceOp != null){
-                View serviceOpView = inflater.inflate(R.layout.cardview_service_op, listOrgServiceOps, false);
-                TextView txtOrgServiceOpName = (TextView) serviceOpView.findViewById(R.id.orgServiceOpNameText);
-                TextView txtOrgServiceOpSubtitle = (TextView) serviceOpView.findViewById(R.id.orgServiceOpSubtitleText);
-                ImageButton btnOrgEditServiceOp = (ImageButton) serviceOpView.findViewById(R.id.orgEditServiceOp);
-                ImageButton btnOrgRemoveService = (ImageButton) serviceOpView.findViewById(R.id.RemoveServiceOp);
-                ImageView imgOrgServiceOp = (ImageView) serviceOpView.findViewById(R.id.orgServiceOp);
-                txtOrgServiceOpName.setText(serviceOp.getOpName());
-                txtOrgServiceOpSubtitle.setText(serviceOp.getOpSubtitle());
-                imgOrgServiceOp.setImageURI(Uri.fromFile(serviceOp.getOpEventPhoto()));
-                btnOrgEditServiceOp.setVisibility(View.GONE);
-                btnOrgRemoveService.setVisibility(View.GONE);
-                serviceOpView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) { ;
-                        Intent nextScreen = new Intent(v.getContext(),  DisplayServiceOpportunity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("CurrentServiceOp", serviceOp);
-                        nextScreen.putExtras(bundle);
-                        startActivityForResult(nextScreen, 0);
-                    }
-                });
-                listOrgServiceOps.addView(serviceOpView);
+        SignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.getInstance().signOut();
+                Intent homeScreen = new Intent(v.getContext(), MainActivity.class);
+                overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
+                startActivity(homeScreen);
             }
-        }
-        if(serviceOps.size() == 0){
-            btnVolunteerSeeMoreOps.setVisibility(View.GONE);
-        }
-        else{
-            btnVolunteerSeeMoreOps.setVisibility(View.VISIBLE);
-            btnVolunteerSeeMoreOps.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent nextScreen = new Intent(v.getContext(),  VolunteerManageOps.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("CurrentVolunteer", currentVolunteer);
-                    nextScreen.putExtras(bundle);
-                    startActivityForResult(nextScreen, 0);
-                }
-            });
-        }
+        });
+    }
 
+    private void allowUserToEditProfile() {
         //Allow button to be clicked to edit volunteer information
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +154,5 @@ public class VolunteerPage extends AppCompatActivity {
                 startActivity(editScreen);
             }
         });
-
     }
 }

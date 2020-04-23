@@ -31,6 +31,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    FirebaseUser currentUser;
     Database database;
 
     RecyclerView featuredServiceOpsRecyclerView;
@@ -148,44 +149,21 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        //Adding button to Login
-        MaterialButton Login = (MaterialButton) findViewById(R.id.login);
-
-        Login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent LoginScreen = new Intent(v.getContext(), Login.class);
-                startActivity(LoginScreen);
-
-            }
-        });
-
-        MaterialButton SignOut = (MaterialButton) findViewById(R.id.signOut);
-
-        SignOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAuth.getInstance().signOut();
-                updateUI(mAuth.getCurrentUser());
-
-            }
-        });
     }
 
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
 
     public void  updateUI(FirebaseUser account){
         if(account != null){
-            Toast.makeText(this,"U Signed In successfully",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Signed In",Toast.LENGTH_LONG).show();
         }else {
-            Toast.makeText(this,"U Didnt signed in",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Not Signed In",Toast.LENGTH_LONG).show();
         }
     }
 
@@ -201,8 +179,15 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.profileIcon:
-                Intent LoginScreen = new Intent(MainActivity.this, Login.class);
-                startActivity(LoginScreen);
+
+                if (currentUser != null) {
+                    Intent volunteerPage = new Intent(MainActivity.this, VolunteerPage.class);
+                    startActivity(volunteerPage);
+                } else {
+                    Intent LoginScreen = new Intent(MainActivity.this, Login.class);
+                    startActivity(LoginScreen);
+                }
+
                 return true;
 
             default:
