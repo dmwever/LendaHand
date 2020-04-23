@@ -6,28 +6,10 @@
 
 ### What is LendaHand?
 
-LendaHand is an Android and iOS app that seamlessly connects the next generation of volunteers to service opportunities. It aims to make finding a volunteer opportunity just as simple as it is to find a new app on the App Store. Additionally, it gives small and large volunteer based organizations a powerful tool to find volunteers.
+LendaHand is an Android app that allows volunteers to search for Service Organizations and Service Opportunities. It seamlessly connects the next generation of volunteers to Service Opportunities by allowing the volunteer to sign up for the Service Opporunity with just one click. It aims to make finding a service opportunity just as simple as it is to find a new app on the App Store. Additionally, it gives small and large volunteer based organizations a powerful tool to recruit volunteers as well as provide a platfrom for Service Organizations to raise awareness and promote their cause.
 
 The service caters to two user groups: volunteers and service organizations. 
 
-
-### For Service Organizations
-
-=======
-[Features](features.md) | [About Us](about.md)
----
-
-## Welcome to LendaHand
-
-
-### What is LendaHand?
-
-LendaHand is an Android and iOS app that seamlessly connects the next generation of volunteers to service opportunities. It aims to make finding a volunteer opportunity just as simple as it is to find a new app on the App Store. Additionally, it gives small and large volunteer based organizations a powerful tool to find volunteers.
-
-The service caters to two user groups: volunteers and service organizations. 
-
-
-### For Service Organizations
-
->>>>>>> master
-Users interested in hosting service opportunities can sign up as a service organization. Service organizations have an online dashboard where they can easily manage their available service opportunities and any information about themselves on the app. 
+### Project Focus
+* Seamlessly connect the next generation of volunteers to service opportunities
+* Give small and large volunteer based organizations a powerful, mobile friendly tool to find volunteers
