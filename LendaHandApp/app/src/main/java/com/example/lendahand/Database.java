@@ -301,7 +301,7 @@ public class Database {
                     }
                 });
         //Upload profile Picture
-        StorageReference profileRef = storage.child("images/" + newVolunteer.getEmail() + "profile");
+        /*StorageReference profileRef = storage.child("images/" + newVolunteer.getEmail() + "profile");
         Uri header = Uri.fromFile(newVolunteer.getPhoto());
         profileRef.putFile(header)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -315,7 +315,7 @@ public class Database {
                     public void onFailure(@NonNull Exception e) {
                         Log.i("addProfile","Profile pic not added for: " + newVolunteer.getEmail());
                     }
-                });
+                });*/
     }
 
     public Volunteer getVolunteer (String ID, Context appContext) {
