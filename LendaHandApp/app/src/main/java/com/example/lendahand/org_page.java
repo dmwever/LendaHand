@@ -78,8 +78,6 @@ public class org_page extends AppCompatActivity {
             return;
         }
 
-
-
         Random rand = new Random();
         ServiceOpportunity s1 = new ServiceOpportunity("one", "one", "one", "one", "one", "one", false, "01/01/01", "0100", "01/01/01", "0100", "oneoneone", "1", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgLogo(), "one@one.com" ,"org1");
         serviceOrg.addOrgServiceOp(s1);
@@ -116,14 +114,19 @@ public class org_page extends AppCompatActivity {
         for(int i = 0; i < 2; i++){
             final ServiceOpportunity serviceOp = serviceOpsList.get(i);
             if(serviceOp != null){
-                View serviceOpView = inflater.inflate(R.layout.activity_org_page_service_op, listOrgServiceOps, false);
+                View serviceOpView = inflater.inflate(R.layout.cardview_service_op, listOrgServiceOps, false);
                 TextView txtOrgServiceOpName = (TextView) serviceOpView.findViewById(R.id.orgServiceOpNameText);
                 TextView txtOrgServiceOpSubtitle = (TextView) serviceOpView.findViewById(R.id.orgServiceOpSubtitleText);
                 ImageButton btnOrgEditServiceOp = (ImageButton) serviceOpView.findViewById(R.id.orgEditServiceOp);
+                ImageButton btnOrgRemoveService = (ImageButton) serviceOpView.findViewById(R.id.RemoveServiceOp);
                 ImageView imgOrgServiceOp = (ImageView) serviceOpView.findViewById(R.id.orgServiceOp);
                 txtOrgServiceOpName.setText(serviceOp.getOpName());
                 txtOrgServiceOpSubtitle.setText(serviceOp.getOpSubtitle());
+
 //                imgOrgServiceOp.setImageURI(Uri.fromFile(serviceOp.getOpEventPhoto()));
+//                imgOrgServiceOp.setImageURI(Uri.fromFile(serviceOp.getOpEventPhoto()));
+                btnOrgRemoveService.setVisibility(View.GONE);
+
 
                 btnOrgEditServiceOp.setOnClickListener(new View.OnClickListener() {
                     @Override
