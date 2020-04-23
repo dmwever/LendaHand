@@ -1,10 +1,12 @@
 package com.example.lendahand;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
@@ -12,7 +14,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,13 +28,57 @@ import java.util.Random;
 public class org_page extends AppCompatActivity {
     ServiceOrganization serviceOrg;
 
+    TextView txtOrgName;
+    TextView txtOrgEmail;
+    TextView txtOrgPhone;
+    TextView txtOrgWebsite;
+    TextView txtOrgDesc;
+    ImageView imgOrgLogo;
+    ImageView imgOrgHeader;
+    ImageButton btnOrgEdit;
+    LinearLayout listOrgServiceOps;
+    MaterialButton btnOrgSeeMoreOps;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_org_page);
 
-        Intent serviceOrgIntent = getIntent();
-        serviceOrg = (ServiceOrganization)serviceOrgIntent.getSerializableExtra("ServiceOrg");
+        //Associate each view with its XML component
+        txtOrgName = (TextView) findViewById(R.id.orgNameText);
+        txtOrgEmail = (TextView) findViewById(R.id.orgEmailText);
+        txtOrgPhone = (TextView) findViewById(R.id.orgPhoneText);
+        txtOrgWebsite = (TextView) findViewById(R.id.orgWebsiteText);
+        txtOrgDesc = (TextView) findViewById(R.id.orgDescText);
+        imgOrgLogo = (ImageView) findViewById(R.id.orgLogo);
+        imgOrgHeader = (ImageView) findViewById(R.id.imgOpHeader);
+        btnOrgEdit = (ImageButton) findViewById(R.id.orgEditPage);
+        listOrgServiceOps = (LinearLayout) findViewById(R.id.orgServiceOpsList);
+        btnOrgSeeMoreOps = (MaterialButton) findViewById(R.id.orgSeeMoreOps);
+
+        //Check for information in the bundle
+        if (getIntent().hasExtra("ID")) {
+            Bundle bundle = getIntent().getExtras();
+            String ID = bundle.getString("ID");
+            serviceOrg = new ServiceOrganization(ID);
+            Log.d("org_page", "If 1");
+
+            queryDatabaseForOrganziation(ID);
+
+        } else if (getIntent().hasExtra("ServiceOrg")) {
+            Intent serviceOrgIntent = getIntent();
+            serviceOrg = (ServiceOrganization)serviceOrgIntent.getSerializableExtra("ServiceOrg");
+            Log.d("org_page", "If 2");
+            updateUI();
+
+        } else {
+            Log.d("org_page", "If 3");
+            return;
+        }
+
+
 
         Random rand = new Random();
         ServiceOpportunity s1 = new ServiceOpportunity("one", "one", "one", "one", "one", "one", false, "01/01/01", "0100", "01/01/01", "0100", "oneoneone", "1", "", serviceOrg.getOrgLogo(), serviceOrg.getOrgLogo(), "one@one.com" ,"org1");
@@ -43,25 +94,21 @@ public class org_page extends AppCompatActivity {
         serviceOrg.addOrgServiceOp(s3);
         s3.setId(s3.getOpServiceOrg() + (rand.nextInt(999999)));
 
+        allowUsertoEditOrg();
 
-        final TextView txtOrgName = (TextView) findViewById(R.id.orgNameText);
-        final TextView txtOrgEmail = (TextView) findViewById(R.id.orgEmailText);
-        final TextView txtOrgPhone = (TextView) findViewById(R.id.orgPhoneText);
-        final TextView txtOrgWebsite = (TextView) findViewById(R.id.orgWebsiteText);
-        final TextView txtOrgDesc = (TextView) findViewById(R.id.orgDescText);
-        final ImageView imgOrgLogo = (ImageView) findViewById(R.id.orgLogo);
-        final ImageView imgOrgHeader = (ImageView) findViewById(R.id.imgOpHeader);
-        final ImageButton btnOrgEdit = (ImageButton) findViewById(R.id.orgEditPage);
-        final LinearLayout listOrgServiceOps = (LinearLayout) findViewById(R.id.orgServiceOpsList);
-        MaterialButton btnOrgSeeMoreOps = (MaterialButton) findViewById(R.id.orgSeeMoreOps);
+    }
 
+
+
+
+    private void updateUI() {
         txtOrgName.setText(serviceOrg.getOrgName());
         txtOrgEmail.setText(serviceOrg.getOrgEmail());
         txtOrgPhone.setText(serviceOrg.getOrgPhone());
         txtOrgWebsite.setText(serviceOrg.getOrgWebsite());
         txtOrgDesc.setText(serviceOrg.getOrgDescription());
-        imgOrgLogo.setImageURI(Uri.fromFile(serviceOrg.getOrgLogo()));
-        imgOrgHeader.setImageURI(Uri.fromFile(serviceOrg.getOrgHeader()));
+//        imgOrgLogo.setImageURI(Uri.fromFile(serviceOrg.getOrgLogo()));
+//        imgOrgHeader.setImageURI(Uri.fromFile(serviceOrg.getOrgHeader()));
 
         HashMap<String, ServiceOpportunity> serviceOps = serviceOrg.getOrgServiceOpsList();
         ArrayList<ServiceOpportunity> serviceOpsList = new ArrayList<ServiceOpportunity>(serviceOps.values());
@@ -76,7 +123,7 @@ public class org_page extends AppCompatActivity {
                 ImageView imgOrgServiceOp = (ImageView) serviceOpView.findViewById(R.id.orgServiceOp);
                 txtOrgServiceOpName.setText(serviceOp.getOpName());
                 txtOrgServiceOpSubtitle.setText(serviceOp.getOpSubtitle());
-                imgOrgServiceOp.setImageURI(Uri.fromFile(serviceOp.getOpEventPhoto()));
+//                imgOrgServiceOp.setImageURI(Uri.fromFile(serviceOp.getOpEventPhoto()));
 
                 btnOrgEditServiceOp.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -118,6 +165,34 @@ public class org_page extends AppCompatActivity {
         else{
             btnOrgSeeMoreOps.setVisibility(View.GONE);
         }
+
+    }
+
+    private void queryDatabaseForOrganziation(String ID) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference organization = db.collection("serviceOrganizations").document(ID);
+        Task<DocumentSnapshot> task = organization.get();
+
+        task.addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    Log.d("getService", "DocumentSnapshot data: " + document.getData());
+                    serviceOrg.setOrgName(document.getString("orgName"));
+                    serviceOrg.setOrgEmail(document.getString("orgEmail"));
+                    serviceOrg.setOrgPhone(document.getString("orgPhone"));
+                    serviceOrg.setOrgWebsite(document.getString("orgWebsite"));
+                    serviceOrg.setOrgDescription(document.getString("orgDescription"));
+//                    serviceOrg.setOpVolunteerList((HashMap<String, String>) document.get("opVolunteerList"));
+//                    getOpPhotos();
+                    updateUI();
+                }
+            }
+        });
+    }
+
+    private void allowUsertoEditOrg() {
         btnOrgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,5 +204,6 @@ public class org_page extends AppCompatActivity {
             }
         });
     }
+
 }
 
