@@ -13,3 +13,6 @@ The service caters to two user groups: volunteers and service organizations.
 ### Project Focus
 * Seamlessly connect the next generation of volunteers to service opportunities
 * Give small and large volunteer based organizations a powerful, mobile friendly tool to find volunteers
+
+### [Lendahand Video](https://www.youtube.com/watch?v=gZCCaEPmzxQ&feature=youtu.be)
+
