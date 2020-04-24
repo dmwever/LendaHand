@@ -7,7 +7,6 @@
 * Volunteers can view Service Opportunities and Service Organizations on Home Page without signing up
 * Search for and filter Service Opportunites by Service Organization and Name
 * Sign up for Service Opportunities using a 1-click sign up feature once signed in
-* View Service Opportunities that volunteer signed up for on Volunteer Page and manage those Service Opportunities
 
 ### For Service Organizations
 * Add Service Opportunities
